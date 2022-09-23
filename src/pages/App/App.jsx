@@ -19,6 +19,7 @@ function App() {
     setUser(null);
   }
 
+  // if user is logged in.
   if (user) {
     return (
       <Routes>
@@ -35,6 +36,7 @@ function App() {
     );
   }
 
+  // If user is not logged in
   return (
     <Routes>
       <Route

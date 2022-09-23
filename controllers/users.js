@@ -7,6 +7,7 @@ const { v4: uuidv4 } = require("uuid");
 // since we are sharing code, when you pull you don't want to have to edit the
 // the bucket name, thats why we're using an environment variable
 const BUCKET_NAME = process.env.AWS_BUCKET_NAME;
+const SECRET = process.env.SECRET;
 
 
 module.exports = {
@@ -22,6 +23,7 @@ async function signup(req, res) {
   // pupstagram/ <- will upload everything to the bucket so it appears
   // like its an a folder (really its just nested keys on the bucket)
   const key = `pupstagram/${uuidv4()}-${req.file.originalname}`;
+  // UPDATE KEY!!!!!!!!!!
   const params = { Bucket: BUCKET_NAME, Key: key, Body: req.file.buffer };
 
   s3.upload(params, async function (err, data) {
@@ -44,6 +46,8 @@ async function signup(req, res) {
       res.json({ token }); // shorthand for the below
       // res.json({ token: token })
     } catch (err) {
+
+      // This is an example of how to handle validation errors from mongoose
       if (err.name === "MongoServerError" && err.code === 11000) {
         console.log(err.message, "err.message");
         res
@@ -80,7 +84,7 @@ async function login(req, res) {
       }
     });
   } catch (err) {
-    return res.status(401).json({err: 'error message');
+    return res.status(401).json({err: 'error message'});
   }
 }
 
