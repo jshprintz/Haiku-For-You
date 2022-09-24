@@ -40,7 +40,7 @@ async function signup(req, res) {
   // pupstagram/ <- will upload everything to the bucket so it appears
   // like its an a folder (really its just nested keys on the bucket)
   const key = `pupstagram/${uuidv4()}-${req.file.originalname}`;
-  // UPDATE KEY!!!!!!!!!!
+  
   const params = { Bucket: BUCKET_NAME, Key: key, Body: req.file.buffer };
 
   s3.upload(params, async function (err, data) {
