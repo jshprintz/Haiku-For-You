@@ -20,7 +20,7 @@ userSchema.set('toJSON', {
     return ret;
   }
 });
-/// in controller
+
 
 // this is if you populate the user
 userSchema.set('toObject', {
