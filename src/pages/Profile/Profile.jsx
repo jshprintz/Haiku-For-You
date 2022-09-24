@@ -3,6 +3,7 @@ import { Grid } from "semantic-ui-react";
 import ProfileBio from "../../components/ProfileBio/ProfileBio";
 import PageHeader from "../../components/Header/Header";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
+import Loading from "../../components/Loader/Loader";
 
 import userService from "../../utils/userService";
 import { useParams } from "react-router-dom";
@@ -10,17 +11,16 @@ import { useParams } from "react-router-dom";
 export default function ProfilePage({ loggedUser, handleLogout }) {
   const [error, setError] = useState("");
   const [profileUser, setProfileUser] = useState({});
+  const [loading, setLoading] = useState(true);
 
   const { username } = useParams();
 
   const getProfile = useCallback(async () => {
-
-    console.log(username, "<--user")
-
     try {
       const response = await userService.getProfile(username); // this line evaluates to what the server responds to the request with
       // after we get the response to the server
       // so lets flip the loading state
+      setLoading(false);
       setProfileUser(response.data.user);
       console.log(response);
     } catch (err) {
@@ -28,9 +28,6 @@ export default function ProfilePage({ loggedUser, handleLogout }) {
       setError("Profile does not exist! You are in the wrong in place.");
     }
   }, [username]);
-
-
-
 
   useEffect(() => {
     console.log("firing!");
@@ -41,14 +38,20 @@ export default function ProfilePage({ loggedUser, handleLogout }) {
   }, [username, getProfile]);
 
 
-
-
-
   if (error) {
     return (
       <>
         <PageHeader handleLogout={handleLogout} loggedUser={loggedUser} />
         <ErrorMessage error={error} />;
+      </>
+    );
+  }
+
+  if (loading) {
+    return (
+      <>
+        <PageHeader handleLogout={handleLogout} loggedUser={loggedUser} />
+        <Loading />
       </>
     );
   }
