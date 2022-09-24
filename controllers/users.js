@@ -12,8 +12,25 @@ const SECRET = process.env.SECRET;
 
 module.exports = {
   signup,
-  login
+  login,
+  profile
 };
+
+async function profile(req, res) {
+  try {
+    const user = await User.findOne({ username: req.params.username });
+    if (!user) return res.status(400).json({ error: "User not found" });
+
+    res.status(200).json({
+      data: {
+        user: user
+      }
+    });
+  } catch(err) {
+    console.log(err.message, "<-- profile controller error");
+    res.status(400).json({ error: "Ooops. Something went wrong. Please try again later."})
+  }
+}
 
 async function signup(req, res) {
   console.log(req.body, " req.body in signup", req.file);

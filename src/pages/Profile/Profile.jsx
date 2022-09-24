@@ -14,6 +14,9 @@ export default function ProfilePage({ loggedUser, handleLogout }) {
   const { username } = useParams();
 
   const getProfile = useCallback(async () => {
+
+    console.log(username, "<--user")
+
     try {
       const response = await userService.getProfile(username); // this line evaluates to what the server responds to the request with
       // after we get the response to the server
@@ -21,12 +24,13 @@ export default function ProfilePage({ loggedUser, handleLogout }) {
       setProfileUser(response.data.user);
       console.log(response);
     } catch (err) {
-      console.log(err.message);
-      setError("Profile does not exist! You are in the wrong in place");
+      console.log(err.message, "<--Error");
+      setError("Profile does not exist! You are in the wrong in place.");
     }
   }, [username]);
 
-  
+
+
 
   useEffect(() => {
     console.log("firing!");
@@ -35,6 +39,10 @@ export default function ProfilePage({ loggedUser, handleLogout }) {
 
     getProfile();
   }, [username, getProfile]);
+
+
+
+
 
   if (error) {
     return (

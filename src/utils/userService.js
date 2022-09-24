@@ -4,6 +4,7 @@ const BASE_URL = '/api/users/';
 
 function getProfile(username){
   console.log('getProfile calling')
+  
   return fetch(BASE_URL + username, {
     headers: {
       Authorization: "Bearer " + tokenService.getToken(), // <- since this will be called when we're logged in, send over the jwt token
@@ -11,6 +12,8 @@ function getProfile(username){
     }
   }).then(res => {
     // This function happens when the browser recieves a response from the express server
+    console.log(res)
+
     if(res.ok) return res.json();
     throw new Error('Error from getProfile Request, check the server terminal!')
   })

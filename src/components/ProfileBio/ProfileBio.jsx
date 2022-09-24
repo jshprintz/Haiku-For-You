@@ -12,7 +12,7 @@ export default function ProfileBio({ user }) {
                 : "https://react.semantic-ui.com/images/wireframe/square-image.png"
             } `}
             avatar
-            size="medium"
+            size="small"
           />
         </Grid.Column>
       </Grid.Row>

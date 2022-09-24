@@ -28,6 +28,11 @@ export default function Feed({ loggedUser, handleLogout }) {
                     <PageHeader handleLogout={handleLogout} loggedUser={loggedUser} />
                 </GridColumn>
             </Grid.Row>
+            <Grid.Row>
+                <GridColumn>
+                    <h1>This is the Feed page (Home) </h1>
+                </GridColumn>
+            </Grid.Row>
 
         </Grid>
     )
