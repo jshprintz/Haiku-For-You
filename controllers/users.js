@@ -13,8 +13,9 @@ const SECRET = process.env.SECRET;
 module.exports = {
   signup,
   login,
-  profile
+  profile,
 };
+
 
 async function profile(req, res) {
   try {

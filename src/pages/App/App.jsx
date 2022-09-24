@@ -6,6 +6,7 @@ import SignupPage from "../SignupPage/SignupPage";
 import LoginPage from "../LoginPage/LoginPage";
 import FeedPage from "../Feed/Feed";
 import ProfilePage from "../Profile/Profile";
+import MorePage from "../More/More";
 
 
 import userService from "../../utils/userService";
@@ -37,6 +38,10 @@ function App() {
         <Route
           path="/signup"
           element={<SignupPage handleSignUpOrLogin={handleSignUpOrLogin} />}
+        />
+        <Route
+          path="/more"
+          element={<MorePage loggedUser={user} handleLogout={handleLogout} />}
         />
         <Route
           path="/:username"
