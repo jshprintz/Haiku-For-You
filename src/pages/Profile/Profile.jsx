@@ -4,7 +4,10 @@ import ProfileBio from "../../components/ProfileBio/ProfileBio";
 import PageHeader from "../../components/Header/Header";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import Loading from "../../components/Loader/Loader";
+import PostGallery from "../../components/PostGallery/PostGallery"
 
+
+import * as likesAPI from "../../utils/likesApi";
 import userService from "../../utils/userService";
 import { useParams } from "react-router-dom";
 
@@ -12,14 +15,35 @@ export default function ProfilePage({ loggedUser, handleLogout }) {
   const [error, setError] = useState("");
   const [profileUser, setProfileUser] = useState({});
   const [loading, setLoading] = useState(true);
+  const [posts, setPosts] = useState([]);
 
   const { username } = useParams();
 
+  async function addLike(postId) {
+    // Where is the postId defined in the UI?
+
+    try {
+      const response = await likesAPI.create(postId);
+      console.log(response, "from add like");
+      getProfile();
+    } catch (err) {
+      console.log(err, " err from server");
+    }
+  }
+
+  async function removeLike(likeId) {
+    try {
+      const response = await likesAPI.removeLike(likeId);
+      console.log(response, " remove like");
+      getProfile();
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   const getProfile = useCallback(async () => {
     try {
-      const response = await userService.getProfile(username); // this line evaluates to what the server responds to the request with
-      // after we get the response to the server
-      // so lets flip the loading state
+      const response = await userService.getProfile(username); 
       setLoading(false);
       setProfileUser(response.data.user);
       console.log(response);
@@ -31,8 +55,6 @@ export default function ProfilePage({ loggedUser, handleLogout }) {
 
   useEffect(() => {
     console.log("firing!");
-    // When the page loads, lets send a get request to the server
-    // to get whoever's profile page I'm on. (example, localhost:3000/jim) <-- jim's profile info I want to get
 
     getProfile();
   }, [username, getProfile]);
@@ -66,6 +88,19 @@ export default function ProfilePage({ loggedUser, handleLogout }) {
       <Grid.Row>
         <Grid.Column>
           <ProfileBio user={profileUser} />
+        </Grid.Column>
+      </Grid.Row>
+      <Grid.Row centered>
+        <Grid.Column style={{ maxWidth: 750 }}>
+          <PostGallery
+            posts={posts}
+            numPhotosCol={3}
+            isProfile={true}
+            loading={loading}
+            loggedUser={loggedUser}
+            addLike={addLike}
+            removeLike={removeLike}
+          />
         </Grid.Column>
       </Grid.Row>
     </Grid>
