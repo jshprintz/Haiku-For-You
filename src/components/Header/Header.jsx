@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Header, Segment, Image, Icon } from "semantic-ui-react";
-import MorePage from '../../pages/More/More'
 
 export default function PageHeader({ loggedUser, handleLogout }) {
   return (
@@ -31,9 +30,14 @@ export default function PageHeader({ loggedUser, handleLogout }) {
         </Link>
 
         {loggedUser ? (
-        <Link to="/more">
-          More
-        </Link>
+        <>
+            <Link to="/more">
+            More
+            </Link>
+            <Link to="/write">
+            Write a Haiku
+            </Link>
+        </>
         ) : (
         null
         )}
