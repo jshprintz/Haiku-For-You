@@ -4,7 +4,8 @@ import "./App.css";
 
 import SignupPage from "../SignupPage/SignupPage";
 import LoginPage from "../LoginPage/LoginPage";
-import FeedPage from "../Feed/Feed"
+import FeedPage from "../Feed/Feed";
+import ProfilePage from "../Profile/Profile";
 
 
 import userService from "../../utils/userService";
@@ -36,6 +37,10 @@ function App() {
         <Route
           path="/signup"
           element={<SignupPage handleSignUpOrLogin={handleSignUpOrLogin} />}
+        />
+        <Route
+          path="/:username"
+          element={<ProfilePage loggedUser={user} handleLogout={handleLogout} />}
         />
       </Routes>
     );
