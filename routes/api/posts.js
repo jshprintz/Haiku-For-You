@@ -4,7 +4,7 @@ const postsCtrl = require('../../controllers/posts');
 
 
 // /*---------- Public Routes ----------*/
-router.post('/', postsCtrl.create);
+router.post('/write', postsCtrl.create);
 router.get('/', postsCtrl.index)
 
 

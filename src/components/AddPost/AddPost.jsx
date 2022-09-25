@@ -17,6 +17,8 @@ export default function AddPostForm(props) {
   }
 
   async function handleSubmit(e) {
+
+    
     e.preventDefault();
     const formData = new FormData();
 

@@ -12,9 +12,7 @@ import * as likesAPI from "../../utils/likesApi";
 export default function Feed({ loggedUser, handleLogout }) {
   const [posts, setPosts] = useState([]);
   const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false); //<--CHANGE WHEN POSTs ADDED
-
-  console.log(posts, "<<----POSTSS")
+  const [loading, setLoading] = useState(true); //<--CHANGE WHEN POSTs ADDED
 
   async function addLike(postId) {
 
@@ -42,7 +40,6 @@ export default function Feed({ loggedUser, handleLogout }) {
   async function getPosts() {
     try {
       const response = await postsAPI.getAll();
-      console.log(response, " data");
       setPosts([...response.data]);
       setLoading(false);
     } catch (err) {
