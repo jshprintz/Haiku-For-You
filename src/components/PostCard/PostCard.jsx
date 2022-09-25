@@ -15,11 +15,13 @@ function PostCard({ post, isProfile, addLike, removeLike, loggedUser }) {
       ? () => removeLike(post.likes[likedIndex]._id) 
       : () => addLike(post._id);  
 
+      console.log(post, "<-------POST")
+
   return (
     <Card key={post._id} raised>
-      {isProfile ? (
+      {/* {isProfile ? (
         ""
-      ) : (
+      ) : ( */}
         <Card.Content textAlign="left">
           <Card.Header>
             <Link to={`/${post.user.username}`}>
@@ -36,12 +38,13 @@ function PostCard({ post, isProfile, addLike, removeLike, loggedUser }) {
             </Link>
           </Card.Header>
         </Card.Content>
-      )}
+      {/* )} */}
 
-      <Image src={`${post?.photoUrl}`} wrapped ui={false} />
       <Card.Content>
-        <Card.Description>{post.caption}</Card.Description>
+        <Card.Description>{post.title}</Card.Description>
       </Card.Content>
+
+
       <Card.Content extra textAlign={"right"}>
         <Icon
           name={"heart"}

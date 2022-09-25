@@ -14,7 +14,8 @@ export default function Feed({ loggedUser, handleLogout }) {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false); //<--CHANGE WHEN POSTs ADDED
 
-  
+  console.log(posts, "<<----POSTSS")
+
   async function addLike(postId) {
 
     try {
@@ -76,23 +77,23 @@ export default function Feed({ loggedUser, handleLogout }) {
   return (
     <Grid centered>
       <Grid.Row>
-        <GridColumn>
+        <Grid.Column >
           <PageHeader handleLogout={handleLogout} loggedUser={loggedUser} />
-        </GridColumn>
+        </Grid.Column>
       </Grid.Row>
       <Grid.Row>
-        <GridColumn style={{ maxwidth: 450 }}>
+        <Grid.Column style={{ maxwidth: 350 }}>
         <h1>Here are all the posts</h1>
         <PostGallery
             posts={posts}
-            numPhotosCol={1}
+            numPhotosCol={3}
             isProfile={false}
             loading={loading}
             addLike={addLike}
             removeLike={removeLike}
             loggedUser={loggedUser}
           />
-        </GridColumn>
+        </Grid.Column>
       </Grid.Row>
     </Grid>
   );

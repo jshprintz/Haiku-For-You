@@ -4,7 +4,7 @@ import ProfileBio from "../../components/ProfileBio/ProfileBio";
 import PageHeader from "../../components/Header/Header";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import Loading from "../../components/Loader/Loader";
-import PostGallery from "../../components/PostGallery/PostGallery"
+import PostGallery from "../../components/PostGallery/PostGallery";
 
 
 import * as likesAPI from "../../utils/likesApi";
@@ -92,14 +92,15 @@ export default function ProfilePage({ loggedUser, handleLogout }) {
       </Grid.Row>
       <Grid.Row centered>
         <Grid.Column style={{ maxWidth: 750 }}>
-          <PostGallery
+            <h3>Posts go here</h3>
+            <PostGallery
             posts={posts}
             numPhotosCol={3}
-            isProfile={true}
+            isProfile={false}
             loading={loading}
-            loggedUser={loggedUser}
             addLike={addLike}
             removeLike={removeLike}
+            loggedUser={loggedUser}
           />
         </Grid.Column>
       </Grid.Row>

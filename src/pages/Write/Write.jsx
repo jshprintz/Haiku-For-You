@@ -37,7 +37,7 @@ export default function More({ loggedUser, handleLogout}){
         </Grid.Row>
         <Grid.Row>
           <Grid.Column>
-            <h1>Here is the WRITE page.</h1>
+            <h1>Write a Haiku</h1>
             <p>{error}</p>
           </Grid.Column>
         </Grid.Row>
