@@ -9,6 +9,7 @@ export function create(post) {
         console.log(item, "items")
     })
     console.log(JSON.stringify(post), "STRINGIFY POSTS")
+    console.log(post, "NON STRINGIFY POST")
 
     return fetch(BASE_URL + "/write", {
         method: "POST",
