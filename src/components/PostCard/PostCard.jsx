@@ -20,11 +20,16 @@ function PostCard({ post, isProfile, addLike, removeLike, loggedUser }) {
 
       console.log(post, "<-------POST")
 
+
+
+
+      
+
   return (
     <Card key={post._id} raised>
-      {/* {isProfile ? (
+      {isProfile ? (
         ""
-      ) : ( */}
+      ) : (
         <Card.Content textAlign="left">
           <Card.Header>
             <Link to={`/${post.user.username}`}>
@@ -41,7 +46,7 @@ function PostCard({ post, isProfile, addLike, removeLike, loggedUser }) {
             </Link>
           </Card.Header>
         </Card.Content>
-      {/* )} */}
+      )}
 
       <Card.Content>
         <Card.Description>{post.title}</Card.Description>
