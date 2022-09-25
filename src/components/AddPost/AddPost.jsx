@@ -10,31 +10,18 @@ export default function AddPostForm(props) {
   });
 
   function handleChange(e) {
-    console.log(state.title);
-    console.log(state.poem);
     setState({
         ...state,
         [e.target.name]: e.target.value,
     });
   }
 
-
-
   async function handleSubmit(e) {
     e.preventDefault();
     const formData = new FormData();
-    
-
-    // These are correct
-    console.log(state.title, "<--Title");
-    console.log(state.poem, "<--poem");
 
     formData.append("title", state.title);
     formData.append("poem", state.poem);
-
-    console.log(
-      formData.forEach((item) => console.log(item, "<--item"))
-    );
 
     try {
         await props.handleAddPost(formData);
