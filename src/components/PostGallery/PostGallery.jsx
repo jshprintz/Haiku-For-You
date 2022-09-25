@@ -5,6 +5,9 @@ import Loader from '../Loader/Loader';
 
 export default function PostGallery({posts, numPhotosCol, isProfile, loading, removeLike, addLike, loggedUser}){
 
+
+    console.log(posts, "<<---POSTS SENT TO POSTGALLERY")
+
     return (
         <Card.Group itemsPerRow={numPhotosCol} stackable>
         {loading ? (

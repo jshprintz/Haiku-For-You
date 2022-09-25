@@ -6,7 +6,6 @@ import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import Loading from "../../components/Loader/Loader";
 import PostGallery from "../../components/PostGallery/PostGallery";
 
-import * as postsAPI from "../../utils/postApi";
 import * as likesAPI from "../../utils/likesApi";
 import userService from "../../utils/userService";
 import { useParams } from "react-router-dom";
@@ -41,27 +40,18 @@ export default function ProfilePage({ loggedUser, handleLogout }) {
     }
   }
 
-  async function getPosts() {
-    try {
-      const response = await postsAPI.getAll();
-      console.log(response, " data");
-      setPosts([...response.data]);
-      setLoading(false);
-    } catch (err) {
-      console.log(err.message, " this is the error");
-      setLoading(false);
-    }
-  }
-  
-  useEffect(() => {
-    getPosts();
-  }, []);
+
 
   const getProfile = useCallback(async () => {
+    
     try {
       const response = await userService.getProfile(username); 
       setLoading(false);
+
+      console.log(response.data, "<------RESPONSE.DATA")
       setProfileUser(response.data.user);
+      setPosts(response.data.posts);
+
       console.log(response);
     } catch (err) {
       console.log(err.message, "<--Error");
@@ -69,11 +59,19 @@ export default function ProfilePage({ loggedUser, handleLogout }) {
     }
   }, [username]);
 
+
+
+
   useEffect(() => {
     console.log("firing!");
 
     getProfile();
   }, [username, getProfile]);
+
+
+
+
+
 
 
   if (error) {
@@ -112,7 +110,7 @@ export default function ProfilePage({ loggedUser, handleLogout }) {
             <PostGallery
             posts={posts}
             numPhotosCol={3}
-            isProfile={false}
+            isProfile={true}
             loading={loading}
             addLike={addLike}
             removeLike={removeLike}

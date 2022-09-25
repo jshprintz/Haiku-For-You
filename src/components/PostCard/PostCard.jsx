@@ -18,12 +18,12 @@ function PostCard({ post, isProfile, addLike, removeLike, loggedUser }) {
       ? () => removeLike(post.likes[likedIndex]._id) 
       : () => addLike(post._id);  
 
+
+
+
       console.log(post, "<-------POST")
 
 
-
-
-      
 
   return (
     <Card key={post._id} raised>
@@ -50,6 +50,7 @@ function PostCard({ post, isProfile, addLike, removeLike, loggedUser }) {
 
       <Card.Content>
         <Card.Description>{post.title}</Card.Description>
+        <p>{post.poem}</p>
       </Card.Content>
 
 
