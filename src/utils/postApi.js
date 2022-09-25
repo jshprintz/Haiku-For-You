@@ -3,24 +3,17 @@ import tokenService from "./tokenService";
 const BASE_URL = "/api/posts";
 
 export function create(post) {
-   
-    let dummyPost = {
-        poem: post.poem,
-        title: post.title
-    }
 
-        post.forEach((item) => {
-            console.log(item, "items")
-        })
-
-
-
+    console.log(post, "HERE IS THE POST - POST API CREATE")
+    post.forEach((item) => {
+        console.log(item, "items")
+    })
+    console.log(JSON.stringify(post), "STRINGIFY POSTS")
 
     return fetch(BASE_URL + "/write", {
         method: "POST",
-        body: JSON.stringify(dummyPost),
+        body: JSON.stringify(post),
         headers: {
-            'Content-Type': 'application/json',
             Authorization: "Bearer " + tokenService.getToken(),
         },
         

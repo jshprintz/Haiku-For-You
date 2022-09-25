@@ -7,7 +7,7 @@ module.exports = {
 };
 
 async function create(req, res) {
-  console.log(req, "<-Req.BODY posts controller");
+  console.log(req.body, "<-Req.BODY posts controller");
   console.log(req.user, "<--Here is the user")
 
   try {

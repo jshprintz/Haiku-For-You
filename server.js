@@ -3,8 +3,6 @@ const express = require('express');
 const path = require('path');
 const logger = require('morgan');
 const favicon = require('serve-favicon');
-const bodyParser = require('body-parser');
-const cors = require('cors');
 
 require('./config/database');
 
@@ -23,10 +21,6 @@ app.use(express.static(path.join(__dirname, 'build'))); // this allows express t
 // This decodes the jwt token, and assigns
 // the user information to req.user
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-
-app.use(cors())
 
 app.use(require('./config/auth')); 
 // api routes must be before the "catch all" route

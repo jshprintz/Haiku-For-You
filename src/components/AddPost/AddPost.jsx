@@ -25,6 +25,10 @@ export default function AddPostForm(props) {
     formData.append("title", state.title);
     formData.append("poem", state.poem);
 
+    formData.forEach(item => {
+        console.log(item, "<--here")
+    })
+
     try {
         await props.handleAddPost(formData);
         
