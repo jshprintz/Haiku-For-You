@@ -16,7 +16,6 @@ async function create(req, res) {
       user: req.user,
       title: req.body.title,
     });
-
     
     res.status(201).json({ data: post });
   } catch (err) {

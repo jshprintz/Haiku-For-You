@@ -52,9 +52,8 @@ async function handleSubmit(e) {
         verticalAlign="middle"
       >
         <Grid.Column style={{ maxWidth: 450 }}>
-          <Header as="h2" color="teal" textAlign="center">
-            <Image src="https://i.imgur.com/s4LrnlU.png" /> Log-in to your
-            account
+          <Header as="h2" color="grey" textAlign="center">
+           Log-in to your account
           </Header>
           <Form onSubmit={handleSubmit}>
             <Segment stacked>
@@ -75,7 +74,7 @@ async function handleSubmit(e) {
                 required
               />
               <Button
-                color="teal"
+                color="grey"
                 fluid
                 size="large"
                 type="submit"
