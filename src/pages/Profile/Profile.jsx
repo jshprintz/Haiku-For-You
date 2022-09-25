@@ -6,7 +6,7 @@ import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import Loading from "../../components/Loader/Loader";
 import PostGallery from "../../components/PostGallery/PostGallery";
 
-
+import * as postsAPI from "../../utils/postApi";
 import * as likesAPI from "../../utils/likesApi";
 import userService from "../../utils/userService";
 import { useParams } from "react-router-dom";
@@ -40,6 +40,22 @@ export default function ProfilePage({ loggedUser, handleLogout }) {
       console.log(err);
     }
   }
+
+  async function getPosts() {
+    try {
+      const response = await postsAPI.getAll();
+      console.log(response, " data");
+      setPosts([...response.data]);
+      setLoading(false);
+    } catch (err) {
+      console.log(err.message, " this is the error");
+      setLoading(false);
+    }
+  }
+  
+  useEffect(() => {
+    getPosts();
+  }, []);
 
   const getProfile = useCallback(async () => {
     try {

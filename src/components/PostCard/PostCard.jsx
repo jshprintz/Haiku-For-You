@@ -1,6 +1,9 @@
 import React from "react";
 import { Card, Icon, Image } from "semantic-ui-react";
 import { Link } from "react-router-dom";
+
+
+
 function PostCard({ post, isProfile, addLike, removeLike, loggedUser }) {
 
   const likedIndex = post.likes.findIndex(
