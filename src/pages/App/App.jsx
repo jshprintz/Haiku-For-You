@@ -67,6 +67,18 @@ function App() {
     <Routes>
         <Route path="/" element={<FeedPage loggedUser={user} handleLogout={handleLogout} />} 
         />
+         <Route
+          path="/more"
+          element={<FeedPage loggedUser={user} handleLogout={handleLogout} />}
+        />
+        <Route
+          path="/write"
+          element={<FeedPage loggedUser={user} handleLogout={handleLogout} />}
+        />
+        <Route
+          path="/details/:post"
+          element={<FeedPage loggedUser={user} handleLogout={handleLogout} />}
+        />
       <Route
         path="/login"
         element={<LoginPage handleSignUpOrLogin={handleSignUpOrLogin} />}
