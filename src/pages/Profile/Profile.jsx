@@ -7,6 +7,7 @@ import Loading from "../../components/Loader/Loader";
 import PostGallery from "../../components/PostGallery/PostGallery";
 import "../App/App.css";
 
+import * as postsAPI from "../../utils/postApi";
 import * as likesAPI from "../../utils/likesApi";
 import userService from "../../utils/userService";
 import { useParams } from "react-router-dom";
@@ -52,9 +53,13 @@ export default function ProfilePage({ loggedUser, handleLogout }) {
     try {
       const response = await userService.getProfile(username); 
       setLoading(false);
-
+      getPosts()
       console.log(response.data, "<------RESPONSE.DATA")
       setProfileUser(response.data.user);
+
+
+
+
       //setPosts(response.data.posts);
 
       //---------------------------------------------------------------------------
@@ -65,7 +70,27 @@ export default function ProfilePage({ loggedUser, handleLogout }) {
       setError("Profile does not exist! You are in the wrong in place.");
     }
   }, [username]);
+  
 
+  async function getPosts() {
+    try {
+      const profilePosts = []
+      const response = await postsAPI.getAll();
+      console.log(response.data, "Response is here")
+      for (let i=0; i<response.data.length; i++){
+        if (response.data[i].user.username === profileUser.username){
+          profilePosts.push(response.data[i])
+        }
+      }
+      console.log(profilePosts, "<<<<<<,")
+
+      setPosts([...response.data]);
+      setLoading(false);
+    } catch (err) {
+      console.log(err.message, " this is the error");
+      setLoading(false);
+    }
+  }
 
 
 
@@ -117,7 +142,7 @@ export default function ProfilePage({ loggedUser, handleLogout }) {
             <PostGallery
             posts={posts}
             numPhotosCol={3}
-            isProfile={true}
+            isProfile={false}
             loading={loading}
             addLike={addLike}
             removeLike={removeLike}
