@@ -76,7 +76,7 @@ function PostCard({
 
   return (
     
-      <Card key={post._id} href="/more">
+      <Card key={post._id} href={`/details/${post._id}`}>
         <Card.Content>
           <Card.Header textAlign="center">
             <Link to={`/${post.user.username}`}>

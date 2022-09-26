@@ -8,6 +8,7 @@ import FeedPage from "../Feed/Feed";
 import ProfilePage from "../Profile/Profile";
 import MorePage from "../More/More";
 import WritePage from "../Write/Write";
+import DetailsPage from "../Details/Details";
 
 import userService from "../../utils/userService";
 
@@ -46,6 +47,10 @@ function App() {
         <Route
           path="/write"
           element={<WritePage loggedUser={user} handleLogout={handleLogout} />}
+        />
+        <Route
+          path="/details/:post"
+          element={<DetailsPage loggedUser={user} handleLogout={handleLogout} />}
         />
         <Route
           path="/:username"
