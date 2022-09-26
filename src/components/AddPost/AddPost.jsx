@@ -20,12 +20,6 @@ export default function AddPostForm(props) {
     e.preventDefault();
     const formData = new FormData();
 
-    // for (let key in state) {
-    //     console.log(key, "key")
-    //     console.log(state, "state")
-    //     formData.append(key, state[key]);
-    //   }
-
     console.log(state.title, "<--------Title")
     console.log(state.poem, "<----------Poem")
     console.log(state, "<---------state")

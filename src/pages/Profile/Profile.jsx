@@ -44,8 +44,10 @@ export default function ProfilePage({ loggedUser, handleLogout }) {
 
 
   const getProfile = useCallback(async () => {
+    //----------------------------------------------------------------------------
     // fetching the username doesn't return the posts the same way
-    // it does in pupstagram.
+    // it does in pupstagram. getProfile is the same as it was in pupstagram, so it
+    // has to be something else.
 
     try {
       const response = await userService.getProfile(username); 
@@ -54,6 +56,8 @@ export default function ProfilePage({ loggedUser, handleLogout }) {
       console.log(response.data, "<------RESPONSE.DATA")
       setProfileUser(response.data.user);
       //setPosts(response.data.posts);
+
+      //---------------------------------------------------------------------------
 
       console.log(response, "Response");
     } catch (err) {
