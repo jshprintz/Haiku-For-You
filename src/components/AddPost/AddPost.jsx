@@ -18,21 +18,23 @@ export default function AddPostForm(props) {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    const formData = new FormData();
 
-    console.log(state.title, "<--------Title")
-    console.log(state.poem, "<----------Poem")
-    console.log(state, "<---------state")
+    // const formData = new FormData();
 
-    formData.append("title", state.title)
-    formData.append("poem", state.poem)
+    // console.log(state.title, "<--------Title")
+    // console.log(state.poem, "<----------Poem")
+   console.log(state, "<---------state")
 
-    formData.forEach(item => {
-        console.log(item, "<--here")
-    })
+    // formData.append("title", state.title)
+    // formData.append("poem", state.poem)
+    
+
+    // formData.forEach(item => {
+    //     console.log(item, "<--here")
+    // })
 
     try {
-        await props.handleAddPost(formData);
+        await props.handleAddPost(state);
         
     } catch(err) {
         console.log(err, "<-- in Addpost handlesubmit")

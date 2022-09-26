@@ -4,6 +4,7 @@ const path = require('path');
 const logger = require('morgan');
 const favicon = require('serve-favicon');
 
+
 require('./config/database');
 
 // Require controllers here
@@ -14,12 +15,14 @@ const app = express();
 // app.use(favicon(path.join(__dirname, 'build', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(express.json());
+//app.use(express.urlencoded({extended: true}));
 
 app.use(favicon(path.join(__dirname, 'build', 'favicon.ico')));
 app.use(express.static(path.join(__dirname, 'build'))); // this allows express to find the build folder
 // Configure the auth middleware
 // This decodes the jwt token, and assigns
 // the user information to req.user
+
 
 
 app.use(require('./config/auth')); 
