@@ -67,7 +67,7 @@ function PostCard({ post, isProfile, addLike, removeLike, loggedUser }) {
         <Icon
         name={"delete"}
         size="large"
-        //color={"followColor"}
+        color={"red"}
         //onClick={followClickHandler}
         />
         </Link>
@@ -81,14 +81,14 @@ function PostCard({ post, isProfile, addLike, removeLike, loggedUser }) {
           color={likeColor}
           onClick={likeClickHandler}
         />
-        {post.likes.length} Likes
+        {post.likes.length} 
 
       
         <Link to={`#`}>
             <Icon
           name={"user plus"}
           size="large"
-         //color={"followColor"}
+          color={"blue"}
           //onClick={followClickHandler}
         />
         </Link>
