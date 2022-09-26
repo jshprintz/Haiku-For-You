@@ -17,7 +17,7 @@ function PostCard({
 }) {
 
   const likedIndex = post.likes.findIndex(
-    (like) => like.username === loggedUser.username
+    (like) => like.username === loggedUser?.username
   );
   const likeColor = likedIndex > -1 ? "pink" : "grey";
 
@@ -97,7 +97,7 @@ function PostCard({
         </Card.Content>
 
         <Card.Content textAlign={"right"} >
-          {post.user.username === loggedUser.username ? (
+          {post.user.username === loggedUser?.username ? (
             <Link to={`#`}>
               <Icon
                 name={"delete"}
