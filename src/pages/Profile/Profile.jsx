@@ -5,6 +5,7 @@ import PageHeader from "../../components/Header/Header";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import Loading from "../../components/Loader/Loader";
 import PostGallery from "../../components/PostGallery/PostGallery";
+import "../App/App.css";
 
 import * as likesAPI from "../../utils/likesApi";
 import userService from "../../utils/userService";
@@ -43,16 +44,18 @@ export default function ProfilePage({ loggedUser, handleLogout }) {
 
 
   const getProfile = useCallback(async () => {
-    
+    // fetching the username doesn't return the posts the same way
+    // it does in pupstagram.
+
     try {
       const response = await userService.getProfile(username); 
       setLoading(false);
 
       console.log(response.data, "<------RESPONSE.DATA")
       setProfileUser(response.data.user);
-      setPosts(response.data.posts);
+      //setPosts(response.data.posts);
 
-      console.log(response);
+      console.log(response, "Response");
     } catch (err) {
       console.log(err.message, "<--Error");
       setError("Profile does not exist! You are in the wrong in place.");
@@ -104,7 +107,7 @@ export default function ProfilePage({ loggedUser, handleLogout }) {
           <ProfileBio user={profileUser} />
         </Grid.Column>
       </Grid.Row>
-      <Grid.Row centered>
+      <Grid.Row centered className="profile-posts" >
         <Grid.Column style={{ maxWidth: 750 }}>
             <h3>Posts go here</h3>
             <PostGallery

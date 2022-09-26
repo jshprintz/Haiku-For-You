@@ -3,6 +3,7 @@ import PageHeader from "../../components/Header/Header";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import Loading from "../../components/Loader/Loader";
 import PostGallery from "../../components/PostGallery/PostGallery"
+import "../App/App.css";
 
 import { Grid } from "semantic-ui-react";
 
@@ -78,7 +79,7 @@ export default function Feed({ loggedUser, handleLogout }) {
           <PageHeader handleLogout={handleLogout} loggedUser={loggedUser} />
         </Grid.Column>
       </Grid.Row>
-      <Grid.Row>
+      <Grid.Row className="feed-gallery">
         <Grid.Column style={{ maxwidth: 350 }}>
         <h1>Here are all the posts</h1>
         <PostGallery

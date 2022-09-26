@@ -6,14 +6,14 @@ export function create(post) {
 
     console.log(post, "HERE IS THE POST - POST API CREATE")
     post.forEach((item) => {
-        console.log(item, "items")
+        console.log(item, "<-----items")
     })
     console.log(JSON.stringify(post), "STRINGIFY POSTS")
     console.log(post, "NON STRINGIFY POST")
 
     return fetch(BASE_URL + "/write", {
         method: "POST",
-        body: JSON.stringify(post),
+        body: post,
         headers: {
             Authorization: "Bearer " + tokenService.getToken(),
         },

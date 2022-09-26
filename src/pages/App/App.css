@@ -1,4 +1,11 @@
 * {
   margin: 0px 10px;
+  color: grey;
 }
 
+.feed-gallery {
+  background-color: aqua;
+  scroll-behavior: smooth;
+  overflow: scroll;
+  height: 500px;
+}

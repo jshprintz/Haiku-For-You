@@ -19,7 +19,7 @@ function PostCard({ post, isProfile, addLike, removeLike, loggedUser }) {
       : () => addLike(post._id);  
 
   return (
-    <Card key={post._id} raised>
+    <Card key={post._id} >
       {isProfile ? (
         ""
       ) : (
@@ -47,10 +47,10 @@ function PostCard({ post, isProfile, addLike, removeLike, loggedUser }) {
       </Card.Content>
 
 
-      <Card.Content extra textAlign={"right"}>
+      <Card.Content textAlign={"right"}>
         <Icon
           name={"heart"}
-          size="large"
+          size="small"
           color={likeColor}
           onClick={clickHandler}
         />
