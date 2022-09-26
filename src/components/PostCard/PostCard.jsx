@@ -9,37 +9,30 @@ function PostCard({ post, isProfile, addLike, removeLike, loggedUser }) {
   const likedIndex = post.likes.findIndex(
     (like) => like.username === loggedUser.username
   );
-
-
   const likeColor = likedIndex > -1 ? "red" : "grey";
                      
-  const clickHandler =
+  const likeClickHandler =
     likedIndex > -1
       ? () => removeLike(post.likes[likedIndex]._id) 
       : () => addLike(post._id);  
 
+//--------------------------------------------------------
+//  FOLLOW. PROBABLY WILL NEED TO CHANGE THE USER MODEL.
+
+  // const followIndex = loggedUser.follow.findIndex(
+  //   (follow) => follow.username === loggedUser.username
+  // );
+  // const followColor = followIndex > -1 ? "blue" : "grey";
+
+  // const followClickHandler =
+  // likedIndex > -1 ?
+  //    () => removeLike(post.follow[followIndex]._id) 
+  //   : () => addLike(post._id);  
+//---------------------------------------------------------
+
+
   return (
     <Card key={post._id} >
-      {/* {isProfile ? (
-        ""
-      ) : (
-        <Card.Content textAlign="left">
-          <Card.Header textAlign="left">
-            <Link to={`/${post.user.username}`}>
-              <Image
-                size="large"
-                avatar
-                src={
-                  post.user.photoUrl
-                    ? post.user.photoUrl
-                    : "https://react.semantic-ui.com/images/wireframe/square-image.png"
-                }
-              />
-              {post.user.username}
-            </Link>
-          </Card.Header>
-        </Card.Content>
-      )} */}
 
       <Card.Content>
         <Card.Header>{post.title}</Card.Header>
@@ -48,7 +41,20 @@ function PostCard({ post, isProfile, addLike, removeLike, loggedUser }) {
 
 
       <Card.Content textAlign={"right"}>
-      <Card.Header textAlign="left">
+
+        {isProfile ? (
+
+        <Link to={`#`}>
+        <Icon
+        name={"delete"}
+        size="large"
+        //color={"followColor"}
+        //onClick={followClickHandler}
+        />
+        </Link>
+      ) : (
+        <>
+        <Card.Header textAlign="left">
             <Link to={`/${post.user.username}`}>
               <Image
                 size="large"
@@ -62,13 +68,27 @@ function PostCard({ post, isProfile, addLike, removeLike, loggedUser }) {
               {post.user.username}
             </Link>
           </Card.Header>
+
         <Icon
           name={"heart"}
-          size="small"
+          size="large"
           color={likeColor}
-          onClick={clickHandler}
+          onClick={likeClickHandler}
         />
         {post.likes.length} Likes
+
+      
+        <Link to={`#`}>
+            <Icon
+          name={"user plus"}
+          size="large"
+         //color={"followColor"}
+          //onClick={followClickHandler}
+        />
+        </Link>
+        </>
+
+      )}
       </Card.Content>
     </Card>
   );
