@@ -76,8 +76,8 @@ function PostCard({
 
   return (
     
-      <Card key={post._id} href={`/details/${post._id}`}>
-        <Card.Content>
+      <Card key={post._id} href={`/details/${post._id}`} >
+        <Card.Content className="card">
           <Card.Header textAlign="center">
             <Link to={`/${post.user.username}`}>
               <Image
@@ -97,7 +97,7 @@ function PostCard({
           <p>{post.poem}</p>
         </Card.Content>
 
-        <Card.Content textAlign={"right"}>
+        <Card.Content textAlign={"right"} >
           {post.user.username === loggedUser.username ? (
             <Link to={`#`}>
               <Icon
