@@ -41,23 +41,13 @@ export default function ProfilePage({ loggedUser, handleLogout }) {
     }
   }
 
-
-
   const getProfile = useCallback(async () => {
-    //----------------------------------------------------------------------------
-    // fetching the username doesn't return the posts the same way
-    // it does in pupstagram. getProfile is the same as it was in pupstagram, so it
-    // has to be something else.
 
     try {
-      const response = await userService.getProfile(username); 
+      const response = await userService.getProfile(username);
       setLoading(false);
-
-      console.log(response, "<------RESPONSE")
       setProfileUser(response.data.user);
       setPosts(response.data.posts);
-
-      //---------------------------------------------------------------------------
 
       console.log(response, "Response");
     } catch (err) {
@@ -66,20 +56,11 @@ export default function ProfilePage({ loggedUser, handleLogout }) {
     }
   }, [username]);
 
-
-
-
   useEffect(() => {
     console.log("firing!");
 
     getProfile();
   }, [username, getProfile]);
-
-
-
-
-
-
 
   if (error) {
     return (
@@ -111,10 +92,10 @@ export default function ProfilePage({ loggedUser, handleLogout }) {
           <ProfileBio user={profileUser} />
         </Grid.Column>
       </Grid.Row>
-      <Grid.Row centered className="profile-posts" >
+      <Grid.Row centered className="profile-posts">
         <Grid.Column style={{ maxWidth: 750 }}>
-            <h3>Posts go here</h3>
-            <PostGallery
+          <h3>Posts go here</h3>
+          <PostGallery
             posts={posts}
             numPhotosCol={3}
             isProfile={true}

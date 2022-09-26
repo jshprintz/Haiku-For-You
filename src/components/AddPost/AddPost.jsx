@@ -1,18 +1,16 @@
 import React, { useState } from "react";
 import { Button, Form, Segment } from "semantic-ui-react";
 
-
 export default function AddPostForm(props) {
-
   const [state, setState] = useState({
-    title: '',
-    poem: '',
+    title: "",
+    poem: "",
   });
 
   function handleChange(e) {
     setState({
-        ...state,
-        [e.target.name]: e.target.value,
+      ...state,
+      [e.target.name]: e.target.value,
     });
   }
 
@@ -20,12 +18,10 @@ export default function AddPostForm(props) {
     e.preventDefault();
 
     try {
-        await props.handleAddPost(state);
-        
-    } catch(err) {
-        console.log(err, "<-- in Addpost handlesubmit")
+      await props.handleAddPost(state);
+    } catch (err) {
+      console.log(err, "<-- in Addpost handlesubmit");
     }
-    
   }
 
   return (

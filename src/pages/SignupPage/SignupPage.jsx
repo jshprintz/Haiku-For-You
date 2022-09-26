@@ -6,20 +6,16 @@ import { useNavigate } from "react-router-dom";
 
 import { Button, Form, Grid, Header, Segment } from "semantic-ui-react";
 
-
 function isPasswordMatch(passwordOne, passwordConf) {
   return passwordOne === passwordConf;
 }
 
-
-
 export default function SignUpPage(props) {
-
   const [error, setError] = useState({
-    message: '',
-    passwordError: false
+    message: "",
+    passwordError: false,
   });
-  
+
   const [state, setState] = useState({
     username: "",
     email: "",
@@ -40,12 +36,16 @@ export default function SignUpPage(props) {
   }
 
   async function handleSubmit(e) {
-    e.preventDefault(); 
+    e.preventDefault();
 
-    if (!isPasswordMatch(state.password, state.passwordConf)) return setError({message: 'Passwords Must Match!', passwordError: true});
-    setError({message: '', passwordError: false})
+    if (!isPasswordMatch(state.password, state.passwordConf))
+      return setError({
+        message: "Passwords Must Match!",
+        passwordError: true,
+      });
+    setError({ message: "", passwordError: false });
 
-    const formData = new FormData(); 
+    const formData = new FormData();
 
     formData.append("photo", selectedFile);
 
@@ -55,11 +55,11 @@ export default function SignUpPage(props) {
 
     try {
       await userService.signup(formData);
-      props.handleSignUpOrLogin(); 
-      navigate("/"); 
+      props.handleSignUpOrLogin();
+      navigate("/");
     } catch (err) {
       console.log(err);
-      setError({message: err.message, passwordError: false});
+      setError({ message: err.message, passwordError: false });
     }
   }
 
@@ -68,19 +68,15 @@ export default function SignUpPage(props) {
     setSelectedFile(e.target.files[0]);
   }
 
-
-
-
-
   return (
-<Grid
+    <Grid
       textAlign="center"
       style={{ height: "100vh", width: "100vw" }}
       verticalAlign="middle"
     >
       <Grid.Column style={{ maxWidth: 450 }}>
         <Header as="h2" color="grey" textAlign="center">
-        Sign Up
+          Sign Up
         </Header>
         <Form onSubmit={handleSubmit}>
           <Segment stacked>
