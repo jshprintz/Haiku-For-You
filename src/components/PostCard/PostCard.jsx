@@ -3,7 +3,7 @@ import { Card, Icon, Image } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import { deletePost } from "../../utils/postApi";
 import * as postsAPI from "../../utils/postApi";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import userService from "../../utils/userService";
 
 function PostCard({
@@ -15,7 +15,6 @@ function PostCard({
   setPosts,
   setProfileUser,
 }) {
-  const navigate = useNavigate();
 
   const likedIndex = post.likes.findIndex(
     (like) => like.username === loggedUser.username
