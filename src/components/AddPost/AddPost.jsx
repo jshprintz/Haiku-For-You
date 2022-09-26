@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 import { Button, Form, Segment } from "semantic-ui-react";
+import { useNavigate } from "react-router-dom";
 
 export default function AddPostForm(props) {
+
+  const navigate = useNavigate();
+
+  
   const [state, setState] = useState({
     title: "",
     poem: "",
@@ -15,10 +20,12 @@ export default function AddPostForm(props) {
   }
 
   async function handleSubmit(e) {
+    
     e.preventDefault();
 
     try {
       await props.handleAddPost(state);
+      navigate("/");
     } catch (err) {
       console.log(err, "<-- in Addpost handlesubmit");
     }

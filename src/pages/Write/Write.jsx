@@ -13,7 +13,6 @@ export default function Write({ loggedUser, handleLogout }) {
     try {
       const response = await postsAPI.create(post); 
       setPosts([response.data, ...posts]); 
-
     } catch (err) {
       setError("Error creating post, please try again");
     }

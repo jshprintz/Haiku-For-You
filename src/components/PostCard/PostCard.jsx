@@ -3,7 +3,7 @@ import { Card, Icon, Image } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import { deletePost } from "../../utils/postApi";
 import * as postsAPI from "../../utils/postApi";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import userService from "../../utils/userService";
 
 function PostCard({
@@ -15,6 +15,8 @@ function PostCard({
   setPosts,
   setProfileUser,
 }) {
+  const navigate = useNavigate();
+
   const likedIndex = post.likes.findIndex(
     (like) => like.username === loggedUser.username
   );
@@ -73,61 +75,63 @@ function PostCard({
   //---------------------------------------------------------
 
   return (
-    <Card key={post._id}>
-      <Card.Content>
-        <Card.Header textAlign="center">
-          <Link to={`/${post.user.username}`}>
-            <Image
-              size="large"
-              avatar
-              src={
-                post.user.photoUrl
-                  ? post.user.photoUrl
-                  : "https://react.semantic-ui.com/images/wireframe/square-image.png"
-              }
-            />
-            {post.user.username}
-          </Link>
-        </Card.Header>
-        <br />
-        <Card.Header>{post.title}</Card.Header>
-        <p>{post.poem}</p>
-      </Card.Content>
+    
+      <Card key={post._id} href="/more">
+        <Card.Content>
+          <Card.Header textAlign="center">
+            <Link to={`/${post.user.username}`}>
+              <Image
+                size="large"
+                avatar
+                src={
+                  post.user.photoUrl
+                    ? post.user.photoUrl
+                    : "https://react.semantic-ui.com/images/wireframe/square-image.png"
+                }
+              />
+              {post.user.username}
+            </Link>
+          </Card.Header>
+          <br />
+          <Card.Header>{post.title}</Card.Header>
+          <p>{post.poem}</p>
+        </Card.Content>
 
-      <Card.Content textAlign={"right"}>
-        {post.user.username === loggedUser.username ? (
-          <Link to={`#`}>
-            <Icon
-              name={"delete"}
-              size="large"
-              color={"red"}
-              onClick={deleteClickHandler}
-            />
-          </Link>
-        ) : (
-          <>
+        <Card.Content textAlign={"right"}>
+          {post.user.username === loggedUser.username ? (
             <Link to={`#`}>
               <Icon
-                name={"heart"}
+                name={"delete"}
                 size="large"
-                color={likeColor}
-                onClick={likeClickHandler}
+                color={"red"}
+                onClick={deleteClickHandler}
               />
             </Link>
-            {post.likes.length}
+          ) : (
+            <>
+              <Link to={`#`}>
+                <Icon
+                  name={"heart"}
+                  size="large"
+                  color={likeColor}
+                  onClick={likeClickHandler}
+                />
+              </Link>
+              {post.likes.length}
 
-            <Link to={`#`}>
-              <Icon
-                name={"user plus"}
-                size="large"
-                color={"blue"}
-                //onClick={followClickHandler}
-              />
-            </Link>
-          </>
-        )}
-      </Card.Content>
-    </Card>
+              <Link to={`#`}>
+                <Icon
+                  name={"user plus"}
+                  size="large"
+                  color={"blue"}
+                  //onClick={followClickHandler}
+                />
+              </Link>
+            </>
+          )}
+        </Card.Content>
+      </Card>
+    
   );
 }
 
