@@ -55,7 +55,7 @@ export default function ProfilePage({ loggedUser, handleLogout }) {
 
       console.log(response, "<------RESPONSE")
       setProfileUser(response.data.user);
-      //setPosts(response.data.posts);
+      setPosts(response.data.posts);
 
       //---------------------------------------------------------------------------
 
