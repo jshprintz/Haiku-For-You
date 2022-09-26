@@ -1,12 +1,14 @@
 import React from "react";
 import { Card, Icon, Image } from "semantic-ui-react";
 import { Link } from "react-router-dom";
+import { deletePost } from "../../utils/postApi"
+
 
 function PostCard({ post, isProfile, addLike, removeLike, loggedUser }) {
   const likedIndex = post.likes.findIndex(
     (like) => like.username === loggedUser.username
   );
-  const likeColor = likedIndex > -1 ? "red" : "grey";
+  const likeColor = likedIndex > -1 ? "pink" : "grey";
 
   const likeClickHandler =
     likedIndex > -1
@@ -15,6 +17,12 @@ function PostCard({ post, isProfile, addLike, removeLike, loggedUser }) {
 
   console.log(loggedUser.username, "<<<-Logged user");
   console.log(post.user.username);
+
+  const deleteClickHandler = () => {
+    console.log("DELETE CLICKED")
+    console.log(post._id)
+    deletePost(post._id)
+  }
 
   //--------------------------------------------------------
   //  FOLLOW. PROBABLY WILL NEED TO CHANGE THE USER MODEL.
@@ -59,17 +67,19 @@ function PostCard({ post, isProfile, addLike, removeLike, loggedUser }) {
               name={"delete"}
               size="large"
               color={"red"}
-              //onClick={followClickHandler}
+              onClick={deleteClickHandler}
             />
           </Link>
         ) : (
           <>
+          <Link to={`#`}>
             <Icon
               name={"heart"}
               size="large"
               color={likeColor}
               onClick={likeClickHandler}
             />
+          </Link>
             {post.likes.length}
 
             <Link to={`#`}>

@@ -37,3 +37,21 @@ export function getAll() {
         })
     })
 }
+
+export function deletePost(postID) {
+    return fetch(BASE_URL + "/" + postID, {
+        method: "DELETE",
+        headers: {
+            'Authorization': 'Bearer ' + tokenService.getToken() // This grabs thee JWT token out
+            // local storage and send its in the header to the server
+        }
+    })
+    .then((res) => {
+        if(res.ok) return res.json();
+
+        return res.json().then(response => {
+            console.log(response, "<-- Response in postAPI Get")
+            throw new Error(response.err)
+        })
+    })
+}
