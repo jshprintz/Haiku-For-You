@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { Card, Icon, Image } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import { deletePost } from "../../utils/postApi";
-import * as postsAPI from "../../utils/postApi"
+import * as postsAPI from "../../utils/postApi";
+import { useParams } from "react-router-dom";
+import userService from "../../utils/userService";
 
 function PostCard({
   post,
@@ -11,6 +13,7 @@ function PostCard({
   removeLike,
   loggedUser,
   setPosts,
+  setProfileUser,
 }) {
   const likedIndex = post.likes.findIndex(
     (like) => like.username === loggedUser.username
@@ -22,36 +25,38 @@ function PostCard({
       ? () => removeLike(post.likes[likedIndex]._id)
       : () => addLike(post._id);
 
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
   const deleteClickHandler = () => {
-    console.log("DELETE CLICKED");
-    console.log(post._id);
     deletePost(post._id);
-    getPosts();
+
+    if (isProfile) {
+      getProfile();
+    } else {
+      getPosts();
+    }
   };
 
   async function getPosts() {
     try {
       const response = await postsAPI.getAll();
-      console.log(response, "<-- Response")
+      console.log(response, "<-- Response");
       setPosts([...response.data]);
     } catch (err) {
       console.log(err.message, " this is the error");
     }
   }
+
+  const { username } = useParams();
+  const getProfile = useCallback(async () => {
+    try {
+      const response = await userService.getProfile(username);
+      setProfileUser(response.data.user);
+      setPosts(response.data.posts);
+
+      console.log(response, "Response");
+    } catch (err) {
+      console.log(err.message, "<--Error");
+    }
+  }, [username]);
 
   //--------------------------------------------------------
   //  FOLLOW. PROBABLY WILL NEED TO CHANGE THE USER MODEL.

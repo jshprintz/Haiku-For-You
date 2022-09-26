@@ -104,6 +104,7 @@ export default function ProfilePage({ loggedUser, handleLogout }) {
             removeLike={removeLike}
             loggedUser={loggedUser}
             setPosts={setPosts}
+            setProfileUser={setProfileUser}
           />
         </Grid.Column>
       </Grid.Row>
