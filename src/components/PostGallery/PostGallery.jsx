@@ -11,6 +11,7 @@ export default function PostGallery({
   removeLike,
   addLike,
   loggedUser,
+  setPosts,
 }) {
   return (
     <Card.Group itemsPerRow={numPhotosCol} stackable>
@@ -31,6 +32,7 @@ export default function PostGallery({
             removeLike={removeLike}
             addLike={addLike}
             loggedUser={loggedUser}
+            setPosts={setPosts}
           />
         );
       })}

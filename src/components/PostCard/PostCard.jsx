@@ -1,10 +1,17 @@
 import React from "react";
 import { Card, Icon, Image } from "semantic-ui-react";
 import { Link } from "react-router-dom";
-import { deletePost } from "../../utils/postApi"
+import { deletePost } from "../../utils/postApi";
+import * as postsAPI from "../../utils/postApi"
 
-
-function PostCard({ post, isProfile, addLike, removeLike, loggedUser }) {
+function PostCard({
+  post,
+  isProfile,
+  addLike,
+  removeLike,
+  loggedUser,
+  setPosts,
+}) {
   const likedIndex = post.likes.findIndex(
     (like) => like.username === loggedUser.username
   );
@@ -15,13 +22,35 @@ function PostCard({ post, isProfile, addLike, removeLike, loggedUser }) {
       ? () => removeLike(post.likes[likedIndex]._id)
       : () => addLike(post._id);
 
-  console.log(loggedUser.username, "<<<-Logged user");
-  console.log(post.user.username);
+  
+
+
+
+
+
+
+
+
+
+
+
+
 
   const deleteClickHandler = () => {
-    console.log("DELETE CLICKED")
-    console.log(post._id)
-    deletePost(post._id)
+    console.log("DELETE CLICKED");
+    console.log(post._id);
+    deletePost(post._id);
+    getPosts();
+  };
+
+  async function getPosts() {
+    try {
+      const response = await postsAPI.getAll();
+      console.log(response, "<-- Response")
+      setPosts([...response.data]);
+    } catch (err) {
+      console.log(err.message, " this is the error");
+    }
   }
 
   //--------------------------------------------------------
@@ -72,14 +101,14 @@ function PostCard({ post, isProfile, addLike, removeLike, loggedUser }) {
           </Link>
         ) : (
           <>
-          <Link to={`#`}>
-            <Icon
-              name={"heart"}
-              size="large"
-              color={likeColor}
-              onClick={likeClickHandler}
-            />
-          </Link>
+            <Link to={`#`}>
+              <Icon
+                name={"heart"}
+                size="large"
+                color={likeColor}
+                onClick={likeClickHandler}
+              />
+            </Link>
             {post.likes.length}
 
             <Link to={`#`}>

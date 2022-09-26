@@ -5,7 +5,7 @@ import AddPost from "../../components/AddPost/AddPost";
 import { Grid } from "semantic-ui-react";
 import * as postsAPI from "../../utils/postApi";
 
-export default function More({ loggedUser, handleLogout }) {
+export default function Write({ loggedUser, handleLogout }) {
   const [posts, setPosts] = useState([]);
   const [error, setError] = useState("");
 

@@ -13,7 +13,7 @@ import * as likesAPI from "../../utils/likesApi";
 export default function Feed({ loggedUser, handleLogout }) {
   const [posts, setPosts] = useState([]);
   const [error, setError] = useState("");
-  const [loading, setLoading] = useState(true); //<--CHANGE WHEN POSTs ADDED
+  const [loading, setLoading] = useState(true);
 
   async function addLike(postId) {
     try {
@@ -88,6 +88,7 @@ export default function Feed({ loggedUser, handleLogout }) {
             addLike={addLike}
             removeLike={removeLike}
             loggedUser={loggedUser}
+            setPosts={setPosts}
           />
         </Grid.Column>
       </Grid.Row>
