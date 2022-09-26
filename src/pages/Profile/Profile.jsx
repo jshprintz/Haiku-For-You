@@ -53,7 +53,7 @@ export default function ProfilePage({ loggedUser, handleLogout }) {
       const response = await userService.getProfile(username); 
       setLoading(false);
 
-      console.log(response.data, "<------RESPONSE.DATA")
+      console.log(response, "<------RESPONSE")
       setProfileUser(response.data.user);
       //setPosts(response.data.posts);
 

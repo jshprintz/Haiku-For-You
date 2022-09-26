@@ -10,31 +10,11 @@ export default function More({ loggedUser, handleLogout }) {
   const [error, setError] = useState("");
 
   async function handleAddPost(post) {
-
-
-    //-------------------------------------------------------------------------
-    //This is correct (i think). The post has the two new items
-    console.log(post, "HERE IS THE POST - HANDLE ADD POST");
-
-
     try {
       const response = await postsAPI.create(post); 
-
-
-
-      // At this point the response is coming back with the post without
-      // the Title and the Poem
-      console.log(response, "HERE IS THE RESPONSE");
-      //--------------------------------------------------------------------
-
-      // data is the response from the api, the result of the .then if(res.ok) return res.json() in the create postAPI utils function
-      setPosts([response.data, ...posts]); /// ...posts would keep all the posts in the previous states array
-        console.log(posts, "<----POSTS")
-
+      setPosts([response.data, ...posts]); 
 
     } catch (err) {
-      // this is the error from the throw block, in the postsAPI.create function
-      console.log(err.message, "<---ERROR IN WRITE.JSX");
       setError("Error creating post, please try again");
     }
   }

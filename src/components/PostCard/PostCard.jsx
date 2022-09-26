@@ -20,11 +20,11 @@ function PostCard({ post, isProfile, addLike, removeLike, loggedUser }) {
 
   return (
     <Card key={post._id} >
-      {isProfile ? (
+      {/* {isProfile ? (
         ""
       ) : (
         <Card.Content textAlign="left">
-          <Card.Header>
+          <Card.Header textAlign="left">
             <Link to={`/${post.user.username}`}>
               <Image
                 size="large"
@@ -39,15 +39,29 @@ function PostCard({ post, isProfile, addLike, removeLike, loggedUser }) {
             </Link>
           </Card.Header>
         </Card.Content>
-      )}
+      )} */}
 
       <Card.Content>
-        <Card.Description>{post.title}</Card.Description>
+        <Card.Header>{post.title}</Card.Header>
         <p>{post.poem}</p>
       </Card.Content>
 
 
       <Card.Content textAlign={"right"}>
+      <Card.Header textAlign="left">
+            <Link to={`/${post.user.username}`}>
+              <Image
+                size="large"
+                avatar
+                src={
+                  post.user.photoUrl
+                    ? post.user.photoUrl
+                    : "https://react.semantic-ui.com/images/wireframe/square-image.png"
+                }
+              />
+              {post.user.username}
+            </Link>
+          </Card.Header>
         <Icon
           name={"heart"}
           size="small"
