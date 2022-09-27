@@ -10,15 +10,14 @@ export default function Write({ loggedUser, handleLogout }) {
   const { post } = useParams();
 
   return (
-    <Grid centered>
+    <Grid >
       <Grid.Row>
         <Grid.Column>
           <PageHeader handleLogout={handleLogout} loggedUser={loggedUser} />
         </Grid.Column>
       </Grid.Row>
-      <Grid.Row>
-        <Grid.Column>
-          <h1>Haiku Details</h1>
+      <Grid.Row >
+        <Grid.Column >
           <DisplayPost post={post} />
         </Grid.Column>
       </Grid.Row>

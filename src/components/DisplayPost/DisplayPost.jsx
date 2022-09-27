@@ -1,11 +1,12 @@
 import React, { useEffect, useCallback, useState } from "react";
 import { Segment } from "semantic-ui-react";
 
+
 import Loading from "../../components/Loader/Loader";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
 
 import * as postsAPI from "../../utils/postApi";
-//import * as usersAPI from "../../utils/userService"
+import * as usersAPI from "../../utils/userService";
 
 export default function DisplayPostForm({ post }) {
   const [loading, setLoading] = useState(true);
@@ -13,11 +14,19 @@ export default function DisplayPostForm({ post }) {
   const [detailPost, setDetailPost] = useState([]);
 
   const dispPost = useCallback(async () => {
+
+    
     try {
       const response = await postsAPI.getPost(post);
       setLoading(false);
-
       setDetailPost(response.data);
+      console.log(response.data.user, "USER ID")
+      
+
+    // For some reason, this is saying that getProfileByID is not being exported.
+
+    //   const userResponse = usersAPI.getProfileByID(detailPost.user)
+    //   console.log(userResponse, "HERE IS THE USER RESPONSE")
 
       console.log(response, "Response");
     } catch (err) {
@@ -57,6 +66,9 @@ export default function DisplayPostForm({ post }) {
       <h4>by {detailPost.user}</h4>
     <br />
       <h3>{detailPost.poem}</h3>
+    <br />
+      {/* <h5>{detailPost.likes.length} likes Created: {new Date(detailPost.createdAt)}</h5> */}
+      
     </Segment>
   );
 }

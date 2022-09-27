@@ -10,11 +10,15 @@
   overflow: auto;
   height: 500px;
   max-width: 80%;
-  margin-top: 10%;
+  margin-top: 5%;
 }
 
 .card {
   height: 250px;
   scroll-behavior: smooth;
   overflow: auto;
+}
+
+.right {
+  text-align: right;
 }
