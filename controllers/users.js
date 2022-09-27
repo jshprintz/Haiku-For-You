@@ -15,7 +15,7 @@ module.exports = {
   signup,
   login,
   profile,
-  // profileByID
+  profileByID
 };
 
 
@@ -36,6 +36,40 @@ async function profile(req, res) {
     res.status(400).json({ error: "Ooops. Something went wrong. Please try again later."})
   }
 }
+
+
+
+
+
+
+
+
+
+async function profileByID(req, res) {
+  console.log(req.params, "HERE IS THE REQ.PARAMS")
+  try {
+    const user = await User.findById(req.params.userID);
+    if (!user) return res.status(400).json({ error: "User not found" });
+
+    const posts = await Post.find({ user: user._id }).populate("user").exec();
+    res.status(200).json({
+      data: {
+        user: user,
+        posts: posts,
+      }
+    });
+  } catch(err) {
+    console.log(err.message, "<-- profile controller error");
+    res.status(400).json({ error: "Ooops. Something went wrong. Please try again later."})
+  }
+}
+
+
+
+
+
+
+
 
 async function signup(req, res) {
   console.log(req.body, " req.body in signup", req.file);

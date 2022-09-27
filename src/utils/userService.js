@@ -2,6 +2,28 @@ import tokenService from "./tokenService";
 
 const BASE_URL = "/api/users/";
 
+
+// DETAILS PAGE
+function getProfileByID(userID) {
+  console.log("getProfileByID calling");
+
+  return fetch(BASE_URL + "id/" + userID, {
+    headers: {
+      Authorization: "Bearer " + tokenService.getToken(), // <- since this will be called when we're logged in, send over the jwt token
+      // so the server knows who's making the request from the client
+    },
+  }).then((res) => {
+    // This function happens when the browser recieves a response from the express server
+    console.log(res, "<---Res in UserService");
+
+    if (res.ok) return res.json();
+    throw new Error(
+      "Error from getProfile Request, check the server terminal!"
+    );
+  });
+}
+
+// PROFILE PAGE
 function getProfile(username) {
   console.log("getProfile calling");
 
@@ -82,6 +104,7 @@ const userService = {
   login,
   getUser,
   getProfile,
+  getProfileByID,
 };
 
 export default userService;

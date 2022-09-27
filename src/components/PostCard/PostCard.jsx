@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect } from "react";
 import { Card, Icon, Image } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import { deletePost } from "../../utils/postApi";
@@ -17,6 +17,7 @@ function PostCard({
 }) {
   const { username } = useParams();
 
+  // LIKES
   const likedIndex = post.likes.findIndex(
     (like) => like.username === loggedUser?.username
   );
@@ -27,11 +28,15 @@ function PostCard({
       ? () => removeLike(post.likes[likedIndex]._id)
       : () => addLike(post._id);
 
+
+  // DELETE
   const deleteClickHandler = () => {
     deletePost(post._id);
     isProfile ? getProfile() : getPosts();
   };
 
+
+  // FEED PAGE
   async function getPosts() {
     try {
       const response = await postsAPI.getAll();
@@ -42,6 +47,7 @@ function PostCard({
     }
   }
 
+  // PROFILE PAGE
   const getProfile = useCallback(async () => {
     try {
       const response = await userService.getProfile(username);
@@ -53,6 +59,41 @@ function PostCard({
       console.log(err.message, "<--Error");
     }
   }, [username]);
+
+
+  // DETAILS PAGE
+  const getProfileByID = useCallback(async () => {
+    console.log(post.user, "USER ID")
+    try {
+      const response = await userService.getProfileByID(post.user);
+
+      //HERE'S WHERE THE ERROR IS
+      setProfileUser(response.data.user);
+      setPosts(response.data.posts);
+
+      console.log(response, "<<Response>>");
+    } catch (err) {
+      console.log(err.message, "<--Error");
+    }
+  }, [post.user]);
+
+
+
+
+  // ON PAGE LOAD
+  useEffect(() => {
+    if (isProfile) {
+      if (username !== undefined) {
+        getProfile()
+      } else {
+        getProfileByID()
+      }
+    } else {
+      getPosts()
+    }
+  }, []);
+
+
 
   console.log(isProfile, "<---ISPROFILE")
   console.log(post, "<--POST")

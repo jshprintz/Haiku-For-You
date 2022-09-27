@@ -32,7 +32,9 @@ function App() {
   if (user) {
     return (
       <Routes>
-        <Route path="/" element={<FeedPage loggedUser={user} handleLogout={handleLogout} />} 
+        <Route
+          path="/"
+          element={<FeedPage loggedUser={user} handleLogout={handleLogout} />}
         />
         <Route
           path="/login"
@@ -52,11 +54,21 @@ function App() {
         />
         <Route
           path="/details/:post"
-          element={<DetailsPage loggedUser={user} handleLogout={handleLogout} />}
+          element={
+            <DetailsPage loggedUser={user} handleLogout={handleLogout} />
+          }
+        />
+        <Route
+          path="/id/:userID"
+          element={
+            <DetailsPage loggedUser={user} handleLogout={handleLogout} />
+          }
         />
         <Route
           path="/:username"
-          element={<ProfilePage loggedUser={user} handleLogout={handleLogout} />}
+          element={
+            <ProfilePage loggedUser={user} handleLogout={handleLogout} />
+          }
         />
       </Routes>
     );
@@ -65,20 +77,22 @@ function App() {
   // If user is not logged in
   return (
     <Routes>
-        <Route path="/" element={<FeedPage loggedUser={user} handleLogout={handleLogout} />} 
-        />
-         <Route
-          path="/more"
-          element={<FeedPage loggedUser={user} handleLogout={handleLogout} />}
-        />
-        <Route
-          path="/write"
-          element={<FeedPage loggedUser={user} handleLogout={handleLogout} />}
-        />
-        <Route
-          path="/details/:post"
-          element={<FeedPage loggedUser={user} handleLogout={handleLogout} />}
-        />
+      <Route
+        path="/"
+        element={<FeedPage loggedUser={user} handleLogout={handleLogout} />}
+      />
+      <Route
+        path="/more"
+        element={<FeedPage loggedUser={user} handleLogout={handleLogout} />}
+      />
+      <Route
+        path="/write"
+        element={<FeedPage loggedUser={user} handleLogout={handleLogout} />}
+      />
+      <Route
+        path="/details/:post"
+        element={<FeedPage loggedUser={user} handleLogout={handleLogout} />}
+      />
       <Route
         path="/login"
         element={<LoginPage handleSignUpOrLogin={handleSignUpOrLogin} />}
