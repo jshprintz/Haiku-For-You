@@ -5,7 +5,6 @@ import Loader from "../Loader/Loader";
 
 export default function PostGallery({
   posts,
-  numPhotosCol,
   isProfile,
   loading,
   removeLike,
@@ -15,7 +14,7 @@ export default function PostGallery({
   setProfileUser
 }) {
   return (
-    <Card.Group itemsPerRow={numPhotosCol} stackable>
+    <Card.Group itemsPerRow={3} stackable>
       {loading ? (
         <Segment>
           <Dimmer active inverted>

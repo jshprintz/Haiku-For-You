@@ -82,7 +82,6 @@ export default function Feed({ loggedUser, handleLogout }) {
           <h1>Here are all the posts</h1>
           <PostGallery
             posts={posts}
-            numPhotosCol={3}
             isProfile={false}
             loading={loading}
             addLike={addLike}

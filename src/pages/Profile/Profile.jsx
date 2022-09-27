@@ -97,7 +97,6 @@ export default function ProfilePage({ loggedUser, handleLogout }) {
           <h3>Posts go here</h3>
           <PostGallery
             posts={posts}
-            numPhotosCol={3}
             isProfile={true}
             loading={loading}
             addLike={addLike}

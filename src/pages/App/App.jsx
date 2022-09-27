@@ -54,10 +54,6 @@ function App() {
           path="/details/:post"
           element={<DetailsPage loggedUser={user} handleLogout={handleLogout} />}
         />
-        {/* <Route
-          path="/id/:userID"
-          element={<DetailsPage loggedUser={user} handleLogout={handleLogout} />}
-        /> */}
         <Route
           path="/:username"
           element={<ProfilePage loggedUser={user} handleLogout={handleLogout} />}
