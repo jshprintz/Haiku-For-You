@@ -65,7 +65,9 @@ export default function DisplayPostForm({ post }) {
       <h1>{detailPost.title}</h1>
       <h4>by {detailPost.user}</h4>
     <br />
-      <h3>{detailPost.poem}</h3>
+      <h3>{detailPost.lineOne}</h3>
+      <h3>{detailPost.lineTwo}</h3>
+      <h3>{detailPost.lineThree}</h3>
     <br />
       {/* <h5>{detailPost.likes.length} likes Created: {new Date(detailPost.createdAt)}</h5> */}
       
