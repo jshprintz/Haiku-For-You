@@ -100,11 +100,11 @@ function PostCard({
   }, []);
 
 
-  console.log(post.user, "<--POST")
-  console.log(userPost._id, "<---userpost")
+  console.log(post, "<--POST")
+  console.log(userPost, "<---userpost")
 
   return (
-    <Card key={post._id} href={`/details/${post._id}`}>
+    <Card key={post._id} href={`/details/${post._id}`} centered>
       <Card.Content className="card">
         <Card.Header textAlign="center">
           {userPost._id === post.user ? (
@@ -137,15 +137,16 @@ function PostCard({
         </Card.Header>
 
         <br />
-          <Card.Header>{post.title}</Card.Header>
-          <Card.Description>{post.lineOne}</Card.Description>
-          <Card.Description>{post.lineTwo}</Card.Description>
-          <Card.Description>{post.lineThree}</Card.Description>
+          <Card.Header textAlign="center">{post.title}</Card.Header>
+          <br />
+          <Card.Description textAlign="left">{post.lineOne}</Card.Description>
+          <Card.Description textAlign="left">{post.lineTwo}</Card.Description>
+          <Card.Description textAlign="left">{post.lineThree}</Card.Description>
       </Card.Content>
 
       {loggedUser ? (
         <Card.Content textAlign={"right"}>
-          {(post.user.username === loggedUser?.username) || (userPost._id === post.user) ? (
+          {(post.user.username === loggedUser?.username) || ((userPost._id === post.user) && (userPost.username === loggedUser?.username)) ? (
             <Link to={`#`}>
               <Icon
                 name={"delete"}

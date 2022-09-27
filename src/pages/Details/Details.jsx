@@ -75,9 +75,6 @@ export default function Write({ loggedUser, handleLogout }) {
     );
   }
 
-
-console.log(posts, "HERE IS POSTS")
-
   return (
     <Grid >
       <Grid.Row>

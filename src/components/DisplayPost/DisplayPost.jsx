@@ -1,5 +1,6 @@
 import React from "react";
 import PostCard from "../PostCard/PostCard";
+import { Grid } from "semantic-ui-react";
 
 export default function DisplayPostForm({
   post,
@@ -10,20 +11,22 @@ export default function DisplayPostForm({
   setPosts,
   setProfileUser,
 }) {
-
   return (
-    
-      <PostCard
-        post={post}
-        key={post._id}
-        isProfile={isProfile}
-        removeLike={removeLike}
-        addLike={addLike}
-        loggedUser={loggedUser}
-        setPosts={setPosts}
-        setProfileUser={setProfileUser}
-      />
-
-
+    <Grid className="details-card">
+      <Grid.Row >
+        <Grid.Column >
+          <PostCard
+            post={post}
+            key={post._id}
+            isProfile={isProfile}
+            removeLike={removeLike}
+            addLike={addLike}
+            loggedUser={loggedUser}
+            setPosts={setPosts}
+            setProfileUser={setProfileUser}
+          />
+        </Grid.Column>
+      </Grid.Row>
+    </Grid>
   );
 }
