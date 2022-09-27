@@ -1,20 +1,23 @@
 import React, { useEffect, useCallback, useState } from "react";
 import { Segment } from "semantic-ui-react";
-import * as postsAPI from "../../utils/postApi";
+
 import Loading from "../../components/Loader/Loader";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
+
+import * as postsAPI from "../../utils/postApi";
+//import * as usersAPI from "../../utils/userService"
 
 export default function DisplayPostForm({ post }) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-  //const [posts, setPosts] = useState([]);
+  const [detailPost, setDetailPost] = useState([]);
 
   const dispPost = useCallback(async () => {
     try {
       const response = await postsAPI.getPost(post);
       setLoading(false);
 
-      //setPosts(response.data.posts);
+      setDetailPost(response.data);
 
       console.log(response, "Response");
     } catch (err) {
@@ -47,9 +50,13 @@ export default function DisplayPostForm({ post }) {
     );
   }
 
+  console.log(detailPost, "FINAL POST")
   return (
-    <Segment>
-      <h1>The component</h1>
+    <Segment style={{ maxWidth: 450 }}>
+      <h1>{detailPost.title}</h1>
+      <h4>by {detailPost.user}</h4>
+    <br />
+      <h3>{detailPost.poem}</h3>
     </Segment>
   );
 }
