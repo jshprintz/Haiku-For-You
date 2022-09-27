@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Header, Segment, Image, Icon } from "semantic-ui-react";
+import { Header, Image, Icon } from "semantic-ui-react";
 
 export default function PageHeader({ loggedUser, handleLogout }) {
   return (
-    <Segment clearing>
+    <>
       <Header as="h2" floated="right">
         <Link to={`/${loggedUser?.username}`}>
           <Image
@@ -36,6 +36,6 @@ export default function PageHeader({ loggedUser, handleLogout }) {
           </>
         ) : null}
       </Header>
-    </Segment>
+    </>
   );
 }

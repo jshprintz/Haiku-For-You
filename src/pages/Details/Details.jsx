@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import PageHeader from "../../components/Header/Header";
 import { useParams } from "react-router-dom";
+import DisplayPost from "../../components/DisplayPost/DisplayPost"
 
 import { Grid } from "semantic-ui-react";
-//import * as postsAPI from "../../utils/postApi";
 
 export default function Write({ loggedUser, handleLogout }) {
  // const [posts, setPosts] = useState([]);
@@ -25,6 +25,7 @@ export default function Write({ loggedUser, handleLogout }) {
       <Grid.Row>
         <Grid.Column>
           <h1>Haiku Details</h1>
+          <DisplayPost post={post} />
           <p>{error}</p>
         </Grid.Column>
       </Grid.Row>
