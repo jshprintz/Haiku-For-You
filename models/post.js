@@ -8,7 +8,9 @@ const likesSchema = mongoose.Schema({
 const postSchema = new mongoose.Schema({
     user: { type: mongoose.Schema.Types.ObjectId, ref: 'User'},
     title: String,
-    poem: String,
+    lineOne: String,
+    lineTwo: String,
+    lineThree: String,
     likes: [likesSchema]
 }, {
     timestamps: true

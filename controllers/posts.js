@@ -13,7 +13,9 @@ async function create(req, res) {
 
   try {
     const post = await Post.create({
-      poem: req.body.poem,
+      lineOne: req.body.lineOne,
+      lineTwo: req.body.lineTwo,
+      lineThree: req.body.lineThree,
       user: req.user,
       title: req.body.title,
     });
