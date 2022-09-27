@@ -27,7 +27,7 @@ export default function Write({ loggedUser, handleLogout }) {
         </Grid.Column>
       </Grid.Row>
       <Grid.Row>
-        <Grid.Column>
+        <Grid.Column textAlign="center">
           <h1>Write a Haiku</h1>
           <p>{error}</p>
         </Grid.Column>

@@ -27,6 +27,11 @@ export default function DisplayPostForm({
           />
         </Grid.Column>
       </Grid.Row>
+      <Grid.Row>
+        <Grid.Column>
+            <h2>Comments will go here</h2>
+        </Grid.Column>
+      </Grid.Row>
     </Grid>
   );
 }
