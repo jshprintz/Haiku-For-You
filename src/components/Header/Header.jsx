@@ -1,12 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Header, Image, Icon } from "semantic-ui-react";
-import "../../pages/App/App.css"
+import "../../pages/App/App.css";
 
 export default function PageHeader({ loggedUser, handleLogout }) {
   return (
     <>
-      <Header as="h2" floated="right" >
+      <Header as="h2" floated="right">
         <Link to={`/${loggedUser?.username}`}>
           <Image
             src={

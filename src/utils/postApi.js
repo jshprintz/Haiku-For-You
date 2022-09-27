@@ -19,6 +19,8 @@ export function create(post) {
   });
 }
 
+
+
 export function getAll() {
   return fetch(BASE_URL, {
     headers: {
@@ -34,6 +36,9 @@ export function getAll() {
     });
   });
 }
+
+
+
 
 export function deletePost(postID) {
   return fetch(BASE_URL + "/" + postID, {

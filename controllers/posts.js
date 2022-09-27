@@ -26,6 +26,8 @@ async function create(req, res) {
   }
 }
 
+
+// INDEX
 async function index(req, res) {
   try {
     const posts = await Post.find({}).populate("user").exec();
