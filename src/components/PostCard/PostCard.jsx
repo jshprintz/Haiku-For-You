@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Card, Icon, Image } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import { deletePost } from "../../utils/postApi";
@@ -16,6 +16,8 @@ function PostCard({
   setProfileUser,
 }) {
   const { username } = useParams();
+  const [userPost, setUserPost] = useState({})
+
 
   // LIKES
   const likedIndex = post.likes.findIndex(
@@ -61,15 +63,19 @@ function PostCard({
   }, [username]);
 
 
+
+
+
   // DETAILS PAGE
   const getProfileByID = useCallback(async () => {
     console.log(post.user, "USER ID")
     try {
       const response = await userService.getProfileByID(post.user);
 
+      setUserPost(response.data.user)
       //HERE'S WHERE THE ERROR IS
-      setProfileUser(response.data.user);
-      setPosts(response.data.posts);
+      // setProfileUser(response.data.user);
+      // setPosts(response.data.posts);
 
       console.log(response, "<<Response>>");
     } catch (err) {
@@ -97,6 +103,7 @@ function PostCard({
 
   console.log(isProfile, "<---ISPROFILE")
   console.log(post, "<--POST")
+  console.log(userPost, "<---userpost")
 
   return (
     <Card key={post._id} href={`/details/${post._id}`}>
