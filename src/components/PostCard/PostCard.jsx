@@ -96,6 +96,7 @@ function PostCard({
           <p>{post.poem}</p>
         </Card.Content>
 
+        {loggedUser ? (
         <Card.Content textAlign={"right"} >
           {post.user.username === loggedUser?.username ? (
             <Link to={`#`}>
@@ -129,6 +130,7 @@ function PostCard({
             </>
           )}
         </Card.Content>
+        ) : null}
       </Card>
     
   );

@@ -9,8 +9,6 @@ export default function DisplayPostForm({ post }) {
   const [error, setError] = useState("");
   //const [posts, setPosts] = useState([]);
 
-  console.log(post, "HERE IS THE POST IN THE COMPONENT");
-
   const dispPost = useCallback(async () => {
     try {
       const response = await postsAPI.getPost(post);
@@ -33,9 +31,6 @@ export default function DisplayPostForm({ post }) {
 
 
 
-
-
-  
   if (error) {
     return (
       <>
