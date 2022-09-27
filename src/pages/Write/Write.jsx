@@ -10,6 +10,7 @@ export default function Write({ loggedUser, handleLogout }) {
   const [error, setError] = useState("");
 
   async function handleAddPost(post) {
+
     try {
       const response = await postsAPI.create(post); 
       setPosts([response.data, ...posts]); 

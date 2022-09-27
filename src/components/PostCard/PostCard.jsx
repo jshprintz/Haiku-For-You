@@ -93,7 +93,9 @@ function PostCard({
           </Card.Header>
           <br />
           <Card.Header>{post.title}</Card.Header>
-          <Card.Description>{post.poem}</Card.Description>
+          <Card.Description>{post.lineOne}</Card.Description>
+          <Card.Description>{post.lineTwo}</Card.Description>
+          <Card.Description>{post.lineThree}</Card.Description>
         </Card.Content>
 
         {loggedUser ? (

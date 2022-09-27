@@ -6,10 +6,12 @@ export default function AddPostForm(props) {
 
   const navigate = useNavigate();
 
-  
+
   const [state, setState] = useState({
     title: "",
-    poem: "",
+    lineOne: "",
+    lineTwo: "",
+    lineThree: "",
   });
 
   function handleChange(e) {
@@ -42,11 +44,27 @@ export default function AddPostForm(props) {
           onChange={handleChange}
           required
         />
-        <Form.TextArea
+        <Form.Input
           className="form-control"
-          name="poem"
-          value={state.poem}
-          placeholder="Write Haiku Here"
+          name="lineOne"
+          value={state.lineOne}
+          placeholder="Line One"
+          onChange={handleChange}
+          required
+        />
+        <Form.Input
+          className="form-control"
+          name="lineTwo"
+          value={state.lineTwo}
+          placeholder="Line Two"
+          onChange={handleChange}
+          required
+        />
+        <Form.Input
+          className="form-control"
+          name="lineThree"
+          value={state.lineThree}
+          placeholder="Line Three"
           onChange={handleChange}
           required
         />
