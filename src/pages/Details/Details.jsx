@@ -1,19 +1,17 @@
 import React, { useState } from "react";
 import PageHeader from "../../components/Header/Header";
 import { useParams } from "react-router-dom";
-import DisplayPost from "../../components/DisplayPost/DisplayPost"
+import DisplayPost from "../../components/DisplayPost/DisplayPost";
 
 import { Grid } from "semantic-ui-react";
 
 export default function Write({ loggedUser, handleLogout }) {
- // const [posts, setPosts] = useState([]);
-  const [error, setError] = useState("");
+  // const [posts, setPosts] = useState([]);
 
   const { post } = useParams();
-    console.log(post, "HERE IS THE POST")
+  console.log(post, "HERE IS THE POST");
 
-    // USE THE ID TO FIND THE POSTS IN THE POSTS API
-
+  // USE THE ID TO FIND THE POSTS IN THE POSTS API
 
   return (
     <Grid centered>
@@ -26,13 +24,10 @@ export default function Write({ loggedUser, handleLogout }) {
         <Grid.Column>
           <h1>Haiku Details</h1>
           <DisplayPost post={post} />
-          <p>{error}</p>
         </Grid.Column>
       </Grid.Row>
       <Grid.Row>
-        <Grid.Column style={{ maxWidth: 450 }}>
-          
-        </Grid.Column>
+        <Grid.Column style={{ maxWidth: 450 }}></Grid.Column>
       </Grid.Row>
     </Grid>
   );
