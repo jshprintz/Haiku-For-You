@@ -1,5 +1,4 @@
 import React from "react";
-import { Segment } from "semantic-ui-react";
 import PostCard from "../PostCard/PostCard";
 
 export default function DisplayPostForm({
@@ -25,6 +24,6 @@ export default function DisplayPostForm({
         setProfileUser={setProfileUser}
       />
 
-      
+
   );
 }

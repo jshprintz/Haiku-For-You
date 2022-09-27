@@ -89,7 +89,7 @@ console.log(posts, "HERE IS POSTS")
         <Grid.Column >
         <DisplayPost
             post={posts}
-            isProfile={false}
+            isProfile={true}
             loading={loading}
             addLike={addLike}
             removeLike={removeLike}

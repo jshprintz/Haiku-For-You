@@ -15,6 +15,7 @@ function PostCard({
   setPosts,
   setProfileUser,
 }) {
+  const { username } = useParams();
 
   const likedIndex = post.likes.findIndex(
     (like) => like.username === loggedUser?.username
@@ -28,12 +29,7 @@ function PostCard({
 
   const deleteClickHandler = () => {
     deletePost(post._id);
-
-    if (isProfile) {
-      getProfile();
-    } else {
-      getPosts();
-    }
+    isProfile ? getProfile() : getPosts();
   };
 
   async function getPosts() {
@@ -46,60 +42,47 @@ function PostCard({
     }
   }
 
-  const { username } = useParams();
   const getProfile = useCallback(async () => {
     try {
       const response = await userService.getProfile(username);
       setProfileUser(response.data.user);
       setPosts(response.data.posts);
 
-      console.log(response, "Response");
+      console.log(response, "<<Response>>");
     } catch (err) {
       console.log(err.message, "<--Error");
     }
   }, [username]);
 
-  //--------------------------------------------------------
-  //  FOLLOW. PROBABLY WILL NEED TO CHANGE THE USER MODEL.
-
-  // const followIndex = loggedUser.follow.findIndex(
-  //   (follow) => follow.username === loggedUser.username
-  // );
-  // const followColor = followIndex > -1 ? "blue" : "grey";
-
-  // const followClickHandler =
-  // likedIndex > -1 ?
-  //    () => removeLike(post.follow[followIndex]._id)
-  //   : () => addLike(post._id);
-  //---------------------------------------------------------
+  console.log(isProfile, "<---ISPROFILE")
+  console.log(post, "<--POST")
 
   return (
-    
-      <Card key={post._id} href={`/details/${post._id}`} >
-        <Card.Content className="card">
-          <Card.Header textAlign="center">
-            <Link to={`/${post.user.username}`}>
-              <Image
-                size="large"
-                avatar
-                src={
-                  post.user.photoUrl
-                    ? post.user.photoUrl
-                    : "https://react.semantic-ui.com/images/wireframe/square-image.png"
-                }
-              />
-              {post.user.username}
-            </Link>
-          </Card.Header>
-          <br />
+    <Card key={post._id} href={`/details/${post._id}`}>
+      <Card.Content className="card">
+        <Card.Header textAlign="center">
+          <Link to={`/${post.user.username}`}>
+            <Image
+              size="large"
+              avatar
+              src={
+                post.user.photoUrl
+                  ? post.user.photoUrl
+                  : "https://react.semantic-ui.com/images/wireframe/square-image.png"
+              }
+            />
+            {post.user.username}
+          </Link>
+        </Card.Header>
+        <br />
           <Card.Header>{post.title}</Card.Header>
           <Card.Description>{post.lineOne}</Card.Description>
           <Card.Description>{post.lineTwo}</Card.Description>
           <Card.Description>{post.lineThree}</Card.Description>
-        </Card.Content>
+      </Card.Content>
 
-        {loggedUser ? (
-        <Card.Content textAlign={"right"} >
+      {loggedUser ? (
+        <Card.Content textAlign={"right"}>
           {post.user.username === loggedUser?.username ? (
             <Link to={`#`}>
               <Icon
@@ -132,9 +115,8 @@ function PostCard({
             </>
           )}
         </Card.Content>
-        ) : null}
-      </Card>
-    
+      ) : null}
+    </Card>
   );
 }
 
