@@ -9,6 +9,8 @@ export default function PostGallery({
   loading,
   removeLike,
   addLike,
+  addFollower,
+  removeFollower,
   loggedUser,
   setPosts,
   setProfileUser
@@ -31,6 +33,8 @@ export default function PostGallery({
             isProfile={isProfile}
             removeLike={removeLike}
             addLike={addLike}
+            addFollower={addFollower}
+            removeFollower={removeFollower}
             loggedUser={loggedUser}
             setPosts={setPosts}
             setProfileUser={setProfileUser}

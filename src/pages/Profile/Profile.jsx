@@ -7,6 +7,7 @@ import Loading from "../../components/Loader/Loader";
 import PostGallery from "../../components/PostGallery/PostGallery";
 import "../App/App.css";
 
+import * as followersAPI from "../../utils/followersApi";
 import * as likesAPI from "../../utils/likesApi";
 import userService from "../../utils/userService";
 import { useParams } from "react-router-dom";
@@ -40,6 +41,33 @@ export default function ProfilePage({ loggedUser, handleLogout }) {
       console.log(err);
     }
   }
+
+
+
+  //-----------------------------------------------------------------------
+  async function addFollower(userId) {
+
+    try {
+      const response = await followersAPI.create(userId);
+      console.log(response, "from add follower");
+      getProfile();
+    } catch (err) {
+      console.log(err, " err from server");
+    }
+  }
+
+  async function removeFollower(followerId) {
+    try {
+      const response = await followersAPI.removeFollower(followerId);
+      console.log(response, " remove follower");
+      getProfile();
+    } catch (err) {
+      console.log(err);
+    }
+  }
+ //-----------------------------------------------------------------------
+// DON'T FORGET TO PASS THEM DOWN!!
+
 
   const getProfile = useCallback(async () => {
 
@@ -101,6 +129,8 @@ export default function ProfilePage({ loggedUser, handleLogout }) {
             loading={loading}
             addLike={addLike}
             removeLike={removeLike}
+            addFollower={addFollower}
+            removeFollower={removeFollower}
             loggedUser={loggedUser}
             setPosts={setPosts}
             setProfileUser={setProfileUser}

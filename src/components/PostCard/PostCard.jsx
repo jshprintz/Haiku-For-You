@@ -11,6 +11,8 @@ function PostCard({
   isProfile,
   addLike,
   removeLike,
+  addFollower,
+  removeFollower,
   loggedUser,
   setPosts,
   setProfileUser,
@@ -29,6 +31,21 @@ function PostCard({
     likedIndex > -1
       ? () => removeLike(post.likes[likedIndex]._id)
       : () => addLike(post._id);
+
+
+
+  // FOLLOWERS
+  const followerIndex = post.likes.findIndex(
+    (like) => like.username === loggedUser?.username
+  );
+  const followerColor = followerIndex > -1 ? "pink" : "grey";
+
+  const followerClickHandler =
+    followerIndex > -1
+      ? () => removeFollower(loggedUser.followers[followerIndex]._id)
+      : () => addFollower(post._id);
+
+
 
 
   // DELETE
@@ -68,14 +85,10 @@ function PostCard({
 
   // DETAILS PAGE
   const getProfileByID = useCallback(async () => {
-    console.log(post.user, "USER ID")
     try {
       const response = await userService.getProfileByID(post.user);
 
       setUserPost(response.data.user)
-      //HERE'S WHERE THE ERROR IS
-      // setProfileUser(response.data.user);
-      // setPosts(response.data.posts);
 
       console.log(response, "<<Response>>");
     } catch (err) {

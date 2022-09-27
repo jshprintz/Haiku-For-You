@@ -7,6 +7,7 @@ import "../App/App.css";
 
 import { Grid } from "semantic-ui-react";
 
+import * as followersAPI from "../../utils/followersApi";
 import * as postsAPI from "../../utils/postApi";
 import * as likesAPI from "../../utils/likesApi";
 
@@ -36,6 +37,30 @@ export default function Feed({ loggedUser, handleLogout }) {
       setError("error removing like");
     }
   }
+
+  //-----------------------------------------------------------------------
+  async function addFollower(userId) {
+
+    try {
+      const response = await followersAPI.create(userId);
+      console.log(response, "from add follower");
+      getPosts();
+    } catch (err) {
+      console.log(err, " err from server");
+    }
+  }
+
+  async function removeFollower(followerId) {
+    try {
+      const response = await followersAPI.removeFollower(followerId);
+      console.log(response, " remove follower");
+      getPosts();
+    } catch (err) {
+      console.log(err);
+    }
+  }
+ //-----------------------------------------------------------------------
+// DON'T FORGET TO PASS THEM DOWN!!
 
   async function getPosts() {
     try {
@@ -86,6 +111,8 @@ export default function Feed({ loggedUser, handleLogout }) {
             loading={loading}
             addLike={addLike}
             removeLike={removeLike}
+            addFollower={addFollower}
+            removeFollower={removeFollower}
             loggedUser={loggedUser}
             setPosts={setPosts}
           />
