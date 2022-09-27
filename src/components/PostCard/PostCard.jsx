@@ -100,15 +100,27 @@ function PostCard({
   }, []);
 
 
-
-  console.log(isProfile, "<---ISPROFILE")
-  console.log(post, "<--POST")
-  console.log(userPost, "<---userpost")
+  console.log(post.user, "<--POST")
+  console.log(userPost._id, "<---userpost")
 
   return (
     <Card key={post._id} href={`/details/${post._id}`}>
       <Card.Content className="card">
         <Card.Header textAlign="center">
+          {userPost._id === post.user ? (
+              <Link to={`/${userPost.username}`}>
+              <Image
+                size="large"
+                avatar
+                src={
+                  userPost.photoUrl
+                    ? userPost.photoUrl
+                    : "https://react.semantic-ui.com/images/wireframe/square-image.png"
+                }
+              />
+              {userPost.username}
+            </Link>
+          ) : (
           <Link to={`/${post.user.username}`}>
             <Image
               size="large"
@@ -121,7 +133,9 @@ function PostCard({
             />
             {post.user.username}
           </Link>
+        )}
         </Card.Header>
+
         <br />
           <Card.Header>{post.title}</Card.Header>
           <Card.Description>{post.lineOne}</Card.Description>
@@ -131,7 +145,7 @@ function PostCard({
 
       {loggedUser ? (
         <Card.Content textAlign={"right"}>
-          {post.user.username === loggedUser?.username ? (
+          {(post.user.username === loggedUser?.username) || (userPost._id === post.user) ? (
             <Link to={`#`}>
               <Icon
                 name={"delete"}

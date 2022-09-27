@@ -23,6 +23,8 @@ function getProfileByID(userID) {
   });
 }
 
+
+
 // PROFILE PAGE
 function getProfile(username) {
   console.log("getProfile calling");

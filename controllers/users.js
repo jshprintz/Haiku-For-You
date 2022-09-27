@@ -41,10 +41,6 @@ async function profile(req, res) {
 
 
 
-
-
-
-
 async function profileByID(req, res) {
   console.log(req.params, "HERE IS THE REQ.PARAMS")
   try {
