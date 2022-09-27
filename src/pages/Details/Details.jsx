@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import PageHeader from "../../components/Header/Header";
 import { useParams } from "react-router-dom";
 import DisplayPost from "../../components/DisplayPost/DisplayPost";

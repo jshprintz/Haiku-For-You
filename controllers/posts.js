@@ -3,7 +3,8 @@ const Post = require("../models/post");
 module.exports = {
   create,
   index,
-  deletePost
+  deletePost,
+  getPost
 };
 
 async function create(req, res) {
@@ -42,3 +43,17 @@ async function deletePost(req, res){
     res.status(400).json({ err });
   }
 }
+
+// Get
+async function getPost(req, res){
+
+  console.log("GET POST")
+  try {
+    const post = await Post.findById(req.params.postId)
+    res.status(201).json({ data: post });
+  } catch (err) {
+    console.log(err, "<<-Error in deletePost controller")
+    res.status(400).json({ err });
+  }
+}
+
