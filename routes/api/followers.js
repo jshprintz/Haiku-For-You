@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const followersCtrl = require('../../controllers/followers')
 
-router.user('/users/:id/followers', followersCtrl.create)
-router.delete('/followers/:id', followersCtrl.deleteLike)
+router.post('/user/:id/followers', followersCtrl.create)
+router.delete('/followers/:id', followersCtrl.deleteFollower)
 
 module.exports = router;

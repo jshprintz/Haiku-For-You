@@ -42,10 +42,13 @@ export default function Feed({ loggedUser, handleLogout }) {
   async function addFollower(userId) {
 
     try {
+      // There's something wrong with the followersAPI
+      // I'm getting a 404 error.
       const response = await followersAPI.create(userId);
       console.log(response, "from add follower");
       getPosts();
     } catch (err) {
+      // This is where it errors out.
       console.log(err, " err from server");
     }
   }
@@ -60,7 +63,7 @@ export default function Feed({ loggedUser, handleLogout }) {
     }
   }
  //-----------------------------------------------------------------------
-// DON'T FORGET TO PASS THEM DOWN!!
+
 
   async function getPosts() {
     try {

@@ -33,17 +33,28 @@ function PostCard({
       : () => addLike(post._id);
 
 
-
+//----------------------------------------------------------------
   // FOLLOWERS
-  const followerIndex = post.likes.findIndex(
-    (like) => like.username === loggedUser?.username
+
+  // I think here is where the logic is wrong. We're sending up the wrong 
+  // value through the chain. THe chain is fine, it's this that's wrong.
+
+  const followerIndex = loggedUser.followers.findIndex(
+    (follower) => follower.username === loggedUser?.username
   );
-  const followerColor = followerIndex > -1 ? "pink" : "grey";
+
+console.log(followerIndex, "<- THIS IS THE FOLLOWER INDEX")
+console.log(loggedUser, "This is the logged user")
+
+  const followerColor = followerIndex > -1 ? "green" : "blue";
 
   const followerClickHandler =
     followerIndex > -1
       ? () => removeFollower(loggedUser.followers[followerIndex]._id)
-      : () => addFollower(post._id);
+      : () => addFollower(post.user._id);
+
+//----------------------------------------------------------------
+      
 
 
 
@@ -59,7 +70,6 @@ function PostCard({
   async function getPosts() {
     try {
       const response = await postsAPI.getAll();
-      console.log(response, "<-- Response");
       setPosts([...response.data]);
     } catch (err) {
       console.log(err.message, " this is the error");
@@ -72,8 +82,6 @@ function PostCard({
       const response = await userService.getProfile(username);
       setProfileUser(response.data.user);
       setPosts(response.data.posts);
-
-      console.log(response, "<<Response>>");
     } catch (err) {
       console.log(err.message, "<--Error");
     }
@@ -111,10 +119,6 @@ function PostCard({
       getPosts()
     }
   }, []);
-
-
-  console.log(post, "<--POST")
-  console.log(userPost, "<---userpost")
 
   return (
     <Card key={post._id} href={`/details/${post._id}`} centered>
@@ -184,8 +188,8 @@ function PostCard({
                 <Icon
                   name={"user plus"}
                   size="large"
-                  color={"blue"}
-                  //onClick={followClickHandler}
+                  color={followerColor}
+                  onClick={followerClickHandler}
                 />
               </Link>
             </>

@@ -1,4 +1,4 @@
-const User = require("../models/users");
+const User = require("../models/user");
 
 module.exports = {
   create,
@@ -6,8 +6,15 @@ module.exports = {
 };
 
 async function create(req, res) {
+console.log(req.params.id, "<---  req.params")
+console.log(req.user, "<---Req.user")
+
   try {
+
+    //This is were the error is.
+    //-------------------------------------------------
     const user = await User.findById(req.params.id);
+    console.log(user, "<--AHA THE USER")
     user.followers.push({ username: req.user.username, userId: req.user._id });
     await user.save();
     res.status(201).json({ data: "follower added" });

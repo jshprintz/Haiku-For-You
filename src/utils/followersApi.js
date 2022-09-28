@@ -5,7 +5,11 @@ import tokenService from "./tokenService";
 const BASE_URL = "/api/";
 
 export function create(userId) {
-  return fetch(`${BASE_URL}users/${userId}/followers`, {
+console.log(userId, "<<--HERE IS THE USER ID IN FOLLOWERS API")
+
+
+
+  return fetch(`${BASE_URL}user/${userId}/followers`, {
     method: "POST",
     headers: {
       Authorization: "Bearer " + tokenService.getToken(), 
