@@ -25,6 +25,9 @@ function PostCard({
   const likedIndex = post.likes.findIndex(
     (like) => like.username === loggedUser?.username
   );
+
+  console.log(post, "This is the post")
+
   const likeColor = likedIndex > -1 ? "pink" : "grey";
 
   const likeClickHandler =
@@ -39,8 +42,10 @@ function PostCard({
   // I think here is where the logic is wrong. We're sending up the wrong 
   // value through the chain. THe chain is fine, it's this that's wrong.
 
-  const followerIndex = loggedUser.followers.findIndex(
-    (follower) => follower.username === loggedUser?.username
+  const followerIndex = post.user.followers.findIndex(function(follower){
+    console.log(follower.username, "FOLLOW")
+    return follower.username === loggedUser?.username
+  }
   );
 
 console.log(followerIndex, "<- THIS IS THE FOLLOWER INDEX")
@@ -50,13 +55,11 @@ console.log(loggedUser, "This is the logged user")
 
   const followerClickHandler =
     followerIndex > -1
-      ? () => removeFollower(loggedUser.followers[followerIndex]._id)
+      ? () => removeFollower(post.user.followers[followerIndex]._id)
       : () => addFollower(post.user._id);
 
 //----------------------------------------------------------------
       
-
-
 
 
   // DELETE

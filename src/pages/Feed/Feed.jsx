@@ -42,8 +42,6 @@ export default function Feed({ loggedUser, handleLogout }) {
   async function addFollower(userId) {
 
     try {
-      // There's something wrong with the followersAPI
-      // I'm getting a 404 error.
       const response = await followersAPI.create(userId);
       console.log(response, "from add follower");
       getPosts();
