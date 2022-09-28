@@ -17,6 +17,9 @@ function PostCard({
   setPosts,
   setProfileUser,
 }) {
+  
+  console.log(post, "POST INSIDE OF POSTCARD PAGE")
+
   const { username } = useParams();
   const [userPost, setUserPost] = useState({})
 
@@ -26,8 +29,6 @@ function PostCard({
     (like) => like.username === loggedUser?.username
   );
 
-  console.log(post, "This is the post")
-
   const likeColor = likedIndex > -1 ? "pink" : "grey";
 
   const likeClickHandler =
@@ -36,30 +37,18 @@ function PostCard({
       : () => addLike(post._id);
 
 
-//----------------------------------------------------------------
   // FOLLOWERS
-
-  // I think here is where the logic is wrong. We're sending up the wrong 
-  // value through the chain. THe chain is fine, it's this that's wrong.
-
   const followerIndex = post.user.followers.findIndex(function(follower){
-    console.log(follower.username, "FOLLOW")
     return follower.username === loggedUser?.username
   }
   );
 
-console.log(followerIndex, "<- THIS IS THE FOLLOWER INDEX")
-console.log(loggedUser, "This is the logged user")
-
-  const followerColor = followerIndex > -1 ? "green" : "blue";
-
+  const followerColor = followerIndex > -1 ? "red" : "blue";
+  const followerIcon = followerIndex > -1 ? "user times" : "user plus"
   const followerClickHandler =
     followerIndex > -1
       ? () => removeFollower(post.user.followers[followerIndex]._id)
       : () => addFollower(post.user._id);
-
-//----------------------------------------------------------------
-      
 
 
   // DELETE
@@ -79,6 +68,8 @@ console.log(loggedUser, "This is the logged user")
     }
   }
 
+
+
   // PROFILE PAGE
   const getProfile = useCallback(async () => {
     try {
@@ -96,12 +87,18 @@ console.log(loggedUser, "This is the logged user")
 
   // DETAILS PAGE
   const getProfileByID = useCallback(async () => {
+    
+
     try {
+      
+
+
+
+
+
       const response = await userService.getProfileByID(post.user);
 
       setUserPost(response.data.user)
-
-      console.log(response, "<<Response>>");
     } catch (err) {
       console.log(err.message, "<--Error");
     }
@@ -110,18 +107,29 @@ console.log(loggedUser, "This is the logged user")
 
 
 
+
   // ON PAGE LOAD
   useEffect(() => {
+    console.log("firing")
+
+
     if (isProfile) {
       if (username !== undefined) {
+        //PROFILE PAGE
         getProfile()
       } else {
+        //DETAILS PAGE
+        console.log("we made it")
         getProfileByID()
       }
     } else {
+      //FEED PAGE
       getPosts()
     }
   }, []);
+
+
+
 
   return (
     <Card key={post._id} href={`/details/${post._id}`} centered>
@@ -189,7 +197,7 @@ console.log(loggedUser, "This is the logged user")
 
               <Link to={`#`}>
                 <Icon
-                  name={"user plus"}
+                  name={followerIcon}
                   size="large"
                   color={followerColor}
                   onClick={followerClickHandler}

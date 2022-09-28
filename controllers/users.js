@@ -25,6 +25,7 @@ async function profile(req, res) {
     if (!user) return res.status(400).json({ error: "User not found" });
 
     const posts = await Post.find({ user: user._id }).populate("user").exec();
+    
     res.status(200).json({
       data: {
         user: user,

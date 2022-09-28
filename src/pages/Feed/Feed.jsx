@@ -38,7 +38,7 @@ export default function Feed({ loggedUser, handleLogout }) {
     }
   }
 
-  //-----------------------------------------------------------------------
+
   async function addFollower(userId) {
 
     try {
@@ -46,7 +46,6 @@ export default function Feed({ loggedUser, handleLogout }) {
       console.log(response, "from add follower");
       getPosts();
     } catch (err) {
-      // This is where it errors out.
       console.log(err, " err from server");
     }
   }
@@ -60,7 +59,6 @@ export default function Feed({ loggedUser, handleLogout }) {
       console.log(err);
     }
   }
- //-----------------------------------------------------------------------
 
 
   async function getPosts() {
@@ -95,7 +93,7 @@ export default function Feed({ loggedUser, handleLogout }) {
       </>
     );
   }
-
+  console.log(posts, "HERE IS THE POSTS IN FEED")
   return (
     <Grid centered>
       <Grid.Row>

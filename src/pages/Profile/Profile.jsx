@@ -20,9 +20,9 @@ export default function ProfilePage({ loggedUser, handleLogout }) {
 
   const { username } = useParams();
 
-  async function addLike(postId) {
-    // Where is the postId defined in the UI?
 
+  //--------------LIKES--------------------------
+  async function addLike(postId) {
     try {
       const response = await likesAPI.create(postId);
       console.log(response, "from add like");
@@ -42,9 +42,7 @@ export default function ProfilePage({ loggedUser, handleLogout }) {
     }
   }
 
-
-
-  //-----------------------------------------------------------------------
+  //------------------FOLLOWERS-----------------------
   async function addFollower(userId) {
 
     try {
@@ -65,10 +63,8 @@ export default function ProfilePage({ loggedUser, handleLogout }) {
       console.log(err);
     }
   }
- //-----------------------------------------------------------------------
-// DON'T FORGET TO PASS THEM DOWN!!
 
-
+  //---------------------GET PROFILE----------------------
   const getProfile = useCallback(async () => {
 
     try {
@@ -85,10 +81,11 @@ export default function ProfilePage({ loggedUser, handleLogout }) {
   }, [username]);
 
   useEffect(() => {
-    console.log("firing!");
-
     getProfile();
   }, [username, getProfile]);
+
+
+  //-----------------------ERROR-------------------------------
 
   if (error) {
     return (
@@ -99,6 +96,7 @@ export default function ProfilePage({ loggedUser, handleLogout }) {
     );
   }
 
+  //----------------------LOADING------------------------------
   if (loading) {
     return (
       <>
@@ -108,6 +106,9 @@ export default function ProfilePage({ loggedUser, handleLogout }) {
     );
   }
 
+
+  //-----------------------RETURN-----------------------------
+  console.log(posts, "HERE IS THE POSTS IN PROFILE")
   return (
     <Grid>
       <Grid.Row>

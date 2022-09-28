@@ -15,6 +15,10 @@ export default function PostGallery({
   setPosts,
   setProfileUser
 }) {
+
+
+
+  console.log(posts, "<------POSTS IN POST GALLERY")
   return (
     <Card.Group itemsPerRow={3} stackable>
       {loading ? (

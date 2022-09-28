@@ -1,26 +1,32 @@
 import React from "react";
-import PostCard from "../PostCard/PostCard";
+import PostGallery from "../PostGallery/PostGallery";
 import { Grid } from "semantic-ui-react";
 
 export default function DisplayPostForm({
-  post,
+  posts,
   isProfile,
   addLike,
   removeLike,
+  addFollower,
+  removeFollower,
   loggedUser,
   setPosts,
   setProfileUser,
 }) {
+
+    console.log(posts, "HERE IS POST IN DISPLAYPOST")
   return (
     <Grid className="details-card">
       <Grid.Row >
         <Grid.Column >
-          <PostCard
-            post={post}
-            key={post._id}
+          <PostGallery
+            posts={posts}
+            key={posts._id}
             isProfile={isProfile}
             removeLike={removeLike}
             addLike={addLike}
+            addFollower={addFollower}
+            removeFollower={removeFollower}
             loggedUser={loggedUser}
             setPosts={setPosts}
             setProfileUser={setProfileUser}

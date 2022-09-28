@@ -1,4 +1,5 @@
 const Post = require("../models/post");
+const User = require("../models/user")
 
 module.exports = {
   create,
@@ -8,9 +9,6 @@ module.exports = {
 };
 
 async function create(req, res) {
-  console.log(req.body, "<-Req.BODY posts controller");
-  console.log(req.user, "<--Here is the user");
-
   try {
     const post = await Post.create({
       lineOne: req.body.lineOne,
@@ -48,14 +46,22 @@ async function deletePost(req, res){
 
 // Get
 async function getPost(req, res){
+console.log(req.params, "<<----HERE ARE REQ.PARAMS")
 
-  console.log("GET POST")
   try {
-    const post = await Post.findById(req.params.postId)
-    res.status(201).json({ data: post });
+    const temp = await Post.findById(req.params.postId)
+    console.log(temp, "<--- POST FROM GET POST")
+    const user = await User.findById(temp.user._id)
+    console.log(user, "<--- USER FROM GET POST")
+    const posts = await Post.findById(req.params.postId).populate("user").exec();
+
+    res.status(201).json({ 
+      data: {
+      posts: posts,
+      user: user, 
+    }});
   } catch (err) {
-    console.log(err, "<<-Error in deletePost controller")
+    console.log(err, "<<-Error in getpost controller")
     res.status(400).json({ err });
   }
 }
-
