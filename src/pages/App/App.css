@@ -18,3 +18,7 @@
   scroll-behavior: smooth;
   overflow: auto;
 }
+
+.details-card {
+  width: 500px;
+}

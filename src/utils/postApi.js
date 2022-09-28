@@ -69,9 +69,7 @@ export function getPost(postID) {
     },
   }).then((res) => {
     if (res.ok) return res.json();
-    console.log(res, "<-----HERE");
     return res.json().then((response) => {
-      console.log(response, "<-- Response in postAPI Get");
       throw new Error(response.err);
     });
   });

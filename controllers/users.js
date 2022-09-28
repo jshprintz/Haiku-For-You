@@ -1,23 +1,20 @@
-const User = require('../models/user');
-const Post = require("../models/post")
-const jwt = require('jsonwebtoken');
+const User = require("../models/user");
+const Post = require("../models/post");
+const jwt = require("jsonwebtoken");
 const S3 = require("aws-sdk/clients/s3");
-const s3 = new S3(); // initate the S3 constructor which can talk to aws/s3 our bucket!
-// import uuid to help generate random names
+const s3 = new S3();
+
 const { v4: uuidv4 } = require("uuid");
-// since we are sharing code, when you pull you don't want to have to edit the
-// the bucket name, thats why we're using an environment variable
+
 const BUCKET_NAME = process.env.AWS_BUCKET_NAME;
 const SECRET = process.env.SECRET;
-
 
 module.exports = {
   signup,
   login,
   profile,
-  profileByID
+  profileByID,
 };
-
 
 async function profile(req, res) {
   try {
@@ -25,24 +22,22 @@ async function profile(req, res) {
     if (!user) return res.status(400).json({ error: "User not found" });
 
     const posts = await Post.find({ user: user._id }).populate("user").exec();
+
     res.status(200).json({
       data: {
         user: user,
         posts: posts,
-      }
+      },
     });
-  } catch(err) {
+  } catch (err) {
     console.log(err.message, "<-- profile controller error");
-    res.status(400).json({ error: "Ooops. Something went wrong. Please try again later."})
+    res
+      .status(400)
+      .json({ error: "Ooops. Something went wrong. Please try again later." });
   }
 }
 
-
-
-
-
 async function profileByID(req, res) {
-  console.log(req.params, "HERE IS THE REQ.PARAMS")
   try {
     const user = await User.findById(req.params.userID);
     if (!user) return res.status(400).json({ error: "User not found" });
@@ -52,20 +47,15 @@ async function profileByID(req, res) {
       data: {
         user: user,
         posts: posts,
-      }
+      },
     });
-  } catch(err) {
+  } catch (err) {
     console.log(err.message, "<-- profile controller error");
-    res.status(400).json({ error: "Ooops. Something went wrong. Please try again later."})
+    res
+      .status(400)
+      .json({ error: "Ooops. Something went wrong. Please try again later." });
   }
 }
-
-
-
-
-
-
-
 
 async function signup(req, res) {
   console.log(req.body, " req.body in signup", req.file);
@@ -75,7 +65,7 @@ async function signup(req, res) {
   // pupstagram/ <- will upload everything to the bucket so it appears
   // like its an a folder (really its just nested keys on the bucket)
   const key = `pupstagram/${uuidv4()}-${req.file.originalname}`;
-  
+
   const params = { Bucket: BUCKET_NAME, Key: key, Body: req.file.buffer };
 
   s3.upload(params, async function (err, data) {
@@ -98,18 +88,15 @@ async function signup(req, res) {
       res.json({ token }); // shorthand for the below
       // res.json({ token: token })
     } catch (err) {
-
       // This is an example of how to handle validation errors from mongoose
       if (err.name === "MongoServerError" && err.code === 11000) {
         console.log(err.message, "err.message");
-        res
-          .status(423)
-          .json({
-            errorMessage: err,
-            err: `${identifyKeyInMongooseValidationError(
-              err.message
-            )} Already taken!`,
-          });
+        res.status(423).json({
+          errorMessage: err,
+          err: `${identifyKeyInMongooseValidationError(
+            err.message
+          )} Already taken!`,
+        });
       } else {
         res.status(500).json({
           err: err,
@@ -122,32 +109,30 @@ async function signup(req, res) {
 
 async function login(req, res) {
   try {
-    const user = await User.findOne({email: req.body.email});
-    console.log(user, ' this user in login')
-    if (!user) return res.status(401).json({err: 'bad credentials'});
+    const user = await User.findOne({ email: req.body.email });
+    console.log(user, " this user in login");
+    if (!user) return res.status(401).json({ err: "bad credentials" });
     // had to update the password from req.body.pw, to req.body password
     user.comparePassword(req.body.password, (err, isMatch) => {
-        
       if (isMatch) {
         const token = createJWT(user);
-        res.json({token});
+        res.json({ token });
       } else {
-        return res.status(401).json({err: 'bad credentials'});
+        return res.status(401).json({ err: "bad credentials" });
       }
     });
   } catch (err) {
-    return res.status(401).json({err: 'error message'});
+    return res.status(401).json({ err: "error message" });
   }
 }
-
 
 /*----- Helper Functions -----*/
 
 function createJWT(user) {
   return jwt.sign(
-    {user}, // data payload
+    { user }, // data payload
     SECRET,
-    {expiresIn: '24h'}
+    { expiresIn: "24h" }
   );
 }
 

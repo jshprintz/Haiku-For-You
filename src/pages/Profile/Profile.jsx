@@ -7,6 +7,7 @@ import Loading from "../../components/Loader/Loader";
 import PostGallery from "../../components/PostGallery/PostGallery";
 import "../App/App.css";
 
+import * as followersAPI from "../../utils/followersApi";
 import * as likesAPI from "../../utils/likesApi";
 import userService from "../../utils/userService";
 import { useParams } from "react-router-dom";
@@ -19,9 +20,9 @@ export default function ProfilePage({ loggedUser, handleLogout }) {
 
   const { username } = useParams();
 
-  async function addLike(postId) {
-    // Where is the postId defined in the UI?
 
+  //--------------LIKES--------------------------
+  async function addLike(postId) {
     try {
       const response = await likesAPI.create(postId);
       console.log(response, "from add like");
@@ -41,6 +42,29 @@ export default function ProfilePage({ loggedUser, handleLogout }) {
     }
   }
 
+  //------------------FOLLOWERS-----------------------
+  async function addFollower(userId) {
+
+    try {
+      const response = await followersAPI.create(userId);
+      console.log(response, "from add follower");
+      getProfile();
+    } catch (err) {
+      console.log(err, " err from server");
+    }
+  }
+
+  async function removeFollower(followerId) {
+    try {
+      const response = await followersAPI.removeFollower(followerId);
+      console.log(response, " remove follower");
+      getProfile();
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  //---------------------GET PROFILE----------------------
   const getProfile = useCallback(async () => {
 
     try {
@@ -57,10 +81,11 @@ export default function ProfilePage({ loggedUser, handleLogout }) {
   }, [username]);
 
   useEffect(() => {
-    console.log("firing!");
-
     getProfile();
   }, [username, getProfile]);
+
+
+  //-----------------------ERROR-------------------------------
 
   if (error) {
     return (
@@ -71,6 +96,7 @@ export default function ProfilePage({ loggedUser, handleLogout }) {
     );
   }
 
+  //----------------------LOADING------------------------------
   if (loading) {
     return (
       <>
@@ -80,6 +106,9 @@ export default function ProfilePage({ loggedUser, handleLogout }) {
     );
   }
 
+
+  //-----------------------RETURN-----------------------------
+  console.log(posts, "HERE IS THE POSTS IN PROFILE")
   return (
     <Grid>
       <Grid.Row>
@@ -101,9 +130,12 @@ export default function ProfilePage({ loggedUser, handleLogout }) {
             loading={loading}
             addLike={addLike}
             removeLike={removeLike}
+            addFollower={addFollower}
+            removeFollower={removeFollower}
             loggedUser={loggedUser}
             setPosts={setPosts}
             setProfileUser={setProfileUser}
+            itemsPerRow={3}
           />
         </Grid.Column>
       </Grid.Row>

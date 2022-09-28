@@ -9,12 +9,16 @@ export default function PostGallery({
   loading,
   removeLike,
   addLike,
+  addFollower,
+  removeFollower,
   loggedUser,
   setPosts,
-  setProfileUser
+  setProfileUser,
+  itemsPerRow,
 }) {
+
   return (
-    <Card.Group itemsPerRow={3} stackable>
+    <Card.Group itemsPerRow={itemsPerRow} stackable>
       {loading ? (
         <Segment>
           <Dimmer active inverted>
@@ -33,6 +37,8 @@ export default function PostGallery({
             isProfile={isProfile}
             removeLike={removeLike}
             addLike={addLike}
+            addFollower={addFollower}
+            removeFollower={removeFollower}
             loggedUser={loggedUser}
             setPosts={setPosts}
             setProfileUser={setProfileUser}
