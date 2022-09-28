@@ -135,6 +135,7 @@ export default function ProfilePage({ loggedUser, handleLogout }) {
             loggedUser={loggedUser}
             setPosts={setPosts}
             setProfileUser={setProfileUser}
+            itemsPerRow={3}
           />
         </Grid.Column>
       </Grid.Row>

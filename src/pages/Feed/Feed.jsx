@@ -114,6 +114,7 @@ export default function Feed({ loggedUser, handleLogout }) {
             removeFollower={removeFollower}
             loggedUser={loggedUser}
             setPosts={setPosts}
+            itemsPerRow={3}
           />
         </Grid.Column>
       </Grid.Row>

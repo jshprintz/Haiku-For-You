@@ -121,6 +121,7 @@ export default function Write({ loggedUser, handleLogout }) {
             removeFollower={removeFollower}
             loggedUser={loggedUser}
             setPosts={setPosts}
+            itemsPerRow={1}
           />
         </Grid.Column>
       </Grid.Row>

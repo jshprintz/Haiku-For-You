@@ -12,32 +12,32 @@ export default function DisplayPostForm({
   loggedUser,
   setPosts,
   setProfileUser,
+  itemsPerRow,
 }) {
-
-    console.log(posts, "HERE IS POST IN DISPLAYPOST")
   return (
     <Grid>
-      <Grid.Row >
-        <Grid.Column >
+      <Grid.Row>
+        <Grid.Column>
           <div className="details-card">
-          <PostGallery
-            posts={posts}
-            key={posts._id}
-            isProfile={isProfile}
-            removeLike={removeLike}
-            addLike={addLike}
-            addFollower={addFollower}
-            removeFollower={removeFollower}
-            loggedUser={loggedUser}
-            setPosts={setPosts}
-            setProfileUser={setProfileUser}
-          />
+            <PostGallery
+              posts={posts}
+              key={posts._id}
+              isProfile={isProfile}
+              removeLike={removeLike}
+              addLike={addLike}
+              addFollower={addFollower}
+              removeFollower={removeFollower}
+              loggedUser={loggedUser}
+              setPosts={setPosts}
+              setProfileUser={setProfileUser}
+              itemsPerRow={itemsPerRow}
+            />
           </div>
         </Grid.Column>
       </Grid.Row>
       <Grid.Row>
         <Grid.Column>
-            <h2>Comments will go here</h2>
+          <h2>Comments will go here</h2>
         </Grid.Column>
       </Grid.Row>
     </Grid>

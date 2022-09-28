@@ -13,14 +13,12 @@ export default function PostGallery({
   removeFollower,
   loggedUser,
   setPosts,
-  setProfileUser
+  setProfileUser,
+  itemsPerRow,
 }) {
 
-
-
-  console.log(posts, "<------POSTS IN POST GALLERY")
   return (
-    <Card.Group itemsPerRow={3} stackable>
+    <Card.Group itemsPerRow={itemsPerRow} stackable>
       {loading ? (
         <Segment>
           <Dimmer active inverted>
