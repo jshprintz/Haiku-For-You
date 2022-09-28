@@ -1,11 +1,11 @@
 const Post = require("../models/post");
-const User = require("../models/user")
+const User = require("../models/user");
 
 module.exports = {
   create,
   index,
   deletePost,
-  getPost
+  getPost,
 };
 
 async function create(req, res) {
@@ -34,34 +34,33 @@ async function index(req, res) {
 }
 
 // DELETE
-async function deletePost(req, res){
+async function deletePost(req, res) {
   try {
-    await Post.findByIdAndDelete(req.params.id)
+    await Post.findByIdAndDelete(req.params.id);
     res.status(201).json({});
   } catch (err) {
-    console.log(err, "<<-Error in deletePost controller")
+    console.log(err, "<<-Error in deletePost controller");
     res.status(400).json({ err });
   }
 }
 
 // Get
-async function getPost(req, res){
-console.log(req.params, "<<----HERE ARE REQ.PARAMS")
-
+async function getPost(req, res) {
   try {
-    const temp = await Post.findById(req.params.postId)
-    console.log(temp, "<--- POST FROM GET POST")
-    const user = await User.findById(temp.user._id)
-    console.log(user, "<--- USER FROM GET POST")
-    const posts = await Post.findById(req.params.postId).populate("user").exec();
+    const temp = await Post.findById(req.params.postId);
+    const user = await User.findById(temp.user._id);
+    const posts = await Post.findById(req.params.postId)
+      .populate("user")
+      .exec();
 
-    res.status(201).json({ 
+    res.status(201).json({
       data: {
-      posts: posts,
-      user: user, 
-    }});
+        posts: posts,
+        user: user,
+      },
+    });
   } catch (err) {
-    console.log(err, "<<-Error in getpost controller")
+    console.log(err, "<<-Error in getpost controller");
     res.status(400).json({ err });
   }
 }

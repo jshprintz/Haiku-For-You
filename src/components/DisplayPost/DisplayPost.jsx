@@ -16,9 +16,10 @@ export default function DisplayPostForm({
 
     console.log(posts, "HERE IS POST IN DISPLAYPOST")
   return (
-    <Grid className="details-card">
+    <Grid>
       <Grid.Row >
         <Grid.Column >
+          <div className="details-card">
           <PostGallery
             posts={posts}
             key={posts._id}
@@ -31,6 +32,7 @@ export default function DisplayPostForm({
             setPosts={setPosts}
             setProfileUser={setProfileUser}
           />
+          </div>
         </Grid.Column>
       </Grid.Row>
       <Grid.Row>
