@@ -44,7 +44,7 @@ function getProfileByID(userID) {
 
 
 // PROFILE PAGE
-function getProfile(username) {
+ function getProfile(username) {
   console.log("getProfile calling");
 
   return fetch(BASE_URL + username, {
@@ -125,7 +125,7 @@ const userService = {
   getUser,
   getProfile,
   getProfileByID,
-  index
+  index,
 };
 
 export default userService;

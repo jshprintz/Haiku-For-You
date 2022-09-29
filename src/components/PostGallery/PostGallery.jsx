@@ -17,6 +17,9 @@ export default function PostGallery({
   itemsPerRow,
 }) {
 
+
+
+
   return (
     <Card.Group itemsPerRow={itemsPerRow} stackable>
       {loading ? (

@@ -17,7 +17,9 @@ export default function ProfilePage({ loggedUser, handleLogout }) {
   const [profileUser, setProfileUser] = useState({});
   const [loading, setLoading] = useState(true);
   const [posts, setPosts] = useState([]);
+  const [followingPosts, setFollowingPosts] = useState([]);
 
+  const usersPosts = [];
   const { username } = useParams();
 
 
@@ -60,7 +62,7 @@ export default function ProfilePage({ loggedUser, handleLogout }) {
       console.log(response, " remove follower");
       getProfile();
     } catch (err) {
-      console.log(err);
+      console.log(err, "remove follower error");
     }
   }
 
@@ -82,7 +84,65 @@ export default function ProfilePage({ loggedUser, handleLogout }) {
 
   useEffect(() => {
     getProfile();
+    getFollowing();
   }, [username, getProfile]);
+
+
+
+  async function getFollowing() {
+    try {
+      const response = await userService.index();
+      const following = [];
+
+      console.log(response, "<<--ALLL USERS>>");
+
+      // Check every users followers to see if it contains logged in user
+      response.data.map((user) => {
+        for (let i = 0; i < user.followers.length; i++) {
+          if (user.followers[i].username === loggedUser?.username) {
+            following.push(user);
+          }
+        }
+        return following;
+      });
+
+      console.log(
+        following,
+        "HERE ARE THE users that the logged user is following"
+      );
+
+      // fetching posts for users that the logged in user is following.
+      for (let i = 0; i < following.length; i++) {
+        getPosts(following[i].username);
+      }
+      setFollowingPosts(usersPosts);
+ //     setLoading(false);
+    } catch (err) {
+      console.log(err.message, " this is the error");
+ //     setLoading(false);
+    }
+  }
+
+
+  
+
+  // Get posts for a specific user
+  async function getPosts(username) {
+    try {
+      const response = await userService.getProfile(username);
+      console.log(response, "PAY ATTENTION TO THIS RESPONSE")
+ //     setLoading(false);
+
+        for (let i=0; i<response.data.posts.length; i++){
+            usersPosts.push(response.data.posts[i])
+        }
+      
+
+    } catch (err) {
+      console.log(err.message, "<--Error");
+    }
+  }
+
 
 
   //-----------------------ERROR-------------------------------
@@ -134,8 +194,28 @@ export default function ProfilePage({ loggedUser, handleLogout }) {
             removeFollower={removeFollower}
             loggedUser={loggedUser}
             setPosts={setPosts}
+            setFollowingPosts={setFollowingPosts}
             setProfileUser={setProfileUser}
             itemsPerRow={3}
+          />
+        </Grid.Column>
+      </Grid.Row>
+      <Grid.Row className="feed-gallery">
+        <Grid.Column style={{ maxwidth: 350 }}>
+          <h1>Here are posts from people you're following</h1>
+          <PostGallery
+            posts={followingPosts}
+            isProfile={false}
+            loading={loading}
+            addLike={addLike}
+            removeLike={removeLike}
+            addFollower={addFollower}
+            removeFollower={removeFollower}
+            loggedUser={loggedUser}
+            setPosts={setPosts}
+            setFollowingPosts={setFollowingPosts}
+            itemsPerRow={3}
+            handleLogout={handleLogout}
           />
         </Grid.Column>
       </Grid.Row>
