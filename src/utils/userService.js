@@ -3,8 +3,8 @@ import tokenService from "./tokenService";
 const BASE_URL = "/api/users/";
 
 
-// GET ALL FOR FOLLOWING
-export function getAll() {
+// GET ALL OF THE USERS
+export function index() {
   return fetch(BASE_URL, {
     headers: {
       Authorization: "Bearer " + tokenService.getToken(), // This grabs thee JWT token out
@@ -125,6 +125,7 @@ const userService = {
   getUser,
   getProfile,
   getProfileByID,
+  index
 };
 
 export default userService;

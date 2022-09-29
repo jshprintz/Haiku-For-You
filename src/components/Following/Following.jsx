@@ -1,12 +1,7 @@
 import React, { useState, useEffect } from "react";
-import PageHeader from "../../components/Header/Header";
-import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
-import Loading from "../../components/Loader/Loader";
 import PostGallery from "../../components/PostGallery/PostGallery";
-
 import { Grid } from "semantic-ui-react";
-
-import * as userService from "../../utils/userService";
+import userService from "../../utils/userService";
 
 
 export default function Following({   
@@ -18,12 +13,15 @@ export default function Following({
     removeFollower,
     loggedUser,
     setPosts,
-    setProfileUser, }) {
+}) {
   const [loading, setLoading] = useState(true);
+  const [followingUsers, setFollowingUsers] = useState([]);
+
+
 
   async function getFollowing() {
     try {
-      const response = await userService.getAll();
+      const response = await userService.index();
       const following = [];
     
 
@@ -42,11 +40,11 @@ export default function Following({
 
       // I need to fetch the posts just for the users that are on the following list
 
+      for (let i=0; i<following.length; i++){
+        getPosts(following[i].username)
+      }
 
 
-
-
-      setPosts([...response.data]);
       setLoading(false);
     } catch (err) {
       console.log(err.message, " this is the error");
@@ -58,13 +56,38 @@ export default function Following({
     getFollowing();
   }, []);
 
+
+
+  async function getPosts(username){
+    console.log(username)
+    try {
+      const response = await userService.getProfile(username);
+      console.log(response, "<-CHECK OUT THE RESPONSE")
+
+
+      setLoading(false);
+      setFollowingUsers([...response.data.posts]);;
+    } catch (err) {
+      console.log(err.message, "<--Error");
+    }
+  };
+
+
+
+
+
+
+
+
+
+
   return (
     <Grid centered>
       <Grid.Row className="feed-gallery">
         <Grid.Column style={{ maxwidth: 350 }}>
           <h1>Here are all the posts</h1>
           <PostGallery
-            posts={posts}
+            posts={followingUsers}
             isProfile={isProfile}
             loading={loading}
             addLike={addLike}
