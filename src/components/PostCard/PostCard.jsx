@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { Card, Icon, Image } from "semantic-ui-react";
+import { Card, Icon, Image, Segment } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import { deletePost } from "../../utils/postApi";
 import * as postsAPI from "../../utils/postApi";
@@ -111,7 +111,11 @@ function PostCard({
 
 
 
-
+console.log(post, "HERE IS THE POST")
+console.log(new Date(post.createdAt))
+const tempTimestamp = new Date(post.createdAt)
+console.log(tempTimestamp.toLocaleDateString())
+const timestamp = tempTimestamp.toLocaleDateString()
 
   return (
     <Card key={post._id} href={`/details/${post._id}`}>
@@ -156,6 +160,8 @@ function PostCard({
 
       {loggedUser ? (
         <Card.Content textAlign={"right"}>
+          <Segment raised>
+            <Card.Description textAlign="left">{timestamp}</Card.Description>
           {post.user.username === loggedUser?.username ||
           (userPost._id === post.user &&
             userPost.username === loggedUser?.username) ? (
@@ -168,7 +174,7 @@ function PostCard({
               />
             </Link>
           ) : (
-            <>
+            <>  
               <Link to={`#`}>
                 <Icon
                   name={"thumbs up"}
@@ -189,6 +195,7 @@ function PostCard({
               </Link>
             </>
           )}
+          </Segment>
         </Card.Content>
       ) : null}
     </Card>

@@ -14,7 +14,7 @@
 }
 
 .card {
-  height: 250px;
+  height: 325px;
   scroll-behavior: smooth;
   overflow: auto;
 }
