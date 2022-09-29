@@ -182,7 +182,7 @@ export default function ProfilePage({ loggedUser, handleLogout }) {
       </Grid.Row>
       <Grid.Row className="feed-gallery">
         <Grid.Column style={{ width: 1000 }}>
-          <h1>Your Recent Posts</h1>
+          <h1 className="centered">--Recent Posts--</h1>
           <PostGallery
             posts={posts}
             isProfile={true}
@@ -195,7 +195,7 @@ export default function ProfilePage({ loggedUser, handleLogout }) {
             setPosts={setPosts}
             setFollowingPosts={setFollowingPosts}
             setProfileUser={setProfileUser}
-            itemsPerRow={3}
+            itemsPerRow={1}
           />
         </Grid.Column>
       </Grid.Row>
@@ -203,7 +203,7 @@ export default function ProfilePage({ loggedUser, handleLogout }) {
         <Grid.Column style={{ maxwidth: 350 }}>
           { followingPosts.length ? ( 
           <>
-          <h1>Here are posts from people you're following</h1>
+          <h1 className="centered">--Following--</h1>
           <PostGallery
             posts={followingPosts}
             isProfile={true}
@@ -215,7 +215,7 @@ export default function ProfilePage({ loggedUser, handleLogout }) {
             loggedUser={loggedUser}
             setPosts={setPosts}
             setFollowingPosts={setFollowingPosts}
-            itemsPerRow={3}
+            itemsPerRow={1}
             handleLogout={handleLogout}
           />
           </>

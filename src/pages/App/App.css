@@ -9,7 +9,7 @@
   scroll-behavior: smooth;
   overflow: auto;
   height: 500px;
-  max-width: 80%;
+  max-width: 35%;
   margin: 5%;
 }
 
@@ -25,4 +25,8 @@
 
 body {
   margin-bottom: 10px;
+}
+
+.centered { 
+  text-align: center;
 }

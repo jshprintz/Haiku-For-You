@@ -158,6 +158,7 @@ export default function Feed({ loggedUser, handleLogout }) {
 
   //--------------------------RETURN-------------------------------------
   return (
+    <>
     <Grid centered>
       <Grid.Row>
         <Grid.Column>
@@ -166,7 +167,7 @@ export default function Feed({ loggedUser, handleLogout }) {
       </Grid.Row>
       <Grid.Row className="feed-gallery">
         <Grid.Column style={{ maxwidth: 350 }}>
-          <h1>Here are all the posts</h1>
+          <h1 className="centered">--Recent Posts--</h1>
           <PostGallery
             posts={posts}
             isProfile={false}
@@ -177,7 +178,7 @@ export default function Feed({ loggedUser, handleLogout }) {
             removeFollower={removeFollower}
             loggedUser={loggedUser}
             setPosts={setPosts}
-            itemsPerRow={3}
+            itemsPerRow={1}
           />
         </Grid.Column>
       </Grid.Row>
@@ -186,7 +187,7 @@ export default function Feed({ loggedUser, handleLogout }) {
         <Grid.Column style={{ maxwidth: 350 }}>
         { followingPosts.length ? (
           <>
-          <h1>Here are posts from people you're following</h1>
+          <h1 className="centered">--Following--</h1>
           <PostGallery
             posts={followingPosts}
             isProfile={false}
@@ -198,7 +199,7 @@ export default function Feed({ loggedUser, handleLogout }) {
             loggedUser={loggedUser}
             setPosts={setPosts}
             setFollowingPosts={setFollowingPosts}
-            itemsPerRow={3}
+            itemsPerRow={1}
             handleLogout={handleLogout}
           />
           </>
@@ -211,6 +212,10 @@ export default function Feed({ loggedUser, handleLogout }) {
       </Grid.Row>
       ) : null}
     </Grid>
+    <br />
+    <br />
+    <br />
+    </>
   );
 }
 
