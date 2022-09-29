@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import PageHeader from "../../components/Header/Header";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import Loading from "../../components/Loader/Loader";
+import Following from "../../components/Following/Following";
 import PostGallery from "../../components/PostGallery/PostGallery";
 import "../App/App.css";
 
@@ -11,11 +12,14 @@ import * as followersAPI from "../../utils/followersApi";
 import * as postsAPI from "../../utils/postApi";
 import * as likesAPI from "../../utils/likesApi";
 
+
 export default function Feed({ loggedUser, handleLogout }) {
   const [posts, setPosts] = useState([]);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
 
+
+//-----------------------------LIKES--------------------------------
   async function addLike(postId) {
     try {
       const response = await likesAPI.create(postId);
@@ -38,7 +42,7 @@ export default function Feed({ loggedUser, handleLogout }) {
     }
   }
 
-
+//-------------------------------FOLLOWERS---------------------------
   async function addFollower(userId) {
 
     try {
@@ -60,7 +64,7 @@ export default function Feed({ loggedUser, handleLogout }) {
     }
   }
 
-
+//---------------------------GET POSTS--------------------------------
   async function getPosts() {
     try {
       const response = await postsAPI.getAll();
@@ -75,6 +79,8 @@ export default function Feed({ loggedUser, handleLogout }) {
   useEffect(() => {
     getPosts();
   }, []);
+
+  //------------------------Error--------Loading-----------------------
 
   if (error) {
     return (
@@ -93,7 +99,8 @@ export default function Feed({ loggedUser, handleLogout }) {
       </>
     );
   }
-  console.log(posts, "HERE IS THE POSTS IN FEED")
+
+  //--------------------------RETURN-------------------------------------
   return (
     <Grid centered>
       <Grid.Row>
@@ -115,6 +122,24 @@ export default function Feed({ loggedUser, handleLogout }) {
             loggedUser={loggedUser}
             setPosts={setPosts}
             itemsPerRow={3}
+          />
+        </Grid.Column>
+      </Grid.Row>
+      <Grid.Row className="feed-gallery">
+        <Grid.Column style={{ maxwidth: 350 }}>
+          <h1>Here are posts from people you're following</h1>
+          <Following
+            posts={posts}
+            isProfile={false}
+            loading={loading}
+            addLike={addLike}
+            removeLike={removeLike}
+            addFollower={addFollower}
+            removeFollower={removeFollower}
+            loggedUser={loggedUser}
+            setPosts={setPosts}
+            itemsPerRow={3}
+            handleLogout={handleLogout}
           />
         </Grid.Column>
       </Grid.Row>

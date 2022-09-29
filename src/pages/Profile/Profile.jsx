@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { Grid } from "semantic-ui-react";
+import { Grid, GridColumn, GridRow } from "semantic-ui-react";
 import ProfileBio from "../../components/ProfileBio/ProfileBio";
 import PageHeader from "../../components/Header/Header";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";

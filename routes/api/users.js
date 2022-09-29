@@ -8,5 +8,6 @@ router.post("/signup", upload.single("photo"), usersCtrl.signup);
 router.post("/login", usersCtrl.login);
 router.get("/:username", usersCtrl.profile);
 router.get("/id/:userID", usersCtrl.profileByID);
+router.get("/", usersCtrl.index);
 
 module.exports = router;
