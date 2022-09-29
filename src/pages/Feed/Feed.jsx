@@ -51,6 +51,7 @@ export default function Feed({ loggedUser, handleLogout }) {
       const response = await followersAPI.create(userId);
       console.log(response, "from add follower");
       getPosts();
+      getFollowing();
     } catch (err) {
       console.log(err, " err from server");
     }
@@ -61,6 +62,7 @@ export default function Feed({ loggedUser, handleLogout }) {
       const response = await followersAPI.removeFollower(followerId);
       console.log(response, " remove follower");
       getPosts();
+      getFollowing();
     } catch (err) {
       console.log(err);
     }
@@ -83,7 +85,7 @@ export default function Feed({ loggedUser, handleLogout }) {
     getFollowing();
   }, []);
 
-
+//----------------------------GET FOLLOWING-----------------------
 
   async function getFollowing() {
     try {
@@ -111,6 +113,8 @@ export default function Feed({ loggedUser, handleLogout }) {
       for (let i = 0; i < following.length; i++) {
         getUserPosts(following[i].username);
       }
+
+      console.log(usersPosts, "HERE ARE THE USERS POSTS")
       setFollowingPosts(usersPosts);
       setLoading(false);
     } catch (err) {
@@ -195,6 +199,7 @@ export default function Feed({ loggedUser, handleLogout }) {
             removeFollower={removeFollower}
             loggedUser={loggedUser}
             setPosts={setPosts}
+            setFollowingPosts={setFollowingPosts}
             itemsPerRow={3}
             handleLogout={handleLogout}
           />

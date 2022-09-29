@@ -11,6 +11,7 @@ export default function PostGallery({
   addLike,
   addFollower,
   removeFollower,
+  setFollowingPosts,
   loggedUser,
   setPosts,
   setProfileUser,
@@ -42,6 +43,7 @@ export default function PostGallery({
             addLike={addLike}
             addFollower={addFollower}
             removeFollower={removeFollower}
+            setFollowingPosts={setFollowingPosts}
             loggedUser={loggedUser}
             setPosts={setPosts}
             setProfileUser={setProfileUser}
