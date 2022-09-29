@@ -12,22 +12,23 @@ export default function PageHeader({ loggedUser, handleLogout }) {
             src={
               loggedUser?.photoUrl
                 ? loggedUser?.photoUrl
-                : "https://react.semantic-ui.com/images/wireframe/square-image.png"
+                : "https://i.imgur.com/L7SHYEM.png"
             }
             avatar
           ></Image>
         </Link>
         {loggedUser ? (
-          <Link to="" onClick={handleLogout}>
-            Logout
-          </Link>
-        ) : (
-          <Link to={`/${loggedUser?.username}`}>Login</Link>
-        )}
+      <Link to="" onClick={handleLogout}>
+      <Image
+            src={"https://i.imgur.com/IjIFulH.png"}
+            avatar
+          ></Image>
+      </Link>
+        ) : null}
       </Header>
       <Header as="h2" floated="left">
         <Link to="/">
-          <Icon name="home"></Icon>
+          <Icon name="home" size="large"></Icon>
         </Link>
 
         {loggedUser ? (

@@ -115,6 +115,7 @@ export default function Feed({ loggedUser, handleLogout }) {
       }
 
       console.log(usersPosts, "HERE ARE THE USERS POSTS")
+
       setFollowingPosts(usersPosts);
       setLoading(false);
     } catch (err) {
@@ -128,7 +129,6 @@ export default function Feed({ loggedUser, handleLogout }) {
   async function getUserPosts(username) {
     try {
       const response = await userService.getProfile(username);
-      console.log(response, "PAY ATTENTION TO THIS RESPONSE")
       setLoading(false);
 
         for (let i=0; i<response.data.posts.length; i++){
