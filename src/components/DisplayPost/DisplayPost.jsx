@@ -15,7 +15,7 @@ export default function DisplayPostForm({
   itemsPerRow,
 }) {
   return (
-    <Grid>
+    <Grid centered>
       <Grid.Row>
         <Grid.Column>
           <div className="details-card">

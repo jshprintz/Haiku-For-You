@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import PageHeader from "../../components/Header/Header";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import Loading from "../../components/Loader/Loader";
+
 import PostGallery from "../../components/PostGallery/PostGallery";
 import "../App/App.css";
 
@@ -10,12 +11,17 @@ import { Grid } from "semantic-ui-react";
 import * as followersAPI from "../../utils/followersApi";
 import * as postsAPI from "../../utils/postApi";
 import * as likesAPI from "../../utils/likesApi";
+import userService from "../../utils/userService";
 
 export default function Feed({ loggedUser, handleLogout }) {
   const [posts, setPosts] = useState([]);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
+  const [followingPosts, setFollowingPosts] = useState([]);
 
+  const usersPosts = [];
+
+//-----------------------------LIKES--------------------------------
   async function addLike(postId) {
     try {
       const response = await likesAPI.create(postId);
@@ -38,13 +44,14 @@ export default function Feed({ loggedUser, handleLogout }) {
     }
   }
 
-
+//-------------------------------FOLLOWERS---------------------------
   async function addFollower(userId) {
 
     try {
       const response = await followersAPI.create(userId);
       console.log(response, "from add follower");
       getPosts();
+      getFollowing();
     } catch (err) {
       console.log(err, " err from server");
     }
@@ -55,12 +62,13 @@ export default function Feed({ loggedUser, handleLogout }) {
       const response = await followersAPI.removeFollower(followerId);
       console.log(response, " remove follower");
       getPosts();
+      getFollowing();
     } catch (err) {
       console.log(err);
     }
   }
 
-
+//---------------------------GET POSTS--------------------------------
   async function getPosts() {
     try {
       const response = await postsAPI.getAll();
@@ -74,7 +82,61 @@ export default function Feed({ loggedUser, handleLogout }) {
 
   useEffect(() => {
     getPosts();
+    getFollowing();
   }, []);
+
+//----------------------------GET FOLLOWING-----------------------
+
+  async function getFollowing() {
+    try {
+      const response = await userService.index();
+      const following = [];
+
+      console.log(response, "<<--ALLL USERS>>");
+
+      // Check every users followers to see if it contains logged in user
+      response.data.map((user) => {
+        for (let i = 0; i < user.followers.length; i++) {
+          if (user.followers[i].username === loggedUser?.username) {
+            following.push(user);
+          }
+        }
+        return following;
+      });
+
+      console.log(following, "HERE ARE THE users that the logged user is following");
+
+      // fetching posts for users that the logged in user is following.
+      for (let i = 0; i < following.length; i++) {
+        getUserPosts(following[i].username);
+      }
+
+      console.log(usersPosts, "HERE ARE THE USERS POSTS")
+      setFollowingPosts(usersPosts);
+      console.log(followingPosts, "HERE ARE THE FOLLOWING POSTS")
+
+      setLoading(false);
+    } catch (err) {
+      console.log(err.message, " this is the error");
+      setLoading(false);
+    }
+  }
+
+
+  // Get posts for a specific user
+  async function getUserPosts(username) {
+    try {
+      const response = await userService.getProfile(username);
+      setLoading(false);
+        for (let i=0; i<response.data.posts.length; i++){
+            usersPosts.push(response.data.posts[i])
+        }
+    } catch (err) {
+      console.log(err.message, "<--Error");
+    }
+  }
+
+  //------------------------Error--------Loading-----------------------
 
   if (error) {
     return (
@@ -93,8 +155,10 @@ export default function Feed({ loggedUser, handleLogout }) {
       </>
     );
   }
-  console.log(posts, "HERE IS THE POSTS IN FEED")
+
+  //--------------------------RETURN-------------------------------------
   return (
+    <>
     <Grid centered>
       <Grid.Row>
         <Grid.Column>
@@ -103,7 +167,7 @@ export default function Feed({ loggedUser, handleLogout }) {
       </Grid.Row>
       <Grid.Row className="feed-gallery">
         <Grid.Column style={{ maxwidth: 350 }}>
-          <h1>Here are all the posts</h1>
+          <h1 className="centered">--Recent Posts--</h1>
           <PostGallery
             posts={posts}
             isProfile={false}
@@ -114,10 +178,45 @@ export default function Feed({ loggedUser, handleLogout }) {
             removeFollower={removeFollower}
             loggedUser={loggedUser}
             setPosts={setPosts}
-            itemsPerRow={3}
+            itemsPerRow={1}
           />
         </Grid.Column>
       </Grid.Row>
+      {loggedUser ? (
+      <Grid.Row className="feed-gallery">
+        <Grid.Column style={{ maxwidth: 350 }}>
+        { followingPosts.length ? (
+          <>
+          <h1 className="centered">--Following--</h1>
+          <PostGallery
+            posts={followingPosts}
+            isProfile={false}
+            loading={loading}
+            addLike={addLike}
+            removeLike={removeLike}
+            addFollower={addFollower}
+            removeFollower={removeFollower}
+            loggedUser={loggedUser}
+            setPosts={setPosts}
+            setFollowingPosts={setFollowingPosts}
+            itemsPerRow={1}
+            handleLogout={handleLogout}
+          />
+          </>
+          ) : <>
+              <h1>You aren't following anyone!</h1> 
+              <h2> Follow people to keep up with their latest haikus!</h2>
+              </>
+              }
+        </Grid.Column>
+      </Grid.Row>
+      ) : null}
     </Grid>
+    <br />
+    <br />
+    <br />
+    </>
   );
 }
+
+

@@ -11,11 +11,20 @@ export default function PostGallery({
   addLike,
   addFollower,
   removeFollower,
+  setFollowingPosts,
   loggedUser,
   setPosts,
   setProfileUser,
   itemsPerRow,
 }) {
+
+ // Sort
+  posts.sort(function(a,b) {
+  if (a.createdAt > b.createdAt) return -1;
+  else if (b.createdAt > a.createdAt) return 1;
+   else return 0;
+  });
+
 
   return (
     <Card.Group itemsPerRow={itemsPerRow} stackable>
@@ -27,8 +36,6 @@ export default function PostGallery({
           <Image src="https://react.semantic-ui.com/images/wireframe/short-paragraph.png" />
         </Segment>
       ) : null}
-      {/* This didn't work */}
-      {/* {posts.sort((a,b)=> (a.createdAt > b.createdAt) ? 1 : ((b.createdAt > a.createdAt) ? -1 : 0))} */}
       {posts.map((post) => {
         return (
           <PostCard
@@ -39,6 +46,7 @@ export default function PostGallery({
             addLike={addLike}
             addFollower={addFollower}
             removeFollower={removeFollower}
+            setFollowingPosts={setFollowingPosts}
             loggedUser={loggedUser}
             setPosts={setPosts}
             setProfileUser={setProfileUser}

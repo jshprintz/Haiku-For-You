@@ -9,7 +9,6 @@ import ProfilePage from "../Profile/Profile";
 import MorePage from "../More/More";
 import WritePage from "../Write/Write";
 import DetailsPage from "../Details/Details";
-
 import userService from "../../utils/userService";
 
 function App() {

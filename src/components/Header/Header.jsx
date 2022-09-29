@@ -1,33 +1,35 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Header, Image, Icon } from "semantic-ui-react";
+import { Header, Image, Icon, Segment } from "semantic-ui-react";
 import "../../pages/App/App.css";
 
 export default function PageHeader({ loggedUser, handleLogout }) {
   return (
-    <>
+    <Segment clearing raised className="header-el">
       <Header as="h2" floated="right">
         <Link to={`/${loggedUser?.username}`}>
           <Image
             src={
               loggedUser?.photoUrl
                 ? loggedUser?.photoUrl
-                : "https://react.semantic-ui.com/images/wireframe/square-image.png"
+                : "https://i.imgur.com/L7SHYEM.png"
             }
             avatar
           ></Image>
         </Link>
         {loggedUser ? (
-          <Link to="" onClick={handleLogout}>
-            Logout
-          </Link>
-        ) : (
-          <Link to={`/${loggedUser?.username}`}>Login</Link>
-        )}
+      <Link to="" onClick={handleLogout}>
+      <Icon
+            name={"power off"}
+            size="large"
+            avatar
+          ></Icon>
+      </Link>
+        ) : null}
       </Header>
       <Header as="h2" floated="left">
         <Link to="/">
-          <Icon name="home"></Icon>
+          <Icon name="home" size="large"></Icon>
         </Link>
 
         {loggedUser ? (
@@ -37,6 +39,6 @@ export default function PageHeader({ loggedUser, handleLogout }) {
           </>
         ) : null}
       </Header>
-    </>
+    </Segment>
   );
 }

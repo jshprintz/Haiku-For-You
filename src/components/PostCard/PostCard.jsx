@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { Card, Icon, Image } from "semantic-ui-react";
+import { Card, Icon, Image, Segment } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import { deletePost } from "../../utils/postApi";
 import * as postsAPI from "../../utils/postApi";
@@ -18,6 +18,7 @@ function PostCard({
   setProfileUser,
 }) {
   const { username } = useParams();
+  //const usersPosts = [];
   const [userPost, setUserPost] = useState({});
 
   // LIKES
@@ -25,7 +26,7 @@ function PostCard({
     (like) => like.username === loggedUser?.username
   );
 
-  const likeColor = likedIndex > -1 ? "pink" : "grey";
+  const likeColor = likedIndex > -1 ? "green" : "grey";
 
   const likeClickHandler =
     likedIndex > -1
@@ -43,6 +44,9 @@ function PostCard({
     followerIndex > -1
       ? () => removeFollower(post.user.followers[followerIndex]._id)
       : () => addFollower(post.user._id);
+
+
+
 
   // DELETE
   const deleteClickHandler = () => {
@@ -71,6 +75,8 @@ function PostCard({
     }
   }, [username]);
 
+
+
   // DETAILS PAGE
   const getProfileByID = useCallback(async () => {
     try {
@@ -82,6 +88,8 @@ function PostCard({
     }
   }, [post.user]);
 
+
+
   // ON PAGE LOAD
   useEffect(() => {
     console.log("firing");
@@ -92,14 +100,22 @@ function PostCard({
         getProfile();
       } else {
         //DETAILS PAGE
-        console.log("we made it");
         getProfileByID();
       }
     } else {
       //FEED PAGE
       getPosts();
     }
-  }, []);
+  }, [followerColor]);
+
+
+
+
+console.log(post, "HERE IS THE POST")
+console.log(new Date(post.createdAt))
+const tempTimestamp = new Date(post.createdAt)
+console.log(tempTimestamp.toLocaleDateString())
+const timestamp = tempTimestamp.toLocaleDateString()
 
   return (
     <Card key={post._id} href={`/details/${post._id}`}>
@@ -144,6 +160,8 @@ function PostCard({
 
       {loggedUser ? (
         <Card.Content textAlign={"right"}>
+          <Segment raised>
+            <Card.Description textAlign="left">{timestamp}</Card.Description>
           {post.user.username === loggedUser?.username ||
           (userPost._id === post.user &&
             userPost.username === loggedUser?.username) ? (
@@ -156,10 +174,10 @@ function PostCard({
               />
             </Link>
           ) : (
-            <>
+            <>  
               <Link to={`#`}>
                 <Icon
-                  name={"heart"}
+                  name={"thumbs up"}
                   size="large"
                   color={likeColor}
                   onClick={likeClickHandler}
@@ -177,6 +195,7 @@ function PostCard({
               </Link>
             </>
           )}
+          </Segment>
         </Card.Content>
       ) : null}
     </Card>

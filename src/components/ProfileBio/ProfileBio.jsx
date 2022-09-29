@@ -24,13 +24,6 @@ export default function ProfileBio({ user }) {
           <Segment>
             <span> Bio: {user.bio}</span>
           </Segment>
-          {/* <Segment>
-            <span> Following: {user.followers.map((follow) => {
-              return (
-                  <p>{follow}</p>
-                  )
-            })}</span>
-          </Segment> */}
         </Grid.Column>
       </Grid.Row>
     </Grid>

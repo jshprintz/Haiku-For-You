@@ -17,7 +17,9 @@ export default function ProfilePage({ loggedUser, handleLogout }) {
   const [profileUser, setProfileUser] = useState({});
   const [loading, setLoading] = useState(true);
   const [posts, setPosts] = useState([]);
+  const [followingPosts, setFollowingPosts] = useState([]);
 
+  const usersPosts = [];
   const { username } = useParams();
 
 
@@ -60,7 +62,7 @@ export default function ProfilePage({ loggedUser, handleLogout }) {
       console.log(response, " remove follower");
       getProfile();
     } catch (err) {
-      console.log(err);
+      console.log(err, "remove follower error");
     }
   }
 
@@ -82,7 +84,64 @@ export default function ProfilePage({ loggedUser, handleLogout }) {
 
   useEffect(() => {
     getProfile();
+    getFollowing();
   }, [username, getProfile]);
+
+
+
+  async function getFollowing() {
+    try {
+      const response = await userService.index();
+      const following = [];
+
+      console.log(response, "<<--ALLL USERS>>");
+
+      // Check every users followers to see if it contains logged in user
+      response.data.map((user) => {
+        for (let i = 0; i < user.followers.length; i++) {
+          if (user.followers[i].username === loggedUser?.username) {
+            following.push(user);
+          }
+        }
+        return following;
+      });
+
+      console.log(
+        following,
+        "HERE ARE THE users that the logged user is following"
+      );
+
+      // fetching posts for users that the logged in user is following.
+      for (let i = 0; i < following.length; i++) {
+        getPosts(following[i].username);
+      }
+      setFollowingPosts(usersPosts);
+      setLoading(false);
+    } catch (err) {
+      console.log(err.message, " this is the error");
+      setLoading(false);
+    }
+  }
+
+
+  
+
+  // Get posts for a specific user
+  async function getPosts(username) {
+    try {
+      const response = await userService.getProfile(username);
+      setLoading(false);
+
+        for (let i=0; i<response.data.posts.length; i++){
+            usersPosts.push(response.data.posts[i])
+        }
+      
+
+    } catch (err) {
+      console.log(err.message, "<--Error");
+    }
+  }
+
 
 
   //-----------------------ERROR-------------------------------
@@ -110,7 +169,7 @@ export default function ProfilePage({ loggedUser, handleLogout }) {
   //-----------------------RETURN-----------------------------
   console.log(posts, "HERE IS THE POSTS IN PROFILE")
   return (
-    <Grid>
+    <Grid centered>
       <Grid.Row>
         <Grid.Column>
           <PageHeader handleLogout={handleLogout} loggedUser={loggedUser} />
@@ -121,9 +180,9 @@ export default function ProfilePage({ loggedUser, handleLogout }) {
           <ProfileBio user={profileUser} />
         </Grid.Column>
       </Grid.Row>
-      <Grid.Row centered className="profile-posts">
-        <Grid.Column style={{ maxWidth: 750 }}>
-          <h3>Posts go here</h3>
+      <Grid.Row className="feed-gallery">
+        <Grid.Column style={{ width: 1000 }}>
+          <h1 className="centered">--Recent Posts--</h1>
           <PostGallery
             posts={posts}
             isProfile={true}
@@ -134,9 +193,37 @@ export default function ProfilePage({ loggedUser, handleLogout }) {
             removeFollower={removeFollower}
             loggedUser={loggedUser}
             setPosts={setPosts}
+            setFollowingPosts={setFollowingPosts}
             setProfileUser={setProfileUser}
-            itemsPerRow={3}
+            itemsPerRow={1}
           />
+        </Grid.Column>
+      </Grid.Row>
+      <Grid.Row className="feed-gallery">
+        <Grid.Column style={{ maxwidth: 350 }}>
+          { followingPosts.length ? ( 
+          <>
+          <h1 className="centered">--Following--</h1>
+          <PostGallery
+            posts={followingPosts}
+            isProfile={true}
+            loading={loading}
+            addLike={addLike}
+            removeLike={removeLike}
+            addFollower={addFollower}
+            removeFollower={removeFollower}
+            loggedUser={loggedUser}
+            setPosts={setPosts}
+            setFollowingPosts={setFollowingPosts}
+            itemsPerRow={1}
+            handleLogout={handleLogout}
+          />
+          </>
+          ) : <>
+              <h1>You aren't following anyone!</h1> 
+              <h2> Follow people to keep up with their latest haikus!</h2>
+              </>
+              }
         </Grid.Column>
       </Grid.Row>
     </Grid>
