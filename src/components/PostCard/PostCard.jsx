@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { Card, Icon, Image, Segment } from "semantic-ui-react";
+import { Card, Icon, Image, Segment, Modal, Button } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import { deletePost } from "../../utils/postApi";
 import * as postsAPI from "../../utils/postApi";
@@ -159,8 +159,8 @@ const timestamp = tempTimestamp.toLocaleDateString()
       </Card.Content>
 
       {loggedUser ? (
-        <Card.Content textAlign={"right"}>
-          <Segment raised>
+        
+          <Segment raised textAlign={"right"}>
             <Card.Description textAlign="left">{timestamp}</Card.Description>
           {post.user.username === loggedUser?.username ||
           (userPost._id === post.user &&
@@ -196,7 +196,7 @@ const timestamp = tempTimestamp.toLocaleDateString()
             </>
           )}
           </Segment>
-        </Card.Content>
+        
       ) : null}
     </Card>
   );
