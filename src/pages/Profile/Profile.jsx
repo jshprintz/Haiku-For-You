@@ -116,10 +116,10 @@ export default function ProfilePage({ loggedUser, handleLogout }) {
         getPosts(following[i].username);
       }
       setFollowingPosts(usersPosts);
- //     setLoading(false);
+      setLoading(false);
     } catch (err) {
       console.log(err.message, " this is the error");
- //     setLoading(false);
+      setLoading(false);
     }
   }
 
@@ -130,8 +130,7 @@ export default function ProfilePage({ loggedUser, handleLogout }) {
   async function getPosts(username) {
     try {
       const response = await userService.getProfile(username);
-      console.log(response, "PAY ATTENTION TO THIS RESPONSE")
- //     setLoading(false);
+      setLoading(false);
 
         for (let i=0; i<response.data.posts.length; i++){
             usersPosts.push(response.data.posts[i])
@@ -202,10 +201,12 @@ export default function ProfilePage({ loggedUser, handleLogout }) {
       </Grid.Row>
       <Grid.Row className="feed-gallery">
         <Grid.Column style={{ maxwidth: 350 }}>
+          { followingPosts.length ? ( 
+          <>
           <h1>Here are posts from people you're following</h1>
           <PostGallery
             posts={followingPosts}
-            isProfile={false}
+            isProfile={true}
             loading={loading}
             addLike={addLike}
             removeLike={removeLike}
@@ -217,6 +218,12 @@ export default function ProfilePage({ loggedUser, handleLogout }) {
             itemsPerRow={3}
             handleLogout={handleLogout}
           />
+          </>
+          ) : <>
+              <h1>You aren't following anyone!</h1> 
+              <h2> Follow people to keep up with their latest haikus!</h2>
+              </>
+              }
         </Grid.Column>
       </Grid.Row>
     </Grid>

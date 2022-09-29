@@ -112,9 +112,7 @@ export default function Feed({ loggedUser, handleLogout }) {
       }
 
       console.log(usersPosts, "HERE ARE THE USERS POSTS")
-
       setFollowingPosts(usersPosts);
-
       console.log(followingPosts, "HERE ARE THE FOLLOWING POSTS")
 
       setLoading(false);
@@ -130,7 +128,6 @@ export default function Feed({ loggedUser, handleLogout }) {
     try {
       const response = await userService.getProfile(username);
       setLoading(false);
-
         for (let i=0; i<response.data.posts.length; i++){
             usersPosts.push(response.data.posts[i])
         }
@@ -184,8 +181,11 @@ export default function Feed({ loggedUser, handleLogout }) {
           />
         </Grid.Column>
       </Grid.Row>
+      {loggedUser ? (
       <Grid.Row className="feed-gallery">
         <Grid.Column style={{ maxwidth: 350 }}>
+        { followingPosts.length ? (
+          <>
           <h1>Here are posts from people you're following</h1>
           <PostGallery
             posts={followingPosts}
@@ -201,8 +201,17 @@ export default function Feed({ loggedUser, handleLogout }) {
             itemsPerRow={3}
             handleLogout={handleLogout}
           />
+          </>
+          ) : <>
+              <h1>You aren't following anyone!</h1> 
+              <h2> Follow people to keep up with their latest haikus!</h2>
+              </>
+              }
         </Grid.Column>
       </Grid.Row>
+      ) : null}
     </Grid>
   );
 }
+
+

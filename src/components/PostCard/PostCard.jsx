@@ -45,6 +45,9 @@ function PostCard({
       ? () => removeFollower(post.user.followers[followerIndex]._id)
       : () => addFollower(post.user._id);
 
+
+
+
   // DELETE
   const deleteClickHandler = () => {
     deletePost(post._id);
@@ -72,6 +75,8 @@ function PostCard({
     }
   }, [username]);
 
+
+
   // DETAILS PAGE
   const getProfileByID = useCallback(async () => {
     try {
@@ -83,6 +88,8 @@ function PostCard({
     }
   }, [post.user]);
 
+
+
   // ON PAGE LOAD
   useEffect(() => {
     console.log("firing");
@@ -91,23 +98,15 @@ function PostCard({
       if (username !== undefined) {
         //PROFILE PAGE
         getProfile();
-        //getFollowing();
       } else {
         //DETAILS PAGE
         getProfileByID();
-        //getFollowing();
       }
     } else {
       //FEED PAGE
       getPosts();
-      //getFollowing();
     }
-  }, [followerIndex]);
-
-
-
-
-
+  }, [followerColor]);
 
 
 
