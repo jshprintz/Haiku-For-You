@@ -129,7 +129,6 @@ export default function Feed({ loggedUser, handleLogout }) {
         <Grid.Column style={{ maxwidth: 350 }}>
           <h1>Here are posts from people you're following</h1>
           <Following
-            posts={posts}
             isProfile={false}
             loading={loading}
             addLike={addLike}
