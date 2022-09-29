@@ -8,7 +8,6 @@ module.exports = {
 async function create(req, res) {
   try {
     const user = await User.findById(req.params.id);
-    console.log(user, "<--AHA THE USER");
     user.followers.push({ username: req.user.username, userId: req.user._id });
     await user.save();
     res.status(201).json({ data: "follower added" });

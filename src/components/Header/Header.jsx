@@ -19,10 +19,11 @@ export default function PageHeader({ loggedUser, handleLogout }) {
         </Link>
         {loggedUser ? (
       <Link to="" onClick={handleLogout}>
-      <Image
-            src={"https://i.imgur.com/IjIFulH.png"}
+      <Icon
+            name={"power off"}
+            size="large"
             avatar
-          ></Image>
+          ></Icon>
       </Link>
         ) : null}
       </Header>

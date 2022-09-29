@@ -104,10 +104,7 @@ export default function Feed({ loggedUser, handleLogout }) {
         return following;
       });
 
-      console.log(
-        following,
-        "HERE ARE THE users that the logged user is following"
-      );
+      console.log(following, "HERE ARE THE users that the logged user is following");
 
       // fetching posts for users that the logged in user is following.
       for (let i = 0; i < following.length; i++) {
@@ -117,6 +114,9 @@ export default function Feed({ loggedUser, handleLogout }) {
       console.log(usersPosts, "HERE ARE THE USERS POSTS")
 
       setFollowingPosts(usersPosts);
+
+      console.log(followingPosts, "HERE ARE THE FOLLOWING POSTS")
+
       setLoading(false);
     } catch (err) {
       console.log(err.message, " this is the error");
@@ -134,8 +134,6 @@ export default function Feed({ loggedUser, handleLogout }) {
         for (let i=0; i<response.data.posts.length; i++){
             usersPosts.push(response.data.posts[i])
         }
-      
-
     } catch (err) {
       console.log(err.message, "<--Error");
     }

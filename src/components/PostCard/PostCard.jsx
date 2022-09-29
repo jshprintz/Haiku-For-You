@@ -102,7 +102,7 @@ function PostCard({
       getPosts();
       //getFollowing();
     }
-  }, []);
+  }, [followerIndex]);
 
 
 
