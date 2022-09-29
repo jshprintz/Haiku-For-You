@@ -103,7 +103,7 @@ export default function Write({ loggedUser, handleLogout }) {
   //-----------------------RETURN-----------------------------
   console.log(posts, "<<----HERE ARE THE POSTS");
   return (
-    <Grid>
+    <Grid centered>
       <Grid.Row>
         <Grid.Column>
           <PageHeader handleLogout={handleLogout} loggedUser={loggedUser} />

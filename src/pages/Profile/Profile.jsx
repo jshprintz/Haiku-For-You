@@ -110,7 +110,7 @@ export default function ProfilePage({ loggedUser, handleLogout }) {
   //-----------------------RETURN-----------------------------
   console.log(posts, "HERE IS THE POSTS IN PROFILE")
   return (
-    <Grid>
+    <Grid centered>
       <Grid.Row>
         <Grid.Column>
           <PageHeader handleLogout={handleLogout} loggedUser={loggedUser} />
@@ -121,9 +121,9 @@ export default function ProfilePage({ loggedUser, handleLogout }) {
           <ProfileBio user={profileUser} />
         </Grid.Column>
       </Grid.Row>
-      <Grid.Row centered className="profile-posts">
-        <Grid.Column style={{ maxWidth: 750 }}>
-          <h3>Posts go here</h3>
+      <Grid.Row className="feed-gallery">
+        <Grid.Column style={{ width: 1000 }}>
+          <h1>Your Recent Posts</h1>
           <PostGallery
             posts={posts}
             isProfile={true}

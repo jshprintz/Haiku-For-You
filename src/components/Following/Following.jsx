@@ -70,7 +70,6 @@ export default function Following({
     }
   }
 
-
   console.log(followingPosts, "Here are the following posts")
   return (
           <PostGallery
