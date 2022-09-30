@@ -118,6 +118,7 @@ console.log(tempTimestamp.toLocaleDateString())
 const timestamp = tempTimestamp.toLocaleDateString()
 
   return (
+    
     <Card key={post._id} href={`/details/${post._id}`}>
       <Card.Content className="card">
         <Card.Header textAlign="center">
@@ -160,7 +161,8 @@ const timestamp = tempTimestamp.toLocaleDateString()
 
       {loggedUser ? (
         
-          <Segment raised textAlign={"right"}>
+          <Segment raised textAlign={"right"} >
+            
             <Card.Description textAlign="left">{timestamp}</Card.Description>
           {post.user.username === loggedUser?.username ||
           (userPost._id === post.user &&
@@ -195,6 +197,7 @@ const timestamp = tempTimestamp.toLocaleDateString()
               </Link>
             </>
           )}
+         
           </Segment>
         
       ) : null}

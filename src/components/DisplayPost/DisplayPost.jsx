@@ -16,8 +16,8 @@ export default function DisplayPostForm({
 }) {
   return (
     <Grid centered>
-      <Grid.Row>
-        <Grid.Column>
+      <Grid.Row >
+        <Grid.Column centered>
           <div className="details-card">
             <PostGallery
               posts={posts}

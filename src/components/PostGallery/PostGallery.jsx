@@ -27,7 +27,7 @@ export default function PostGallery({
 
 
   return (
-    <Card.Group itemsPerRow={itemsPerRow} stackable>
+    <Card.Group itemsPerRow={itemsPerRow} stackable >
       {loading ? (
         <Segment>
           <Dimmer active inverted>
