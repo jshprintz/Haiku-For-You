@@ -1,6 +1,7 @@
 import React from "react";
 import PageHeader from "../../components/Header/Header";
 import { Grid } from "semantic-ui-react";
+import MoreMenu from "../../components/MoreMenu/MoreMenu"
 
 export default function More({ loggedUser, handleLogout }) {
   return (
@@ -13,6 +14,7 @@ export default function More({ loggedUser, handleLogout }) {
       <Grid.Row>
         <Grid.Column>
           <h1>Here is the MORE page.</h1>
+          <MoreMenu />
         </Grid.Column>
       </Grid.Row>
     </Grid>
