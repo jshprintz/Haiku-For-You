@@ -45,7 +45,7 @@ function getProfileByID(userID) {
 
 // PROFILE PAGE
  function getProfile(username) {
-  console.log("getProfile calling");
+  
 
   return fetch(BASE_URL + username, {
     headers: {

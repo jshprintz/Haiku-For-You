@@ -79,7 +79,6 @@ export default function ProfilePage({ loggedUser, handleLogout }) {
       setProfileUser(response.data.user);
       setPosts(...[response.data.posts]);
 
-      console.log(response, "Response");
     } catch (err) {
       console.log(err.message, "<--Error");
       setError("Profile does not exist! You are in the wrong in place.");
@@ -154,7 +153,6 @@ async function getFollowing() {
     );
   }
 
-
   //-----------------------RETURN-----------------------------
   return (
     <Grid centered>
@@ -185,10 +183,7 @@ async function getFollowing() {
         </Grid.Column>
       </Grid.Row>
 
-
-
-
-
+      { loggedUser?.username === username ? ( 
       <Grid.Row className="feed-gallery">
         <Grid.Column style={{ maxwidth: 350 }}>
           { followingPosts.length ? ( 
@@ -213,6 +208,7 @@ async function getFollowing() {
               }
         </Grid.Column>
       </Grid.Row>
+      ) : null }
     </Grid>
   );
 }
