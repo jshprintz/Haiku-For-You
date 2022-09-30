@@ -19,8 +19,6 @@ export default function Feed({ loggedUser, handleLogout }) {
   const [loading, setLoading] = useState(true);
   const [followingPosts, setFollowingPosts] = useState([]);
 
-  const usersPosts = [];
-
   //-----------------------------LIKES--------------------------------
   async function addLike(postId) {
     try {
@@ -92,8 +90,6 @@ export default function Feed({ loggedUser, handleLogout }) {
     try {
       const response = await userService.index();
 
-      console.log(response, "<<--ALLL USERS>>");
-
       // Check every users followers to see if it contains logged in user
       const following = response.data
         .filter((user) => {
@@ -102,18 +98,13 @@ export default function Feed({ loggedUser, handleLogout }) {
         .map((user) => {
           return userService.getProfile(user.username);
         });
-
-      console.log(following, "<Following");
-      // fetching posts for users that the logged in user is following.
       const responsePromise = await Promise.all(following)
       
-
       const followersPosts = responsePromise.map(({ data }) => {
         return data.posts
       }).flat()
 
       setFollowingPosts(followersPosts);
-      console.log(followersPosts, "Followerspost")
 
       setLoading(false);
     } catch (err) {
@@ -184,7 +175,6 @@ export default function Feed({ loggedUser, handleLogout }) {
                     removeFollower={removeFollower}
                     loggedUser={loggedUser}
                     setPosts={setPosts}
-                    setFollowingPosts={setFollowingPosts}
                   />
                 </>
               ) : (

@@ -19,9 +19,7 @@ export default function ProfilePage({ loggedUser, handleLogout }) {
   const [posts, setPosts] = useState([]);
   const [followingPosts, setFollowingPosts] = useState([]);
 
-  const usersPosts = [];
   const { username } = useParams();
-
 
   //--------------LIKES--------------------------
   async function addLike(postId) {
@@ -29,6 +27,7 @@ export default function ProfilePage({ loggedUser, handleLogout }) {
       const response = await likesAPI.create(postId);
       console.log(response, "from add like");
       getProfile();
+      getFollowing();
     } catch (err) {
       console.log(err, " err from server");
       setError("error adding like");
@@ -40,6 +39,7 @@ export default function ProfilePage({ loggedUser, handleLogout }) {
       const response = await likesAPI.removeLike(likeId);
       console.log(response, " remove like");
       getProfile();
+      getFollowing();
     } catch (err) {
       console.log(err);
       setError("error removing like");
@@ -97,8 +97,6 @@ async function getFollowing() {
   try {
     const response = await userService.index();
 
-    console.log(response, "<<--ALLL USERS>>");
-
     // Check every users followers to see if it contains logged in user
     const following = response.data
       .filter((user) => {
@@ -108,7 +106,6 @@ async function getFollowing() {
         return userService.getProfile(user.username);
       });
 
-    console.log(following, "<Following");
     // fetching posts for users that the logged in user is following.
     const responsePromise = await Promise.all(following)
     
@@ -118,7 +115,6 @@ async function getFollowing() {
     }).flat()
 
     setFollowingPosts(followersPosts);
-    console.log(followersPosts, "Followerspost")
 
     setLoading(false);
   } catch (err) {
@@ -177,8 +173,6 @@ async function getFollowing() {
             removeFollower={removeFollower}
             loggedUser={loggedUser}
             setPosts={setPosts}
-            setFollowingPosts={setFollowingPosts}
-            setProfileUser={setProfileUser}
           />
         </Grid.Column>
       </Grid.Row>
@@ -198,8 +192,6 @@ async function getFollowing() {
             removeFollower={removeFollower}
             loggedUser={loggedUser}
             setPosts={setPosts}
-            setFollowingPosts={setFollowingPosts}
-            setProfileUser={setProfileUser}
           />
           </>
           ) : <>

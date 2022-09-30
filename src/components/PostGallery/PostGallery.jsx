@@ -11,10 +11,8 @@ export default function PostGallery({
   addLike,
   addFollower,
   removeFollower,
-  setFollowingPosts,
   loggedUser,
   setPosts,
-  setProfileUser,
 }) {
 
  // Sort
@@ -39,16 +37,13 @@ export default function PostGallery({
         return (
           <PostCard
             post={post}
-            key={post._id}
             isProfile={isProfile}
             removeLike={removeLike}
             addLike={addLike}
             addFollower={addFollower}
             removeFollower={removeFollower}
-            setFollowingPosts={setFollowingPosts}
             loggedUser={loggedUser}
             setPosts={setPosts}
-            setProfileUser={setProfileUser}
           />
         );
       })}
