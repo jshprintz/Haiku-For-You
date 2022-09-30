@@ -19,6 +19,8 @@ export default function Feed({ loggedUser, handleLogout }) {
   const [loading, setLoading] = useState(true);
   const [followingPosts, setFollowingPosts] = useState([]);
 
+  const usersPosts = [];
+
 //-----------------------------LIKES--------------------------------
   async function addLike(postId) {
     try {
@@ -103,13 +105,12 @@ export default function Feed({ loggedUser, handleLogout }) {
         }
         return following;
       });
-
-      console.log(following, "HERE ARE THE users that the logged user is following");
-
+      console.log(following, "<Following")
       // fetching posts for users that the logged in user is following.
       for (let i = 0; i < following.length; i++) {
         getUserPosts(following[i].username);
       }
+
 
       setLoading(false);
     } catch (err) {
@@ -124,10 +125,9 @@ export default function Feed({ loggedUser, handleLogout }) {
     try {
       const response = await userService.getProfile(username);
       setLoading(false);
-        
-            setFollowingPosts([...response.data.posts])
-            console.log(followingPosts, "<<<<<<")
-        
+      console.log(response, `response for ${username}`)
+      setFollowingPosts([...response.data.posts])
+
     } catch (err) {
       console.log(err.message, "<--Error");
     }
