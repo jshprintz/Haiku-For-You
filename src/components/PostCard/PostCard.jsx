@@ -106,7 +106,7 @@ function PostCard({
       //FEED PAGE
       getPosts();
     }
-  }, [followerColor]);
+  }, []);
 
 const tempTimestamp = new Date(post.createdAt)
 const timestamp = tempTimestamp.toLocaleDateString()
