@@ -19,7 +19,6 @@ export default function ProfilePage({ loggedUser, handleLogout }) {
   const [posts, setPosts] = useState([]);
   const [followingPosts, setFollowingPosts] = useState([]);
 
-  const usersPosts = [];
   const { username } = useParams();
 
 
@@ -97,8 +96,6 @@ async function getFollowing() {
   try {
     const response = await userService.index();
 
-    console.log(response, "<<--ALLL USERS>>");
-
     // Check every users followers to see if it contains logged in user
     const following = response.data
       .filter((user) => {
@@ -108,7 +105,6 @@ async function getFollowing() {
         return userService.getProfile(user.username);
       });
 
-    console.log(following, "<Following");
     // fetching posts for users that the logged in user is following.
     const responsePromise = await Promise.all(following)
     
@@ -118,7 +114,6 @@ async function getFollowing() {
     }).flat()
 
     setFollowingPosts(followersPosts);
-    console.log(followersPosts, "Followerspost")
 
     setLoading(false);
   } catch (err) {
