@@ -27,6 +27,7 @@ export default function Feed({ loggedUser, handleLogout }) {
       const response = await likesAPI.create(postId);
       console.log(response, "from add like");
       getPosts();
+      getFollowing();
     } catch (err) {
       console.log(err, " err from server");
       setError("error adding like");
@@ -38,6 +39,7 @@ export default function Feed({ loggedUser, handleLogout }) {
       const response = await likesAPI.removeLike(likeId);
       console.log(response, " remove like");
       getPosts();
+      getFollowing();
     } catch (err) {
       console.log(err);
       setError("error removing like");
@@ -103,17 +105,12 @@ export default function Feed({ loggedUser, handleLogout }) {
         }
         return following;
       });
-
-      console.log(following, "HERE ARE THE users that the logged user is following");
-
+      console.log(following, "<Following")
       // fetching posts for users that the logged in user is following.
       for (let i = 0; i < following.length; i++) {
         getUserPosts(following[i].username);
       }
 
-      console.log(usersPosts, "HERE ARE THE USERS POSTS")
-      setFollowingPosts(usersPosts);
-      console.log(followingPosts, "HERE ARE THE FOLLOWING POSTS")
 
       setLoading(false);
     } catch (err) {
@@ -128,9 +125,9 @@ export default function Feed({ loggedUser, handleLogout }) {
     try {
       const response = await userService.getProfile(username);
       setLoading(false);
-        for (let i=0; i<response.data.posts.length; i++){
-            usersPosts.push(response.data.posts[i])
-        }
+      console.log(response, `response for ${username}`)
+      setFollowingPosts([...response.data.posts])
+
     } catch (err) {
       console.log(err.message, "<--Error");
     }
@@ -157,6 +154,9 @@ export default function Feed({ loggedUser, handleLogout }) {
   }
 
   //--------------------------RETURN-------------------------------------
+  
+  console.log(posts, "Here are the posts")
+  console.log(followingPosts, "HERE ARE THE FOLLOWING POSTS")
   return (
     <>
     <Grid centered>
@@ -178,7 +178,6 @@ export default function Feed({ loggedUser, handleLogout }) {
             removeFollower={removeFollower}
             loggedUser={loggedUser}
             setPosts={setPosts}
-            itemsPerRow={1}
           />
         </Grid.Column>
       </Grid.Row>
@@ -199,8 +198,6 @@ export default function Feed({ loggedUser, handleLogout }) {
             loggedUser={loggedUser}
             setPosts={setPosts}
             setFollowingPosts={setFollowingPosts}
-            itemsPerRow={1}
-            handleLogout={handleLogout}
           />
           </>
           ) : <>

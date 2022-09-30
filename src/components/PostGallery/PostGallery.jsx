@@ -15,7 +15,6 @@ export default function PostGallery({
   loggedUser,
   setPosts,
   setProfileUser,
-  itemsPerRow,
 }) {
 
  // Sort
@@ -27,7 +26,7 @@ export default function PostGallery({
 
 
   return (
-    <Card.Group itemsPerRow={itemsPerRow} stackable >
+    <Card.Group itemsPerRow={1} stackable >
       {loading ? (
         <Segment>
           <Dimmer active inverted>

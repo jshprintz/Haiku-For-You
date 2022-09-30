@@ -31,6 +31,7 @@ export default function ProfilePage({ loggedUser, handleLogout }) {
       getProfile();
     } catch (err) {
       console.log(err, " err from server");
+      setError("error adding like");
     }
   }
 
@@ -41,6 +42,7 @@ export default function ProfilePage({ loggedUser, handleLogout }) {
       getProfile();
     } catch (err) {
       console.log(err);
+      setError("error removing like");
     }
   }
 
@@ -51,6 +53,7 @@ export default function ProfilePage({ loggedUser, handleLogout }) {
       const response = await followersAPI.create(userId);
       console.log(response, "from add follower");
       getProfile();
+      getFollowing();
     } catch (err) {
       console.log(err, " err from server");
     }
@@ -61,6 +64,7 @@ export default function ProfilePage({ loggedUser, handleLogout }) {
       const response = await followersAPI.removeFollower(followerId);
       console.log(response, " remove follower");
       getProfile();
+      getFollowing();
     } catch (err) {
       console.log(err, "remove follower error");
     }
@@ -73,7 +77,7 @@ export default function ProfilePage({ loggedUser, handleLogout }) {
       const response = await userService.getProfile(username);
       setLoading(false);
       setProfileUser(response.data.user);
-      setPosts(response.data.posts);
+      setPosts(...[response.data.posts]);
 
       console.log(response, "Response");
     } catch (err) {
@@ -85,9 +89,9 @@ export default function ProfilePage({ loggedUser, handleLogout }) {
   useEffect(() => {
     getProfile();
     getFollowing();
-  }, [username, getProfile]);
+  }, [username]);
 
-
+//---------------------------GET FOLLOWING---------------------
 
   async function getFollowing() {
     try {
@@ -106,16 +110,11 @@ export default function ProfilePage({ loggedUser, handleLogout }) {
         return following;
       });
 
-      console.log(
-        following,
-        "HERE ARE THE users that the logged user is following"
-      );
-
       // fetching posts for users that the logged in user is following.
       for (let i = 0; i < following.length; i++) {
-        getPosts(following[i].username);
+        getUserPosts(following[i].username);
       }
-      setFollowingPosts(usersPosts);
+
       setLoading(false);
     } catch (err) {
       console.log(err.message, " this is the error");
@@ -123,19 +122,13 @@ export default function ProfilePage({ loggedUser, handleLogout }) {
     }
   }
 
-
-  
-
   // Get posts for a specific user
-  async function getPosts(username) {
+  async function getUserPosts(username) {
     try {
       const response = await userService.getProfile(username);
       setLoading(false);
-
-        for (let i=0; i<response.data.posts.length; i++){
-            usersPosts.push(response.data.posts[i])
-        }
-      
+      console.log(response, `response for ${username}`)
+      setFollowingPosts([...response.data.posts])
 
     } catch (err) {
       console.log(err.message, "<--Error");
@@ -167,7 +160,6 @@ export default function ProfilePage({ loggedUser, handleLogout }) {
 
 
   //-----------------------RETURN-----------------------------
-  console.log(posts, "HERE IS THE POSTS IN PROFILE")
   return (
     <Grid centered>
       <Grid.Row>
@@ -195,10 +187,10 @@ export default function ProfilePage({ loggedUser, handleLogout }) {
             setPosts={setPosts}
             setFollowingPosts={setFollowingPosts}
             setProfileUser={setProfileUser}
-            itemsPerRow={1}
           />
         </Grid.Column>
       </Grid.Row>
+
       <Grid.Row className="feed-gallery">
         <Grid.Column style={{ maxwidth: 350 }}>
           { followingPosts.length ? ( 
@@ -215,8 +207,7 @@ export default function ProfilePage({ loggedUser, handleLogout }) {
             loggedUser={loggedUser}
             setPosts={setPosts}
             setFollowingPosts={setFollowingPosts}
-            itemsPerRow={1}
-            handleLogout={handleLogout}
+            setProfileUser={setProfileUser}
           />
           </>
           ) : <>
