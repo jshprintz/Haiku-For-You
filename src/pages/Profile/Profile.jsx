@@ -31,6 +31,7 @@ export default function ProfilePage({ loggedUser, handleLogout }) {
       getProfile();
     } catch (err) {
       console.log(err, " err from server");
+      setError("error adding like");
     }
   }
 
@@ -41,6 +42,7 @@ export default function ProfilePage({ loggedUser, handleLogout }) {
       getProfile();
     } catch (err) {
       console.log(err);
+      setError("error removing like");
     }
   }
 
@@ -51,6 +53,7 @@ export default function ProfilePage({ loggedUser, handleLogout }) {
       const response = await followersAPI.create(userId);
       console.log(response, "from add follower");
       getProfile();
+      getFollowing();
     } catch (err) {
       console.log(err, " err from server");
     }
@@ -61,6 +64,7 @@ export default function ProfilePage({ loggedUser, handleLogout }) {
       const response = await followersAPI.removeFollower(followerId);
       console.log(response, " remove follower");
       getProfile();
+      getFollowing();
     } catch (err) {
       console.log(err, "remove follower error");
     }
@@ -167,7 +171,6 @@ export default function ProfilePage({ loggedUser, handleLogout }) {
 
 
   //-----------------------RETURN-----------------------------
-  console.log(posts, "HERE IS THE POSTS IN PROFILE")
   return (
     <Grid centered>
       <Grid.Row>
@@ -195,10 +198,10 @@ export default function ProfilePage({ loggedUser, handleLogout }) {
             setPosts={setPosts}
             setFollowingPosts={setFollowingPosts}
             setProfileUser={setProfileUser}
-            itemsPerRow={1}
           />
         </Grid.Column>
       </Grid.Row>
+      
       <Grid.Row className="feed-gallery">
         <Grid.Column style={{ maxwidth: 350 }}>
           { followingPosts.length ? ( 
@@ -215,8 +218,7 @@ export default function ProfilePage({ loggedUser, handleLogout }) {
             loggedUser={loggedUser}
             setPosts={setPosts}
             setFollowingPosts={setFollowingPosts}
-            itemsPerRow={1}
-            handleLogout={handleLogout}
+            setProfileUser={setProfileUser}
           />
           </>
           ) : <>

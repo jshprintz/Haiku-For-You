@@ -108,13 +108,7 @@ function PostCard({
     }
   }, [followerColor]);
 
-
-
-
-console.log(post, "HERE IS THE POST")
-console.log(new Date(post.createdAt))
 const tempTimestamp = new Date(post.createdAt)
-console.log(tempTimestamp.toLocaleDateString())
 const timestamp = tempTimestamp.toLocaleDateString()
 
   return (

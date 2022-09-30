@@ -54,7 +54,6 @@ function getProfileByID(userID) {
     },
   }).then((res) => {
     // This function happens when the browser recieves a response from the express server
-    console.log(res, "<---Res in UserService");
 
     if (res.ok) return res.json();
     throw new Error(
