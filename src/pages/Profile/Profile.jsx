@@ -79,7 +79,6 @@ export default function ProfilePage({ loggedUser, handleLogout }) {
       setProfileUser(response.data.user);
       setPosts(...[response.data.posts]);
 
-      console.log(response, "Response");
     } catch (err) {
       console.log(err.message, "<--Error");
       setError("Profile does not exist! You are in the wrong in place.");
@@ -106,24 +105,32 @@ async function getFollowing() {
         return userService.getProfile(user.username);
       });
 
-    // fetching posts for users that the logged in user is following.
-    const responsePromise = await Promise.all(following)
-    
 
-    const followersPosts = responsePromise.map(({ data }) => {
+    const responsePromise = await Promise.all(following)
+
+    
+    const everyonesPosts = responsePromise.map(({ data }) => {
       return data.posts
     }).flat()
 
-    setFollowingPosts(followersPosts);
 
+      const followPosts = [];
+
+      for (let i=0; i<everyonesPosts.length; i++){
+        const checkPost = everyonesPosts[i].user.followers.findIndex(function (follower){
+        return follower.username === loggedUser?.username;
+        });
+
+        if (checkPost > -1) followPosts.push(everyonesPosts[i]);
+      }
+
+    setFollowingPosts(followPosts);
     setLoading(false);
   } catch (err) {
     console.log(err.message, " this is the error");
     setLoading(false);
   }
 }
-
-
 
   //-----------------------ERROR-------------------------------
 
@@ -145,7 +152,6 @@ async function getFollowing() {
       </>
     );
   }
-
 
   //-----------------------RETURN-----------------------------
   return (
@@ -177,6 +183,7 @@ async function getFollowing() {
         </Grid.Column>
       </Grid.Row>
 
+      { loggedUser?.username === username ? ( 
       <Grid.Row className="feed-gallery">
         <Grid.Column style={{ maxwidth: 350 }}>
           { followingPosts.length ? ( 
@@ -201,6 +208,7 @@ async function getFollowing() {
               }
         </Grid.Column>
       </Grid.Row>
+      ) : null }
     </Grid>
   );
 }

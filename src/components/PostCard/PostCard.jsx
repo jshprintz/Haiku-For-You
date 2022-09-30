@@ -47,7 +47,6 @@ function PostCard({
     if (isProfile) {
       try {
         const response = await userService.getProfile(loggedUser?.username);
-        console.log(response, "<----");
         setPosts([...response.data.posts]);
       } catch (err) {
         console.log(err, " err from server");

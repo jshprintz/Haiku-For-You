@@ -98,14 +98,27 @@ export default function Feed({ loggedUser, handleLogout }) {
         .map((user) => {
           return userService.getProfile(user.username);
         });
+
+
       const responsePromise = await Promise.all(following)
+
       
-      const followersPosts = responsePromise.map(({ data }) => {
+      const everyonesPosts = responsePromise.map(({ data }) => {
         return data.posts
       }).flat()
 
-      setFollowingPosts(followersPosts);
 
+        const followPosts = [];
+
+        for (let i=0; i<everyonesPosts.length; i++){
+          const checkPost = everyonesPosts[i].user.followers.findIndex(function (follower){
+          return follower.username === loggedUser?.username;
+          });
+
+          if (checkPost > -1) followPosts.push(everyonesPosts[i]);
+        }
+ 
+      setFollowingPosts(followPosts);
       setLoading(false);
     } catch (err) {
       console.log(err.message, " this is the error");
