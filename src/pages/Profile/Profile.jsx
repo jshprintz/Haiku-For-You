@@ -172,8 +172,6 @@ async function getFollowing() {
             removeFollower={removeFollower}
             loggedUser={loggedUser}
             setPosts={setPosts}
-            setFollowingPosts={setFollowingPosts}
-            setProfileUser={setProfileUser}
           />
         </Grid.Column>
       </Grid.Row>
@@ -193,8 +191,6 @@ async function getFollowing() {
             removeFollower={removeFollower}
             loggedUser={loggedUser}
             setPosts={setPosts}
-            setFollowingPosts={setFollowingPosts}
-            setProfileUser={setProfileUser}
           />
           </>
           ) : <>

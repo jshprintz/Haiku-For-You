@@ -177,7 +177,6 @@ export default function Feed({ loggedUser, handleLogout }) {
                     removeFollower={removeFollower}
                     loggedUser={loggedUser}
                     setPosts={setPosts}
-                    setFollowingPosts={setFollowingPosts}
                   />
                 </>
               ) : (
