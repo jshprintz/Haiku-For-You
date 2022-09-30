@@ -122,18 +122,6 @@ export default function Feed({ loggedUser, handleLogout }) {
     }
   }
 
-  // Get posts for a specific user
-  async function getUserPosts(username) {
-    try {
-      const response = await userService.getProfile(username);
-      setLoading(false);
-      console.log(response, `response for ${username}`);
-      setFollowingPosts([...response.data.posts]);
-    } catch (err) {
-      console.log(err.message, "<--Error");
-    }
-  }
-
   //------------------------Error--------Loading-----------------------
 
   if (error) {

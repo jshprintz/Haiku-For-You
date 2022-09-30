@@ -93,47 +93,39 @@ export default function ProfilePage({ loggedUser, handleLogout }) {
 
 //---------------------------GET FOLLOWING---------------------
 
-  async function getFollowing() {
-    try {
-      const response = await userService.index();
-      const following = [];
+async function getFollowing() {
+  try {
+    const response = await userService.index();
 
-      console.log(response, "<<--ALLL USERS>>");
+    console.log(response, "<<--ALLL USERS>>");
 
-      // Check every users followers to see if it contains logged in user
-      response.data.map((user) => {
-        for (let i = 0; i < user.followers.length; i++) {
-          if (user.followers[i].username === loggedUser?.username) {
-            following.push(user);
-          }
-        }
-        return following;
+    // Check every users followers to see if it contains logged in user
+    const following = response.data
+      .filter((user) => {
+        return user.username !== loggedUser?.username;
+      })
+      .map((user) => {
+        return userService.getProfile(user.username);
       });
 
-      // fetching posts for users that the logged in user is following.
-      for (let i = 0; i < following.length; i++) {
-        getUserPosts(following[i].username);
-      }
+    console.log(following, "<Following");
+    // fetching posts for users that the logged in user is following.
+    const responsePromise = await Promise.all(following)
+    
 
-      setLoading(false);
-    } catch (err) {
-      console.log(err.message, " this is the error");
-      setLoading(false);
-    }
+    const followersPosts = responsePromise.map(({ data }) => {
+      return data.posts
+    }).flat()
+
+    setFollowingPosts(followersPosts);
+    console.log(followersPosts, "Followerspost")
+
+    setLoading(false);
+  } catch (err) {
+    console.log(err.message, " this is the error");
+    setLoading(false);
   }
-
-  // Get posts for a specific user
-  async function getUserPosts(username) {
-    try {
-      const response = await userService.getProfile(username);
-      setLoading(false);
-      console.log(response, `response for ${username}`)
-      setFollowingPosts([...response.data.posts])
-
-    } catch (err) {
-      console.log(err.message, "<--Error");
-    }
-  }
+}
 
 
 
