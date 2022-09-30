@@ -101,7 +101,6 @@ export default function Write({ loggedUser, handleLogout }) {
   }
 
   //-----------------------RETURN-----------------------------
-  console.log(posts, "<<----HERE ARE THE POSTS");
   return (
     <Grid centered>
       <Grid.Row>

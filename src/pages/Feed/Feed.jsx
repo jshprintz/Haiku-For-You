@@ -19,8 +19,6 @@ export default function Feed({ loggedUser, handleLogout }) {
   const [loading, setLoading] = useState(true);
   const [followingPosts, setFollowingPosts] = useState([]);
 
-  const usersPosts = [];
-
   //-----------------------------LIKES--------------------------------
   async function addLike(postId) {
     try {

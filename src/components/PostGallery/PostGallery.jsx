@@ -15,7 +15,6 @@ export default function PostGallery({
   setPosts,
 }) {
 
-   console.log(posts, "POST GALLERY POSTS")
  // Sort
   posts.sort(function(a,b) {
   if (a.createdAt > b.createdAt) return -1;

@@ -21,13 +21,13 @@ export default function ProfilePage({ loggedUser, handleLogout }) {
 
   const { username } = useParams();
 
-
   //--------------LIKES--------------------------
   async function addLike(postId) {
     try {
       const response = await likesAPI.create(postId);
       console.log(response, "from add like");
       getProfile();
+      getFollowing();
     } catch (err) {
       console.log(err, " err from server");
       setError("error adding like");
@@ -39,6 +39,7 @@ export default function ProfilePage({ loggedUser, handleLogout }) {
       const response = await likesAPI.removeLike(likeId);
       console.log(response, " remove like");
       getProfile();
+      getFollowing();
     } catch (err) {
       console.log(err);
       setError("error removing like");
