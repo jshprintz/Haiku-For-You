@@ -65,17 +65,17 @@ export default class AccordionExampleStyled extends Component {
           What is Haiku For You?
         </Accordion.Title>
         <Accordion.Content active={activeIndex === 2}>
-          <p className='card-text'>
-            Three common ways for a prospective owner to acquire a dog is from
-            pet shops, private owners, or shelters.
-          </p>
-          <p className='card-text'>
-            A pet shop may be the most convenient way to buy a dog. Buying a dog
-            from a private owner allows you to assess the pedigree and
-            upbringing of your dog before choosing to take it home. Lastly,
-            finding your dog from a shelter, helps give a good home to a dog who
-            may not find one so readily.
-          </p>
+          <h4>
+            Haiku For You is an app designed to both inspire and encourage reflection. On one screen, you can see a list
+            of recent haikus posted by everyday people. You don't need an account to view this, but signing up does open
+            several fun features:
+          </h4>
+          <ul>
+            <li><h4>Liking posts and seeing how many others liked the same post!</h4></li>
+            <li><h4>Follow poets you like and view their most recent posts on your feed and profile page!</h4></li>
+            <li><h4>A section where you can write and post your own haikus!</h4></li>
+            <li><h4>Access to future updates and improvements!</h4></li>
+          </ul>
         </Accordion.Content>
       </Accordion>
     )
