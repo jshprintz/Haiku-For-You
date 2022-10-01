@@ -67,6 +67,22 @@ export default function Feed({ loggedUser, handleLogout }) {
     }
   }
 
+  //--------------------------DELETE POST------------------------------
+  
+  async function removePost(postId) {
+    console.log("Here")
+    try {
+      postsAPI.deletePost(postId);
+      getPosts();
+      getFollowing();
+    } catch (err) {
+      console.log("err", "This is the error")
+      setError(err)
+      setLoading(false)
+    }
+  }
+
+
   //---------------------------GET POSTS--------------------------------
   async function getPosts() {
     try {
@@ -78,6 +94,7 @@ export default function Feed({ loggedUser, handleLogout }) {
       setLoading(false);
     }
   }
+
 
   useEffect(() => {
     getPosts();
@@ -168,7 +185,7 @@ export default function Feed({ loggedUser, handleLogout }) {
               addFollower={addFollower}
               removeFollower={removeFollower}
               loggedUser={loggedUser}
-              setPosts={setPosts}
+              removePost={removePost}
             />
           </Grid.Column>
         </Grid.Row>
@@ -187,7 +204,7 @@ export default function Feed({ loggedUser, handleLogout }) {
                     addFollower={addFollower}
                     removeFollower={removeFollower}
                     loggedUser={loggedUser}
-                    setPosts={setPosts}
+                    removePost={removePost}
                   />
                 </>
               ) : (

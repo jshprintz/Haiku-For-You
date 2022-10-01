@@ -7,6 +7,7 @@ import Loading from "../../components/Loader/Loader";
 import PostGallery from "../../components/PostGallery/PostGallery";
 import "../App/App.css";
 
+import * as postsApi from "../../utils/postApi"
 import * as followersAPI from "../../utils/followersApi";
 import * as likesAPI from "../../utils/likesApi";
 import userService from "../../utils/userService";
@@ -67,6 +68,22 @@ export default function ProfilePage({ loggedUser, handleLogout }) {
       getFollowing();
     } catch (err) {
       console.log(err, "remove follower error");
+    }
+  }
+
+
+  //--------------------------DELETE POST------------------------------
+  
+  async function removePost(postId) {
+    try {
+      postsApi.deletePost(postId);
+      getProfile();
+      getFollowing();
+      setLoading(false)
+    } catch (err) {
+      console.log("err", "This is the error")
+      setError(err)
+      setLoading(false)
     }
   }
 
@@ -178,7 +195,7 @@ async function getFollowing() {
             addFollower={addFollower}
             removeFollower={removeFollower}
             loggedUser={loggedUser}
-            setPosts={setPosts}
+            removePost={removePost}
           />
         </Grid.Column>
       </Grid.Row>
@@ -198,7 +215,7 @@ async function getFollowing() {
             addFollower={addFollower}
             removeFollower={removeFollower}
             loggedUser={loggedUser}
-            setPosts={setPosts}
+            removePost={removePost}
           />
           </>
           ) : <>

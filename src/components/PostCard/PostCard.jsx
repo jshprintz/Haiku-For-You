@@ -1,7 +1,6 @@
 import React from "react";
 import { Card, Icon, Image, Segment } from "semantic-ui-react";
 import { Link } from "react-router-dom";
-import { deletePost } from "../../utils/postApi";
 import * as postsAPI from "../../utils/postApi";
 import userService from "../../utils/userService";
 
@@ -13,7 +12,7 @@ function PostCard({
   addFollower,
   removeFollower,
   loggedUser,
-  setPosts,
+  removePost
 }) {
 
 
@@ -43,22 +42,14 @@ function PostCard({
 
   // DELETE
   async function deleteClickHandler() {
-    deletePost(post._id);
-    if (isProfile) {
-      try {
-        const response = await userService.getProfile(loggedUser?.username);
-        setPosts([...response.data.posts]);
-      } catch (err) {
-        console.log(err, " err from server");
-      }
-    } else {
-      try {
-        const response = await postsAPI.getAll();
-        setPosts([...response.data]);
-      } catch (err) {
-        console.log(err, " err from server");
-      }
+    try {
+      removePost(post._id);
+
+    } catch (err) {
+      console.log(err,"this is the error")
     }
+    
+  
   }
 
   const tempTimestamp = new Date(post.createdAt);
