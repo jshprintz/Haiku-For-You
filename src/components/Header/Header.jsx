@@ -29,9 +29,7 @@ export default function PageHeader({ loggedUser, handleLogout }) {
         ) : null}
       </Header>
       <Header as="h2" floated="left">
-
-        {loggedUser ? (
-          <>
+      <>
             <Link to="/more">
                 <Icon
                 name={"question circle outline"}
@@ -39,6 +37,9 @@ export default function PageHeader({ loggedUser, handleLogout }) {
                 avatar
                 />
             </Link>
+
+        {loggedUser ? (
+
             <Link to="/write">
             <Icon
                 name={"edit"}
@@ -46,8 +47,9 @@ export default function PageHeader({ loggedUser, handleLogout }) {
                 avatar
                 />
             </Link>
-          </>
+          
         ) : null}
+      </>
       </Header>
       <br />
       <div className="centered">

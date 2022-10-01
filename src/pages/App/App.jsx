@@ -82,7 +82,7 @@ function App() {
       />
       <Route
         path="/more"
-        element={<FeedPage loggedUser={user} handleLogout={handleLogout} />}
+        element={<MorePage loggedUser={user} handleLogout={handleLogout} />}
       />
       <Route
         path="/write"
