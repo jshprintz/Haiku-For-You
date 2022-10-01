@@ -6,7 +6,6 @@ import "../../pages/App/App.css";
 export default function PageHeader({ loggedUser, handleLogout }) {
   return (
     <div className="header-el">
-    <Segment clearing raised >
       
       <Header as="h2" floated ="right">
         <Link to={`/${loggedUser?.username}`}>
@@ -30,9 +29,6 @@ export default function PageHeader({ loggedUser, handleLogout }) {
         ) : null}
       </Header>
       <Header as="h2" floated="left">
-        <Link to="/">
-          <Icon name="home" size="large"></Icon>
-        </Link>
 
         {loggedUser ? (
           <>
@@ -52,11 +48,11 @@ export default function PageHeader({ loggedUser, handleLogout }) {
             </Link>
           </>
         ) : null}
-
-        
       </Header>
-      <p className="large-font-size centered">Haiku For You</p>
-    </Segment>
+      <br />
+      <a href="/" className="large-font-size centered title">Haiku For You</a>
+      
+
     </div>
   );
 }

@@ -26,6 +26,7 @@ body {
 
 .centered { 
   text-align: center;
+  justify-content: center;
 }
 
 .haiku-title {
@@ -60,10 +61,19 @@ body {
 
 .header-clearance {
   margin-top: 10%;
-  
 }
 .large-font-size {
   font-size: 36pt;
 }
 
+.title {
+  margin-left: 20%;
+  color: black;
+}
 
+.title:hover {
+  margin-left: 20%;
+  color: black;
+  zoom: 1.5;
+  margin-left: 15%;
+}
