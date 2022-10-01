@@ -108,7 +108,7 @@ export default function Write({ loggedUser, handleLogout }) {
           <PageHeader handleLogout={handleLogout} loggedUser={loggedUser} />
         </Grid.Column>
       </Grid.Row>
-      <Grid.Row>
+      <Grid.Row className="header-clearance">
         <Grid.Column>
           <DisplayPost
             posts={posts}

@@ -60,11 +60,12 @@ body {
 .header-el {
   position: fixed;
   width: 90%;
+  z-index: 1;
 }
 
 .header-clearance {
   margin-top: 10%;
-
+  
 }
 .large-font-size {
   font-size: 36pt;
