@@ -11,9 +11,16 @@ export default function More({ loggedUser, handleLogout }) {
           <PageHeader handleLogout={handleLogout} loggedUser={loggedUser} />
         </Grid.Column>
       </Grid.Row>
-      <Grid.Row className="header-clearance" >
-        <Grid.Column >
+      <Grid.Row className="header-clearance centered large-font-size" >
+        Haiku For You FAQ
+      </Grid.Row>
+      <Grid.Row>
+        <Grid.Column style={{ width: 150 }}>
+        </Grid.Column>
+        <Grid.Column style={{ width: 650 }} >
           <MoreMenu />
+        </Grid.Column>
+        <Grid.Column style={{ width: 150 }}>
         </Grid.Column>
       </Grid.Row>
     </Grid>
