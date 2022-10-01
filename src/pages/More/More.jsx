@@ -11,7 +11,7 @@ export default function More({ loggedUser, handleLogout }) {
           <PageHeader handleLogout={handleLogout} loggedUser={loggedUser} />
         </Grid.Column>
       </Grid.Row>
-      <Grid.Row className="header-clearance centered large-font-size" >
+      <Grid.Row className="header-clearance centered large-font-size faq" >
         FAQ
       </Grid.Row>
       <Grid.Row>

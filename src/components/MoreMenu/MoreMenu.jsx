@@ -49,8 +49,8 @@ export default class AccordionExampleStyled extends Component {
             Just as long as they fit the syllable count restriction (five-seven-five) and they make a complete thought.
           </h4>
           <h4>
-            It's best to start with a subject matter in mind. Write more words then you need to try to articulate your thoughts.
-            Then start to cross out words that don't add to the poem. Count the syllables on each line, and adjust both your
+            It's best to start with a subject matter in mind. Write more words then you need to to try to articulate your thoughts.
+            Then, cross out words that don't add to the poem. Count the syllables on each line, and adjust both your
             word choices and phrasing to match the five-seven-five criteria. It's okay if the first or second line bleeds into
             the next, just make sure to wrap up the thought by the end of the third line!
           </h4>
