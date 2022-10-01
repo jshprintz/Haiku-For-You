@@ -12,7 +12,7 @@ export default function PostGallery({
   addFollower,
   removeFollower,
   loggedUser,
-  setPosts,
+  removePost,
 }) {
 
  // Sort
@@ -43,7 +43,7 @@ export default function PostGallery({
             addFollower={addFollower}
             removeFollower={removeFollower}
             loggedUser={loggedUser}
-            setPosts={setPosts}
+            removePost={removePost}
           />
         );
       })}

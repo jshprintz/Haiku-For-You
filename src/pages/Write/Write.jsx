@@ -26,15 +26,23 @@ export default function Write({ loggedUser, handleLogout }) {
           <PageHeader handleLogout={handleLogout} loggedUser={loggedUser} />
         </Grid.Column>
       </Grid.Row>
-      <Grid.Row>
+      <Grid.Row className="header-clearance">
         <Grid.Column textAlign="center">
-          <h1>Write a Haiku</h1>
-          <p>{error}</p>
+          <p className="large-font-size ">Write a Haiku</p>
         </Grid.Column>
       </Grid.Row>
       <Grid.Row>
-        <Grid.Column style={{ maxWidth: 450 }}>
+        <Grid.Column style={{ width: 150 }}>
+        </Grid.Column>
+        <Grid.Column style={{ width: 450 }}>
           <AddPost handleAddPost={handleAddPost} />
+          <p>{error}</p>
+        </Grid.Column>
+        <Grid.Column style={{ width: 150 }}>
+        <p className="card-text">Remember!</p>
+            <p>Line One has 5 syllables...</p>
+            <p>Line Two has 7 syllables...</p>
+            <p>Line Three is back to 5 syllables!</p>
         </Grid.Column>
       </Grid.Row>
     </Grid>

@@ -34,8 +34,8 @@ export default function AddPostForm(props) {
   }
 
   return (
-    <Segment>
-      <Form onSubmit={handleSubmit}>
+    <Segment >
+      <Form onSubmit={handleSubmit} >
         <Form.Input
           className="form-control"
           name="title"

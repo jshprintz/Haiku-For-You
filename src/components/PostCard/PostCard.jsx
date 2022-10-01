@@ -1,7 +1,6 @@
 import React from "react";
 import { Card, Icon, Image, Segment } from "semantic-ui-react";
 import { Link } from "react-router-dom";
-import { deletePost } from "../../utils/postApi";
 import * as postsAPI from "../../utils/postApi";
 import userService from "../../utils/userService";
 
@@ -13,7 +12,7 @@ function PostCard({
   addFollower,
   removeFollower,
   loggedUser,
-  setPosts,
+  removePost
 }) {
 
 
@@ -22,7 +21,7 @@ function PostCard({
     (like) => like.username === loggedUser?.username
   );
 
-  const likeColor = likedIndex > -1 ? "green" : "grey";
+  const likeColor = likedIndex > -1 ? "teal" : "grey";
 
   const likeClickHandler =
     likedIndex > -1
@@ -43,22 +42,14 @@ function PostCard({
 
   // DELETE
   async function deleteClickHandler() {
-    deletePost(post._id);
-    if (isProfile) {
-      try {
-        const response = await userService.getProfile(loggedUser?.username);
-        setPosts([...response.data.posts]);
-      } catch (err) {
-        console.log(err, " err from server");
-      }
-    } else {
-      try {
-        const response = await postsAPI.getAll();
-        setPosts([...response.data]);
-      } catch (err) {
-        console.log(err, " err from server");
-      }
+    try {
+      removePost(post._id);
+
+    } catch (err) {
+      console.log(err,"this is the error")
     }
+    
+  
   }
 
   const tempTimestamp = new Date(post.createdAt);
@@ -67,7 +58,7 @@ function PostCard({
   return (
     <Card key={post._id} href={`/details/${post._id}`}>
       <Card.Content className="card">
-        <Card.Header textAlign="center">
+        <Card.Description textAlign="right" className="user-name-card user-name-card-details">
           <Link to={`/${post.user.username}`}>
             <Image
               size="large"
@@ -80,19 +71,22 @@ function PostCard({
             />
             {post.user.username}
           </Link>
-        </Card.Header>
-
+        </Card.Description>
+        <div className="card-text">
         <br />
-        <Card.Header textAlign="center">{post.title}</Card.Header>
+        <Card.Description textAlign="center"><span className="haiku-title">{post.title}</span></Card.Description>
         <br />
-        <Card.Description textAlign="left">{post.lineOne}</Card.Description>
-        <Card.Description textAlign="left">{post.lineTwo}</Card.Description>
-        <Card.Description textAlign="left">{post.lineThree}</Card.Description>
+        <Card.Description textAlign="center">{post.lineOne}</Card.Description>
+        <br />
+        <Card.Description textAlign="center">{post.lineTwo}</Card.Description>
+        <br />
+        <Card.Description textAlign="center">{post.lineThree}</Card.Description>
+        </div>
       </Card.Content>
 
       {loggedUser ? (
         <Segment raised textAlign={"right"}>
-          <Card.Description textAlign="left">{timestamp}</Card.Description>
+          <Card.Description textAlign="left"><span className="date">{timestamp}</span></Card.Description>
 
           {post.user.username === loggedUser?.username ? (
             <Link to={`#`}>

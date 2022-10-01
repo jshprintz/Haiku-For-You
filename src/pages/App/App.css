@@ -1,6 +1,6 @@
 * {
   margin: 2px 10px;
-  color: grey;
+  color: black;
 }
 
 .feed-gallery {
@@ -11,16 +11,13 @@
   height: 500px;
   max-width: 400px;
   margin: 5%;
+  margin-top: 10%;
 }
 
 .card {
-  height: 325px;
+  height: 400px;
   scroll-behavior: smooth;
   overflow: auto;
-}
-
-.details-card {
-  width: 500px;
 }
 
 body {
@@ -30,3 +27,43 @@ body {
 .centered { 
   text-align: center;
 }
+
+.haiku-title {
+  font-weight: bold;
+  text-decoration: underline;
+  color: black;
+}
+
+.user-name-card {
+  font-weight: bold;
+}
+
+.card-text {
+  font-size: 16pt;
+  color: rgb(0, 0, 0);
+}
+
+.user-name-card-details {
+  font-size: medium;
+}
+
+.date {
+  color: black;
+  font-size: 14pt;
+}
+
+.header-el {
+  position: fixed;
+  width: 90%;
+  z-index: 1;
+}
+
+.header-clearance {
+  margin-top: 10%;
+  
+}
+.large-font-size {
+  font-size: 36pt;
+}
+
+
