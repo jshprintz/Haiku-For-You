@@ -1,5 +1,6 @@
 * {
   margin: 2px 10px;
+  color: black;
 }
 
 .feed-gallery {
@@ -40,12 +41,6 @@ body {
 .card-text {
   font-size: 16pt;
   color: rgb(0, 0, 0);
-}
-
-.details-card {
-  font-size: 30pt;
-  scroll-behavior: auto;
-  overflow: visible;
 }
 
 .user-name-card-details {
