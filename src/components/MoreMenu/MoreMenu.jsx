@@ -24,14 +24,14 @@ export default class AccordionExampleStyled extends Component {
           onClick={this.handleClick}
         >
           <Icon name='dropdown' />
-          What is a dog?
+          What is a haiku?
         </Accordion.Title>
         <Accordion.Content active={activeIndex === 0}>
-          <p className='card-text'>
-            A dog is a type of domesticated animal. Known for its loyalty and
-            faithfulness, it can be found as a welcome guest in many households
-            across the world.
-          </p>
+          <h4 >
+            A haiku is a form of poetry originating from Japan. A traditional haiku is three lines that contain
+            a specific syllable count per line. The first line contains five syllables, the second contains seven syllables,
+            and the third, like the first, contains only five syllables.
+          </h4>
         </Accordion.Content>
 
         <Accordion.Title
@@ -40,14 +40,20 @@ export default class AccordionExampleStyled extends Component {
           onClick={this.handleClick}
         >
           <Icon name='dropdown' />
-          What kinds of dogs are there?
+          How to write a haiku?
         </Accordion.Title>
         <Accordion.Content active={activeIndex === 1}>
-          <p className='card-text'>
-            There are many breeds of dogs. Each breed varies in size and
-            temperament. Owners often select a breed of dog that they find to be
-            compatible with their own lifestyle and desires from a companion.
-          </p>
+          <h4>
+            In Japanese, haikus are traditionally written as a single line, whereas in English, they are separated into
+            three lines. Oftentimes they are written about nature, but there are no rules when it comes to subject matter.
+            Just as long as they fit the syllable count restriction (five-seven-five) and they make a complete thought.
+          </h4>
+          <h4>
+            It's best to start with a subject matter in mind. Write more words then you need to try to articulate your thoughts.
+            Then start to cross out words that don't add to the poem. Count the syllables on each line, and adjust both your
+            word choices and phrasing to match the five-seven-five criteria. It's okay if the first or second line bleeds into
+            the next, just make sure to wrap up the thought by the end of the third line!
+          </h4>
         </Accordion.Content>
 
         <Accordion.Title
@@ -56,7 +62,7 @@ export default class AccordionExampleStyled extends Component {
           onClick={this.handleClick}
         >
           <Icon name='dropdown' />
-          How do you acquire a dog?
+          What is Haiku For You?
         </Accordion.Title>
         <Accordion.Content active={activeIndex === 2}>
           <p className='card-text'>
