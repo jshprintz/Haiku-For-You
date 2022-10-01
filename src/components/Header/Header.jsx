@@ -52,8 +52,10 @@ export default function PageHeader({ loggedUser, handleLogout }) {
             </Link>
           </>
         ) : null}
+
+        
       </Header>
-      
+      <p className="large-font-size centered">Haiku For You</p>
     </Segment>
     </div>
   );

@@ -12,7 +12,7 @@ export default function More({ loggedUser, handleLogout }) {
         </Grid.Column>
       </Grid.Row>
       <Grid.Row className="header-clearance centered large-font-size" >
-        Haiku For You FAQ
+        FAQ
       </Grid.Row>
       <Grid.Row>
         <Grid.Column style={{ width: 150 }}>
