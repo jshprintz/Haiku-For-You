@@ -5,8 +5,10 @@ import "../../pages/App/App.css";
 
 export default function PageHeader({ loggedUser, handleLogout }) {
   return (
-    <Segment clearing raised className="header-el">
-      <Header as="h2" floated="right">
+    <div className="header-el">
+    <Segment clearing raised >
+      
+      <Header as="h2" floated ="right">
         <Link to={`/${loggedUser?.username}`}>
           <Image
             src={
@@ -34,11 +36,25 @@ export default function PageHeader({ loggedUser, handleLogout }) {
 
         {loggedUser ? (
           <>
-            <Link to="/more">More</Link>
-            <Link to="/write">Write a Haiku</Link>
+            <Link to="/more">
+                <Icon
+                name={"question circle outline"}
+                size="large"
+                avatar
+                />
+            </Link>
+            <Link to="/write">
+            <Icon
+                name={"edit"}
+                size="large"
+                avatar
+                />
+            </Link>
           </>
         ) : null}
       </Header>
+      
     </Segment>
+    </div>
   );
 }

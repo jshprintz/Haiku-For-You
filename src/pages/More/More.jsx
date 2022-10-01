@@ -5,15 +5,14 @@ import MoreMenu from "../../components/MoreMenu/MoreMenu"
 
 export default function More({ loggedUser, handleLogout }) {
   return (
-    <Grid>
+    <Grid  >
       <Grid.Row>
         <Grid.Column>
           <PageHeader handleLogout={handleLogout} loggedUser={loggedUser} />
         </Grid.Column>
       </Grid.Row>
-      <Grid.Row>
-        <Grid.Column>
-          <h1>Here is the MORE page.</h1>
+      <Grid.Row className="header-clearance" >
+        <Grid.Column >
           <MoreMenu />
         </Grid.Column>
       </Grid.Row>

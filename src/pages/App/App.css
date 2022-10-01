@@ -10,6 +10,7 @@
   height: 500px;
   max-width: 400px;
   margin: 5%;
+  margin-top: 10%;
 }
 
 .card {
@@ -55,3 +56,18 @@ body {
   color: black;
   font-size: 14pt;
 }
+
+.header-el {
+  position: fixed;
+  width: 90%;
+}
+
+.header-clearance {
+  margin-top: 10%;
+
+}
+.large-font-size {
+  font-size: 36pt;
+}
+
+
