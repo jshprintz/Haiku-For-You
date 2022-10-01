@@ -34,7 +34,8 @@ export default function AddPostForm(props) {
   }
 
   return (
-    <Segment >
+    <Segment>
+    <Segment raised>
       <Form onSubmit={handleSubmit} >
         <Form.Input
           className="form-control"
@@ -72,6 +73,7 @@ export default function AddPostForm(props) {
           Post Haiku
         </Button>
       </Form>
+    </Segment>
     </Segment>
   );
 }

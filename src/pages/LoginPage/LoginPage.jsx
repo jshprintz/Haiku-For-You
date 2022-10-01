@@ -42,16 +42,24 @@ export default function LoginPage(props) {
   }
 
   return (
+    
     <Grid
       textAlign="center"
       style={{ height: "100vh", width: "100vw" }}
       verticalAlign="middle"
     >
       <Grid.Column style={{ maxWidth: 450 }}>
+      <div className="centered">
+      <a href="/" className="large-font-size centered white-back login-title">Haiku For You</a>
+      </div>
+      <br />
+      <br />
+        
+      <Segment >
         <Header as="h2" color="grey" textAlign="center">
           Log-in to your account
         </Header>
-        <Form onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit} >
           <Segment stacked>
             <Form.Input
               type="email"
@@ -80,11 +88,15 @@ export default function LoginPage(props) {
             </Button>
           </Segment>
         </Form>
-        <Message>
+        <Link to="/signup">
+        <Message size="big">
           New to us? <Link to="/signup">Sign Up</Link>
         </Message>
+        </Link>
         {error ? <ErrorMessage error={error} /> : null}
+        </Segment>
       </Grid.Column>
     </Grid>
+    
   );
 }

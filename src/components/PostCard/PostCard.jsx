@@ -1,12 +1,9 @@
 import React from "react";
 import { Card, Icon, Image, Segment } from "semantic-ui-react";
 import { Link } from "react-router-dom";
-import * as postsAPI from "../../utils/postApi";
-import userService from "../../utils/userService";
 
 function PostCard({
   post,
-  isProfile,
   addLike,
   removeLike,
   addFollower,
@@ -56,7 +53,7 @@ function PostCard({
   const timestamp = tempTimestamp.toLocaleDateString();
 
   return (
-    <Card key={post._id} href={`/details/${post._id}`}>
+    <Card key={post._id} href={`/details/${post._id}`} className="card-background">
       <Card.Content className="card">
         <Card.Description textAlign="right" className="user-name-card user-name-card-details">
           <Link to={`/${post.user.username}`}>

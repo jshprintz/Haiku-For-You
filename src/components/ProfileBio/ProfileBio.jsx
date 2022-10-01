@@ -2,9 +2,9 @@ import { Image, Grid, Segment } from "semantic-ui-react";
 
 export default function ProfileBio({ user }) {
   return (
-    <Grid textAlign="center">
+    <Grid textAlign="center" className="bio">
       <Grid.Row>
-        <Grid.Column>
+        <Grid.Column style={{ width: 250 }}>
           <Image
             src={`${
               user.photoUrl
@@ -15,9 +15,10 @@ export default function ProfileBio({ user }) {
             size="small"
           />
         </Grid.Column>
-      </Grid.Row>
-      <Grid.Row>
-        <Grid.Column textAlign="left" style={{ maxWidth: 450 }}>
+        <Grid.Column>
+          
+        </Grid.Column>
+        <Grid.Column textAlign="left" style={{ width: 450 }}>
           <Segment vertical>
             <h3>{user.username}</h3>
           </Segment>

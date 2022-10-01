@@ -4,14 +4,15 @@
 }
 
 .feed-gallery {
-  background-color: rgba(213, 204, 204, 0.5);
-  border-radius: 3px;
+  background-color:rgba(255,255,255, .8);
+  border-radius: 5px;
   scroll-behavior: smooth;
   overflow: auto;
   height: 500px;
   max-width: 400px;
   margin: 5%;
-  margin-top: 10%;
+  margin-top: 12%;
+  border: 2px solid black;
 }
 
 .card {
@@ -22,6 +23,11 @@
 
 body {
   margin-bottom: 10px;
+  background-image: url("https://i.imgur.com/Up5RPJj.gif");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
 }
 
 .centered { 
@@ -57,6 +63,16 @@ body {
   position: fixed;
   width: 90%;
   z-index: 1;
+  border: 2px solid black;
+  padding: 5px;
+  border-radius: 5px;
+  height: 100px;
+  margin-top: 10px;
+  background-color: rgba(255,255,255, .8);
+}
+
+.white-back {
+  background-color:rgba(255,255,255, .8);
 }
 
 .header-clearance {
@@ -66,14 +82,53 @@ body {
   font-size: 36pt;
 }
 
+.medium-font-size {
+  font-size: 24pt;
+}
+
 .title {
-  margin-left: 20%;
   color: black;
 }
 
 .title:hover {
-  margin-left: 20%;
   color: black;
   zoom: 1.5;
-  margin-left: 15%;
 }
+
+.bio {
+  background-color: rgba(255,255,255, .5);
+  border: 2px black solid;
+  border-radius: 5px;
+}
+
+.sub-header {
+  width: 350px;
+  margin-left: 30%;
+  margin-right: 40%;
+  border: 2px solid black;
+  border-radius: 5px;
+  background-color:rgba(255,255,255, .8);
+}
+
+.instructions {
+  padding: 5px;
+  padding-left: 15px;
+  width: 250px;
+  border: 2px black solid;
+  border-radius: 5px;
+  background-color:rgba(255,255,255, .8);
+}
+
+.login-title {
+  padding: 0 40px;
+  border: 2px solid black;
+  border-radius: 5px;
+  max-width: fit-content;
+  color: black;
+}
+
+.login-title:hover {
+  zoom: 1.1;
+  color: black;
+}
+

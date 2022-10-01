@@ -28,7 +28,7 @@ export default function Write({ loggedUser, handleLogout }) {
       </Grid.Row>
       <Grid.Row className="header-clearance">
         <Grid.Column textAlign="center">
-          <p className="large-font-size ">Write a Haiku</p>
+          <p className="large-font-size sub-header">Write a Haiku</p>
         </Grid.Column>
       </Grid.Row>
       <Grid.Row>
@@ -39,10 +39,10 @@ export default function Write({ loggedUser, handleLogout }) {
           <p>{error}</p>
         </Grid.Column>
         <Grid.Column style={{ width: 150 }}>
-        <p className="card-text">Remember!</p>
-            <p>Line One has 5 syllables...</p>
-            <p>Line Two has 7 syllables...</p>
-            <p>Line Three is back to 5 syllables!</p>
+        <p className="card-text instructions">Remember!</p>
+            <p className="instructions">Line One has 5 syllables...</p>
+            <p className="instructions">Line Two has 7 syllables...</p>
+            <p className="instructions">Line Three is back to 5 syllables!</p>
         </Grid.Column>
       </Grid.Row>
     </Grid>
