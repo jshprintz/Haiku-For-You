@@ -175,7 +175,7 @@ export default function Feed({ loggedUser, handleLogout }) {
         </Grid.Row>
         <Grid.Row className="feed-gallery">
           <Grid.Column style={{ maxwidth: 350 }}>
-            <h1 className="centered">Recent Posts</h1>
+            <p className="centered medium-font-size">Recent Posts</p>
             <PostGallery
               posts={posts}
               isProfile={false}
@@ -194,7 +194,7 @@ export default function Feed({ loggedUser, handleLogout }) {
             <Grid.Column style={{ maxwidth: 350 }}>
               {followingPosts.length ? (
                 <>
-                  <h1 className="centered">Following</h1>
+                  <p className="centered medium-font-size">Following</p>
                   <PostGallery
                     posts={followingPosts}
                     isProfile={false}

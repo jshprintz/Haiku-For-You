@@ -75,6 +75,11 @@ export default function SignUpPage(props) {
       verticalAlign="middle"
     >
       <Grid.Column style={{ maxWidth: 450 }}>
+      <div className="centered">
+      <a href="/" className="large-font-size centered white-back login-title">Haiku For You</a>
+      </div>
+      <br />
+        <Segment>
         <Header as="h2" color="grey" textAlign="center">
           Sign Up
         </Header>
@@ -134,6 +139,7 @@ export default function SignUpPage(props) {
           </Segment>
           {error.message ? <ErrorMessage error={error.message} /> : null}
         </Form>
+        </Segment>
       </Grid.Column>
     </Grid>
   );

@@ -185,7 +185,7 @@ async function getFollowing() {
       </Grid.Row>
       <Grid.Row className="feed-gallery">
         <Grid.Column style={{ width: 1000 }}>
-          <h1 className="centered">Recent Posts</h1>
+          <p className="centered medium-font-size">Recent Posts</p>
           <PostGallery
             posts={posts}
             isProfile={true}
@@ -205,7 +205,7 @@ async function getFollowing() {
         <Grid.Column style={{ maxwidth: 350 }}>
           { followingPosts.length ? ( 
           <>
-          <h1 className="centered">Following</h1>
+          <p className="centered medium-font-size">Following</p>
           <PostGallery
             posts={followingPosts}
             isProfile={true}

@@ -4,14 +4,15 @@
 }
 
 .feed-gallery {
-  background-color: rgba(213, 204, 204, 0.5);
-  border-radius: 3px;
+  background-color:rgba(255,255,255, .8);
+  border-radius: 5px;
   scroll-behavior: smooth;
   overflow: auto;
   height: 500px;
   max-width: 400px;
   margin: 5%;
   margin-top: 12%;
+  border: 2px solid black;
 }
 
 .card {
@@ -64,10 +65,14 @@ body {
   z-index: 1;
   border: 2px solid black;
   padding: 5px;
-  background-color: white;
   border-radius: 5px;
   height: 100px;
   margin-top: 10px;
+  background-color: rgba(255,255,255, .8);
+}
+
+.white-back {
+  background-color:rgba(255,255,255, .8);
 }
 
 .header-clearance {
@@ -75,6 +80,10 @@ body {
 }
 .large-font-size {
   font-size: 36pt;
+}
+
+.medium-font-size {
+  font-size: 24pt;
 }
 
 .title {
@@ -93,20 +102,33 @@ body {
 }
 
 .sub-header {
-  background-color: white;
-  max-width: 250px;
-  margin-left: 40%;
+  width: 350px;
+  margin-left: 30%;
   margin-right: 40%;
   border: 2px solid black;
   border-radius: 5px;
+  background-color:rgba(255,255,255, .8);
 }
 
 .instructions {
-  background-color: white;
   padding: 5px;
   padding-left: 15px;
   width: 250px;
   border: 2px black solid;
   border-radius: 5px;
+  background-color:rgba(255,255,255, .8);
+}
+
+.login-title {
+  padding: 0 40px;
+  border: 2px solid black;
+  border-radius: 5px;
+  max-width: fit-content;
+  color: black;
+}
+
+.login-title:hover {
+  zoom: 1.1;
+  color: black;
 }
 
