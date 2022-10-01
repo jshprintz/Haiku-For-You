@@ -67,13 +67,12 @@ body {
 }
 
 .title {
-  margin-left: 20%;
+
   color: black;
 }
 
 .title:hover {
-  margin-left: 20%;
   color: black;
   zoom: 1.5;
-  margin-left: 15%;
+
 }
