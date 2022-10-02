@@ -1,10 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Header, Image, Icon, Segment } from "semantic-ui-react";
+import { Header, Image, Icon, Grid } from "semantic-ui-react";
 import "../../pages/App/App.css";
 
 export default function PageHeader({ loggedUser, handleLogout }) {
   return (
+    <Grid  textAlign="center">
+      <Grid.Row>
+        <Grid.Column>
     <div className="header-el">
       
       <Header as="h2" floated ="right">
@@ -55,7 +58,9 @@ export default function PageHeader({ loggedUser, handleLogout }) {
       <div className="centered">
       <a href="/" className="large-font-size centered title">Haiku For You</a>
       </div>
-
     </div>
+    </Grid.Column>
+    </Grid.Row>
+    </Grid>
   );
 }

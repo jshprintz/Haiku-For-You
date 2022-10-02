@@ -40,8 +40,7 @@ function PostCard({
   // DELETE
   async function deleteClickHandler() {
     try {
-      removePost(post._id);
-
+      await removePost(post._id);
     } catch (err) {
       console.log(err,"this is the error")
     }
