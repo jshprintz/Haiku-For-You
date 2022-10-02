@@ -6,15 +6,15 @@
 
 ---
 
-## Read haikus from people all around the world!
+### Read haikus from people all around the world!
 
 
 
-## Show support by liking their posts, and keep up to date with their latest haikus by following them!
+### Show support by liking their posts, and keep up to date with their latest haikus by following them!
 
 
 
-## Post your own haikus and gain followers as you hone your voice!
+### Post your own haikus and gain followers as you hone your voice!
 
 
 ---
@@ -29,8 +29,9 @@
 ---
 
 #### Project Planning:
-
-
+- [Trello](https://trello.com/b/euUPJJ2C/haiku-for-you)
+- [Wireframe](https://whimsical.com/wireframe-FgwAddSUZWKSrybWKbcj1C)
+- [ERD](https://whimsical.com/erd-cfxcWKxW4HvPzT6nBNoLN)
 
 ---
 
