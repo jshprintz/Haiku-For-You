@@ -219,9 +219,9 @@ async function getFollowing() {
           />
           </>
           ) : <>
-              <h1>You aren't following anyone!</h1> 
-              <h2> Follow people to keep up with their latest haikus!</h2>
-              </>
+              <p className="medium-font-size">You aren't following anyone!</p>
+              <p className="medium-font-size"> Follow people to keep up with their latest haikus!</p>
+              </>    
               }
         </Grid.Column>
       </Grid.Row>

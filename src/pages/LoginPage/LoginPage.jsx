@@ -56,9 +56,9 @@ export default function LoginPage(props) {
       <br />
         
       <Segment >
-        <Header as="h2" color="grey" textAlign="center">
-          Log-in to your account
-        </Header>
+        <p className="medium-font-size" color="grey" textAlign="center">
+          Log in to your account
+        </p>
         <Form onSubmit={handleSubmit} >
           <Segment stacked>
             <Form.Input

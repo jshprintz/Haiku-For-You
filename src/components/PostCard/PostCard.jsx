@@ -113,6 +113,7 @@ function PostCard({
                   onClick={followerClickHandler}
                 />
               </Link>
+              {post.user.followers.length}
             </>
           )}
         </Segment>

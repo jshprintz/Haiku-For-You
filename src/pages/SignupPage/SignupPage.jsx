@@ -80,9 +80,9 @@ export default function SignUpPage(props) {
       </div>
       <br />
         <Segment>
-        <Header as="h2" color="grey" textAlign="center">
+        <p className="medium-font-size" color="grey" textAlign="center">
           Sign Up
-        </Header>
+        </p>
         <Form onSubmit={handleSubmit}>
           <Segment stacked>
             <Form.Input

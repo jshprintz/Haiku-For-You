@@ -35,7 +35,7 @@ export default function DisplayPostForm({
           </div>
         </Grid.Column>
         <Grid.Column style={{ width: 450 }}>
-          <h2>Comments will go here</h2>
+          
         </Grid.Column>
       </Grid.Row>
     </Grid>
