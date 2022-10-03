@@ -8,15 +8,15 @@
 
 ### Read haikus from people all around the world!
 
-![alt text](image.jpg)
+![home page not logged in](https://i.imgur.com/2ILCi8H.png)
 
 ### Show support by liking their posts, and keep up to date with their latest haikus by following them!
 
-![alt text](image.jpg)
+![feed and following](https://i.imgur.com/FnJBOx6.png)
 
 ### Post your own haikus and gain followers as you hone your voice!
 
-![alt text](image.jpg)
+![Write a haiku](https://i.imgur.com/uWz6o8t.png)
 ---
 
 #### Technologies Used:
