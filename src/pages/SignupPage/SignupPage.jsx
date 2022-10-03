@@ -4,7 +4,7 @@ import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import userService from "../../utils/userService";
 import { useNavigate } from "react-router-dom";
 
-import { Button, Form, Grid, Header, Segment } from "semantic-ui-react";
+import { Button, Form, Grid, Segment } from "semantic-ui-react";
 
 function isPasswordMatch(passwordOne, passwordConf) {
   return passwordOne === passwordConf;

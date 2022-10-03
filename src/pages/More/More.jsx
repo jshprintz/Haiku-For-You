@@ -1,6 +1,6 @@
 import React from "react";
 import PageHeader from "../../components/Header/Header";
-import { Grid, Segment } from "semantic-ui-react";
+import { Grid } from "semantic-ui-react";
 import MoreMenu from "../../components/MoreMenu/MoreMenu"
 
 export default function More({ loggedUser, handleLogout }) {
