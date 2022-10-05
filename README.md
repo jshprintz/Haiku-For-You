@@ -32,7 +32,7 @@
 ---
 
 #### Future Improvements
-- Connect to Mirriam-Webster API to count syllables in posts.
+- Connect to Merriam-Webster API to count syllables in posts.
 - Comments in the details page.
 - Mobile optimization.
 
