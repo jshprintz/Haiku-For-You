@@ -10,10 +10,9 @@ export default function Write({ loggedUser, handleLogout }) {
   const [error, setError] = useState("");
 
   async function handleAddPost(post) {
-
     try {
-      const response = await postsAPI.create(post); 
-      setPosts([response.data, ...posts]); 
+      const response = await postsAPI.create(post);
+      setPosts([response.data, ...posts]);
     } catch (err) {
       setError("Error creating post, please try again");
     }
@@ -32,17 +31,16 @@ export default function Write({ loggedUser, handleLogout }) {
         </Grid.Column>
       </Grid.Row>
       <Grid.Row>
-        <Grid.Column style={{ width: 150 }}>
-        </Grid.Column>
+        <Grid.Column style={{ width: 150 }}></Grid.Column>
         <Grid.Column style={{ width: 450 }}>
           <AddPost handleAddPost={handleAddPost} />
           <p>{error}</p>
         </Grid.Column>
         <Grid.Column style={{ width: 150 }}>
-        <p className="card-text instructions">Remember!</p>
-            <p className="instructions">Line One has 5 syllables...</p>
-            <p className="instructions">Line Two has 7 syllables...</p>
-            <p className="instructions">Line Three is back to 5 syllables!</p>
+          <p className="card-text instructions">Remember!</p>
+          <p className="instructions">Line One has 5 syllables...</p>
+          <p className="instructions">Line Two has 7 syllables...</p>
+          <p className="instructions">Line Three is back to 5 syllables!</p>
         </Grid.Column>
       </Grid.Row>
     </Grid>

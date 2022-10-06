@@ -2,7 +2,6 @@ import tokenService from "./tokenService";
 
 const BASE_URL = "/api/users/";
 
-
 // GET ALL OF THE USERS
 export function index() {
   return fetch(BASE_URL, {
@@ -19,7 +18,6 @@ export function index() {
     });
   });
 }
-
 
 // DETAILS PAGE
 function getProfileByID(userID) {
@@ -41,12 +39,8 @@ function getProfileByID(userID) {
   });
 }
 
-
-
 // PROFILE PAGE
- function getProfile(username) {
-  
-
+function getProfile(username) {
   return fetch(BASE_URL + username, {
     headers: {
       Authorization: "Bearer " + tokenService.getToken(), // <- since this will be called when we're logged in, send over the jwt token

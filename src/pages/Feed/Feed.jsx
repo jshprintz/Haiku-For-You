@@ -68,20 +68,19 @@ export default function Feed({ loggedUser, handleLogout }) {
   }
 
   //--------------------------DELETE POST------------------------------
-  
+
   async function removePost(postId) {
-    console.log("Here")
+    console.log("Here");
     try {
       postsAPI.deletePost(postId);
       getPosts();
       getFollowing();
     } catch (err) {
-      console.log("err", "This is the error")
-      setError(err)
-      setLoading(false)
+      console.log("err", "This is the error");
+      setError(err);
+      setLoading(false);
     }
   }
-
 
   //---------------------------GET POSTS--------------------------------
   async function getPosts() {
@@ -94,7 +93,6 @@ export default function Feed({ loggedUser, handleLogout }) {
       setLoading(false);
     }
   }
-
 
   useEffect(() => {
     getPosts();
@@ -116,29 +114,30 @@ export default function Feed({ loggedUser, handleLogout }) {
           return userService.getProfile(user.username);
         });
 
+      const responsePromise = await Promise.all(following);
 
-      const responsePromise = await Promise.all(following)
+      const everyonesPosts = responsePromise
+        .map(({ data }) => {
+          return data.posts;
+        })
+        .flat();
 
-      
-      const everyonesPosts = responsePromise.map(({ data }) => {
-        return data.posts
-      }).flat()
+      const followPosts = [];
 
+      // Refactor using .filter
+      // const result = everyonesPosts.filter(filterPosts => filterPosts.followers.findIndex(function (follower){
+      //   return follower.username === loggedUser?.username;}))
 
-        const followPosts = [];
-
-        // Refactor using .filter
-        // const result = everyonesPosts.filter(filterPosts => filterPosts.followers.findIndex(function (follower){
-        //   return follower.username === loggedUser?.username;}))
-
-        for (let i=0; i<everyonesPosts.length; i++){
-          const checkPost = everyonesPosts[i].user.followers.findIndex(function (follower){
+      for (let i = 0; i < everyonesPosts.length; i++) {
+        const checkPost = everyonesPosts[i].user.followers.findIndex(function (
+          follower
+        ) {
           return follower.username === loggedUser?.username;
-          });
+        });
 
-          if (checkPost > -1) followPosts.push(everyonesPosts[i]);
-        }
- 
+        if (checkPost > -1) followPosts.push(everyonesPosts[i]);
+      }
+
       setFollowingPosts(followPosts);
       setLoading(false);
     } catch (err) {
@@ -213,8 +212,13 @@ export default function Feed({ loggedUser, handleLogout }) {
                 </>
               ) : (
                 <>
-                  <p className="medium-font-size">You aren't following anyone!</p>
-                  <p className="medium-font-size"> Follow people to keep up with their latest haikus!</p>
+                  <p className="medium-font-size">
+                    You aren't following anyone!
+                  </p>
+                  <p className="medium-font-size">
+                    {" "}
+                    Follow people to keep up with their latest haikus!
+                  </p>
                 </>
               )}
             </Grid.Column>

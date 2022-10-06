@@ -15,8 +15,8 @@ export default function DisplayPostForm({
   itemsPerRow,
 }) {
   return (
-    <Grid >
-      <Grid.Row >
+    <Grid>
+      <Grid.Row>
         <Grid.Column centered style={{ width: 450 }}>
           <div className="details-card">
             <PostGallery
@@ -34,9 +34,7 @@ export default function DisplayPostForm({
             />
           </div>
         </Grid.Column>
-        <Grid.Column style={{ width: 450 }}>
-          
-        </Grid.Column>
+        <Grid.Column style={{ width: 450 }}></Grid.Column>
       </Grid.Row>
     </Grid>
   );

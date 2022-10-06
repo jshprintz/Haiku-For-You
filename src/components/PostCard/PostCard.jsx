@@ -9,10 +9,8 @@ function PostCard({
   addFollower,
   removeFollower,
   loggedUser,
-  removePost
+  removePost,
 }) {
-
-
   // LIKES
   const likedIndex = post.likes.findIndex(
     (like) => like.username === loggedUser?.username
@@ -42,19 +40,24 @@ function PostCard({
     try {
       await removePost(post._id);
     } catch (err) {
-      console.log(err,"this is the error")
+      console.log(err, "this is the error");
     }
-    
-  
   }
 
   const tempTimestamp = new Date(post.createdAt);
   const timestamp = tempTimestamp.toLocaleDateString();
 
   return (
-    <Card key={post._id} href={`/details/${post._id}`} className="card-background">
+    <Card
+      key={post._id}
+      href={`/details/${post._id}`}
+      className="card-background"
+    >
       <Card.Content className="card">
-        <Card.Description textAlign="right" className="user-name-card user-name-card-details">
+        <Card.Description
+          textAlign="right"
+          className="user-name-card user-name-card-details"
+        >
           <Link to={`/${post.user.username}`}>
             <Image
               size="large"
@@ -69,20 +72,26 @@ function PostCard({
           </Link>
         </Card.Description>
         <div className="card-text">
-        <br />
-        <Card.Description textAlign="center"><span className="haiku-title">{post.title}</span></Card.Description>
-        <br />
-        <Card.Description textAlign="center">{post.lineOne}</Card.Description>
-        <br />
-        <Card.Description textAlign="center">{post.lineTwo}</Card.Description>
-        <br />
-        <Card.Description textAlign="center">{post.lineThree}</Card.Description>
+          <br />
+          <Card.Description textAlign="center">
+            <span className="haiku-title">{post.title}</span>
+          </Card.Description>
+          <br />
+          <Card.Description textAlign="center">{post.lineOne}</Card.Description>
+          <br />
+          <Card.Description textAlign="center">{post.lineTwo}</Card.Description>
+          <br />
+          <Card.Description textAlign="center">
+            {post.lineThree}
+          </Card.Description>
         </div>
       </Card.Content>
 
       {loggedUser ? (
         <Segment raised textAlign={"right"}>
-          <Card.Description textAlign="left"><span className="date">{timestamp}</span></Card.Description>
+          <Card.Description textAlign="left">
+            <span className="date">{timestamp}</span>
+          </Card.Description>
 
           {post.user.username === loggedUser?.username ? (
             <Link to={`#`}>
