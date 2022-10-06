@@ -127,6 +127,10 @@ export default function Feed({ loggedUser, handleLogout }) {
 
         const followPosts = [];
 
+        // Refactor using .filter
+        // const result = everyonesPosts.filter(filterPosts => filterPosts.followers.findIndex(function (follower){
+        //   return follower.username === loggedUser?.username;}))
+
         for (let i=0; i<everyonesPosts.length; i++){
           const checkPost = everyonesPosts[i].user.followers.findIndex(function (follower){
           return follower.username === loggedUser?.username;

@@ -133,6 +133,10 @@ async function getFollowing() {
 
       const followPosts = [];
 
+      // Refactor using .filter
+      
+
+
       for (let i=0; i<everyonesPosts.length; i++){
         const checkPost = everyonesPosts[i].user.followers.findIndex(function (follower){
         return follower.username === loggedUser?.username;
