@@ -27,7 +27,7 @@ export default function Write({ loggedUser, handleLogout }) {
       </Grid.Row>
       <Grid.Row className="header-clearance">
         <Grid.Column textAlign="center">
-          <p className="large-font-size sub-header">Write a Haiku</p>
+          <p className="large-font-size sub-header centered">Write a Haiku</p>
         </Grid.Column>
       </Grid.Row>
       <Grid.Row>

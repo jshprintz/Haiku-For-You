@@ -7,7 +7,7 @@ export default function PageHeader({ loggedUser, handleLogout }) {
   return (
     <Grid textAlign="center">
       <Grid.Row>
-        <Grid.Column>
+        
           <div className="header-el">
             <Header as="h3" floated="right">
               <Link to={`/${loggedUser?.username}`}>
@@ -46,7 +46,7 @@ export default function PageHeader({ loggedUser, handleLogout }) {
               </a>
             </div>
           </div>
-        </Grid.Column>
+        
       </Grid.Row>
     </Grid>
   );

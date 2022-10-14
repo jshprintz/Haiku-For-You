@@ -4,7 +4,7 @@
 }
 
 .feed-gallery {
-  background-color:rgba(255,255,255, .8);
+  background-color: rgba(255, 255, 255, 0.8);
   border-radius: 5px;
   scroll-behavior: smooth;
   overflow: auto;
@@ -30,7 +30,7 @@ body {
   background-attachment: fixed;
 }
 
-.centered { 
+.centered {
   text-align: center;
   justify-content: center;
 }
@@ -67,11 +67,11 @@ body {
   border-radius: 5px;
   height: 100px;
   margin-top: 10px;
-  background-color: rgba(255,255,255, .8);
+  background-color: rgba(255, 255, 255, 0.8);
 }
 
 .white-back {
-  background-color:rgba(255,255,255, .8);
+  background-color: rgba(255, 255, 255, 0.8);
 }
 
 .header-clearance {
@@ -95,7 +95,7 @@ body {
 }
 
 .bio {
-  background-color: rgba(255,255,255, .5);
+  background-color: rgba(255, 255, 255, 0.5);
   border: 2px black solid;
   border-radius: 5px;
 }
@@ -106,7 +106,7 @@ body {
   margin-right: 40%;
   border: 2px solid black;
   border-radius: 5px;
-  background-color:rgba(255,255,255, .8);
+  background-color: rgba(255, 255, 255, 0.8);
 }
 
 .instructions {
@@ -115,7 +115,7 @@ body {
   width: 250px;
   border: 2px black solid;
   border-radius: 5px;
-  background-color:rgba(255,255,255, .8);
+  background-color: rgba(255, 255, 255, 0.8);
   animation: moveInRight 2s ease-out;
 }
 
@@ -132,49 +132,43 @@ body {
   color: black;
 }
 
-
-
-
 @keyframes moveInRight {
   0% {
-      opacity: 0;
-      transform: translateX(10rem)
+    opacity: 0;
+    transform: translateX(10rem);
   }
 
   80% {
-      transform: translateX(-2rem)
+    transform: translateX(-2rem);
   }
 
   100% {
-      opacity: 1;
-      transform: translate(0);
+    opacity: 1;
+    transform: translate(0);
   }
 }
 
 @media only screen and (max-width: 600px) {
   body {
-    zoom: .8;
+    zoom: 0.8;
   }
   .write-grid {
-    zoom: .8;
+    zoom: 0.8;
   }
-
-  .signup-grid{
-    zoom: .8;
+  .signup-grid {
+    zoom: 0.9;
   }
-
   .FAQ-menu {
     max-width: 350px;
   }
-
   .profile-bio {
-    max-width: 350px;
+    max-width: 300px;
   }
-
   .feed-gallery {
-    max-width: 350px;
+    max-width: 80%;
   }
-
-
-
+  .header-el {
+    zoom: 1.1;
+    height: 200px;
+  }
 }
