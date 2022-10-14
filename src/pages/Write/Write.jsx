@@ -25,13 +25,6 @@ export default function Write({ loggedUser, handleLogout }) {
           <PageHeader handleLogout={handleLogout} loggedUser={loggedUser} />
         </Grid.Column>
       </Grid.Row>
-      <Grid.Row >
-      <Grid.Column style={{ width: 150 }}></Grid.Column>
-        <Grid.Column style={{ width: 450 }} >
-          <p className="large-font-size sub-header centered">Write a Haiku</p>
-        </Grid.Column>
-        <Grid.Column style={{ width: 150 }}></Grid.Column>
-      </Grid.Row>
       <Grid.Row>
         <Grid.Column style={{ width: 150 }}></Grid.Column>
         <Grid.Column style={{ width: 450 }}>

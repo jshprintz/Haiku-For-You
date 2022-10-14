@@ -33,6 +33,7 @@ export default function AddPostForm(props) {
   return (
     <Segment>
       <Segment raised>
+        <p className="centered medium-font-size">Write a Haiku</p>
         <Form onSubmit={handleSubmit}>
           <Form.Input
             className="form-control"

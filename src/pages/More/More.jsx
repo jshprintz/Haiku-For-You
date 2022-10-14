@@ -15,13 +15,11 @@ export default function More({ loggedUser, handleLogout }) {
         FAQ
       </Grid.Row>
       <Grid.Row>
-        <Grid.Column style={{ width: 150 }}></Grid.Column>
         <Grid.Column style={{ width: 650 }}>
           <div className="faq">
             <MoreMenu />
           </div>
         </Grid.Column>
-        <Grid.Column style={{ width: 150 }}></Grid.Column>
       </Grid.Row>
     </Grid>
   );
