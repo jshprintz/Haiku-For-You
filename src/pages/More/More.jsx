@@ -11,9 +11,7 @@ export default function More({ loggedUser, handleLogout }) {
           <PageHeader handleLogout={handleLogout} loggedUser={loggedUser} />
         </Grid.Column>
       </Grid.Row>
-      <Grid.Row className="centered large-font-size sub-header">
-        FAQ
-      </Grid.Row>
+      <Grid.Row className="centered large-font-size sub-header">FAQ</Grid.Row>
       <Grid.Row>
         <Grid.Column style={{ width: 650 }}>
           <div className="faq">
