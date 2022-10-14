@@ -42,7 +42,7 @@ export default function PageHeader({ loggedUser, handleLogout }) {
             </Grid.Row>
 
 
-            <Grid.Row>
+            <Grid.Row centered>
             <div className="centered nav-title">
               <a href="/" className="large-font-size centered title">
                 Haiku For You
