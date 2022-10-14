@@ -160,12 +160,9 @@ body {
   body {
     zoom: 0.8;
   }
-  .signup-grid {
-    zoom: 0.9;
-  }
   .FAQ-menu {
-    max-width: 80%;
-    margin-left: 50px;
+    max-width: 300px;
+    margin-left: 10px;
   }
   .profile-bio {
     max-width: 80%;
