@@ -9,7 +9,7 @@ export default function PageHeader({ loggedUser, handleLogout }) {
       <Grid.Row>
         <Grid.Column>
           <div className="header-el">
-            <Header as="h2" floated="right">
+            <Header as="h3" floated="right">
               <Link to={`/${loggedUser?.username}`}>
                 <Image
                   src={
@@ -26,7 +26,7 @@ export default function PageHeader({ loggedUser, handleLogout }) {
                 </Link>
               ) : null}
             </Header>
-            <Header as="h2" floated="left">
+            <Header as="h3" floated="left">
               <>
                 <Link to="/more">
                   <Icon name={"question circle outline"} size="large" avatar />
