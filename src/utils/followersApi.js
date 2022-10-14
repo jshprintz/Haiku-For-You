@@ -8,7 +8,7 @@ export function create(userId) {
   return fetch(`${BASE_URL}user/${userId}/followers`, {
     method: "POST",
     headers: {
-      Authorization: "Bearer " + tokenService.getToken(), 
+      Authorization: "Bearer " + tokenService.getToken(),
     },
   }).then((res) => {
     if (res.ok) return res.json();
@@ -20,8 +20,8 @@ export function removeFollower(followerId) {
   return fetch(`${BASE_URL}followers/${followerId}`, {
     method: "DELETE",
     headers: {
-      Authorization: "Bearer " + tokenService.getToken(), 
-    }
+      Authorization: "Bearer " + tokenService.getToken(),
+    },
   }).then((res) => {
     if (res.ok) return res.json();
     throw new Error(res.error);

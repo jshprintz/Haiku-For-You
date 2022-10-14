@@ -75,70 +75,75 @@ export default function SignUpPage(props) {
       verticalAlign="middle"
     >
       <Grid.Column style={{ maxWidth: 450 }}>
-      <div className="centered">
-      <a href="/" className="large-font-size centered white-back login-title">Haiku For You</a>
-      </div>
-      <br />
+        <div className="centered">
+          <a
+            href="/"
+            className="large-font-size centered white-back login-title"
+          >
+            Haiku For You
+          </a>
+        </div>
+        <br />
         <Segment>
-        <p className="medium-font-size" color="grey" textAlign="center">
-          Sign Up
-        </p>
-        <Form onSubmit={handleSubmit}>
-          <Segment stacked>
-            <Form.Input
-              name="username"
-              placeholder="username"
-              value={state.username}
-              onChange={handleChange}
-              required
-            />
-            <Form.Input
-              type="email"
-              name="email"
-              placeholder="email"
-              value={state.email}
-              onChange={handleChange}
-              required
-            />
-            <Form.Input
-              error={error.passwordError}
-              name="password"
-              type="password"
-              placeholder="password"
-              value={state.password}
-              onChange={handleChange}
-              required
-            />
-            <Form.Input
-              error={error.passwordError}
-              name="passwordConf"
-              type="password"
-              placeholder="Confirm Password"
-              value={state.passwordConf}
-              onChange={handleChange}
-              required
-            />
-            <Form.TextArea
-              label="bio"
-              name="bio"
-              placeholder="Tell us more about yourself..."
-              value={state.bio}
-              onChange={handleChange}
-            />
-            <Form.Field>
+          <p className="medium-font-size" color="grey" textAlign="center">
+            Sign Up
+          </p>
+          <Form onSubmit={handleSubmit}>
+            <Segment stacked>
               <Form.Input
-                type="file"
-                name="photo"
-                placeholder="upload image"
-                onChange={handleFileInput}
+                name="username"
+                placeholder="username"
+                value={state.username}
+                onChange={handleChange}
+                required
               />
-            </Form.Field>
-            <Button type="submit" className="btn">
-              Signup
-            </Button>
-          </Segment>
-          {error.message ? <ErrorMessage error={error.message} /> : null}
-        </Form>
+              <Form.Input
+                type="email"
+                name="email"
+                placeholder="email"
+                value={state.email}
+                onChange={handleChange}
+                required
+              />
+              <Form.Input
+                error={error.passwordError}
+                name="password"
+                type="password"
+                placeholder="password"
+                value={state.password}
+                onChange={handleChange}
+                required
+              />
+              <Form.Input
+                error={error.passwordError}
+                name="passwordConf"
+                type="password"
+                placeholder="Confirm Password"
+                value={state.passwordConf}
+                onChange={handleChange}
+                required
+              />
+              <Form.TextArea
+                label="bio"
+                name="bio"
+                placeholder="Tell us more about yourself..."
+                value={state.bio}
+                onChange={handleChange}
+              />
+              <Form.Field>
+                <Form.Input
+                  type="file"
+                  name="photo"
+                  placeholder="upload image"
+                  onChange={handleFileInput}
+                />
+              </Form.Field>
+              <Button type="submit" className="btn">
+                Signup
+              </Button>
+            </Segment>
+            {error.message ? <ErrorMessage error={error.message} /> : null}
+          </Form>
         </Segment>
       </Grid.Column>
     </Grid>

@@ -19,8 +19,6 @@ export function create(post) {
   });
 }
 
-
-
 export function getAll() {
   return fetch(BASE_URL, {
     headers: {
@@ -37,11 +35,8 @@ export function getAll() {
   });
 }
 
-
-
-
 export function deletePost(postID) {
-  console.log("DELETE POST IN API IS CALLED")
+  console.log("DELETE POST IN API IS CALLED");
   return fetch(BASE_URL + "/" + postID, {
     method: "DELETE",
     headers: {
@@ -57,9 +52,6 @@ export function deletePost(postID) {
     });
   });
 }
-
-
-
 
 export function getPost(postID) {
   return fetch(BASE_URL + "/details/" + postID, {
