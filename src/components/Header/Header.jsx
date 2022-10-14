@@ -6,9 +6,9 @@ import "../../pages/App/App.css";
 export default function PageHeader({ loggedUser, handleLogout }) {
   return (
     <Grid textAlign="center">
-      <Grid.Row>
-        
           <div className="header-el">
+
+          <Grid.Row>
             <Header as="h3" floated="right">
               <Link to={`/${loggedUser?.username}`}>
                 <Image
@@ -39,15 +39,19 @@ export default function PageHeader({ loggedUser, handleLogout }) {
                 ) : null}
               </>
             </Header>
-            <br />
-            <div className="centered">
+            </Grid.Row>
+
+
+            <Grid.Row>
+            <div className="centered nav-title">
               <a href="/" className="large-font-size centered title">
                 Haiku For You
               </a>
             </div>
+            </Grid.Row>
           </div>
         
-      </Grid.Row>
+      
     </Grid>
   );
 }
