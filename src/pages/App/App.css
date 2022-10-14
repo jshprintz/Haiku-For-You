@@ -132,6 +132,9 @@ body {
   color: black;
 }
 
+
+
+
 @keyframes moveInRight {
   0% {
       opacity: 0;
@@ -152,8 +155,26 @@ body {
   body {
     zoom: .8;
   }
+  .write-grid {
+    zoom: .8;
+  }
+
+  .signup-grid{
+    zoom: .8;
+  }
 
   .FAQ-menu {
     max-width: 350px;
   }
+
+  .profile-bio {
+    max-width: 350px;
+  }
+
+  .feed-gallery {
+    max-width: 350px;
+  }
+
+
+
 }

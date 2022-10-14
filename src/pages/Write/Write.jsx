@@ -19,7 +19,7 @@ export default function Write({ loggedUser, handleLogout }) {
   }
 
   return (
-    <Grid centered>
+    <Grid centered className="write-grid">
       <Grid.Row>
         <Grid.Column>
           <PageHeader handleLogout={handleLogout} loggedUser={loggedUser} />
