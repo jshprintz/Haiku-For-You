@@ -71,11 +71,11 @@ export default function SignUpPage(props) {
   return (
     <Grid
       textAlign="center"
-      style={{ height: "100vh", width: "100vw" }}
       verticalAlign="middle"
       className="signup-grid"
     >
       <Grid.Column style={{ maxWidth: 450 }}>
+        <br />
         <div className="centered">
           <a
             href="/"

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "./LoginPage.css";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import userService from "../../utils/userService";
 import { useNavigate, Link } from "react-router-dom";
@@ -37,11 +36,11 @@ export default function LoginPage(props) {
   return (
     <Grid
       textAlign="center"
-      style={{ height: "100vh", width: "100vw" }}
       verticalAlign="middle"
     >
       <Grid.Column style={{ maxWidth: 450 }}>
         <div className="centered">
+          <br />
           <a
             href="/"
             className="large-font-size centered white-back login-title"
