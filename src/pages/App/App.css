@@ -78,7 +78,7 @@ body {
   margin-top: 10%;
 }
 .large-font-size {
-  font-size: 36pt;
+  font-size: 30pt;
 }
 
 .medium-font-size {
@@ -148,7 +148,7 @@ body {
   }
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 600px) {
   body {
     zoom: .8;
   }
