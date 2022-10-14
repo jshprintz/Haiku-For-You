@@ -5,6 +5,7 @@ import "../../pages/App/App.css";
 
 export default function PageHeader({ loggedUser, handleLogout }) {
   return (
+    <>
     <Grid centered>
           <div className="header-el">
 
@@ -40,19 +41,17 @@ export default function PageHeader({ loggedUser, handleLogout }) {
               </>
             </Header>
             </Grid.Row>
-
-
-            <Grid.Row >
-            <div className="centered nav-title">
+          </div>      
+    </Grid>
+    <Grid centered>
+    <Grid.Row >
+            <div className="centered nav-title header-el">
               <a href="/" className="large-font-size centered title">
                 Haiku For You
               </a>
             </div>
-            </Grid.Row>
-
-          </div>
-        
-      
+    </Grid.Row>
     </Grid>
+    </>
   );
 }
