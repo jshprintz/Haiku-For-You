@@ -16,7 +16,8 @@ export default class AccordionExampleStyled extends Component {
     const { activeIndex } = this.state;
 
     return (
-      <Accordion styled>
+      <div className="FAQ-menu">
+      <Accordion styled >
         <Accordion.Title
           active={activeIndex === 0}
           index={0}
@@ -98,6 +99,7 @@ export default class AccordionExampleStyled extends Component {
           </ul>
         </Accordion.Content>
       </Accordion>
+      </div>
     );
   }
 }

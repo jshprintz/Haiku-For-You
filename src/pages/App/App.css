@@ -147,3 +147,13 @@ body {
       transform: translate(0);
   }
 }
+
+@media only screen and (max-width: 500px) {
+  body {
+    zoom: .8;
+  }
+
+  .FAQ-menu {
+    max-width: 350px;
+  }
+}
