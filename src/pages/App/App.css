@@ -166,21 +166,20 @@ body {
   .signup-grid {
     zoom: 0.9;
   }
-
   .title {
     zoom: .8;
   }
   .FAQ-menu {
-    max-width: 100%;
+    max-width: 80%;
   }
   .profile-bio {
-    max-width: 100%;
+    max-width: 80%;
   }
   .feed-gallery {
     max-width: 80%;
   }
   .header-el {
     zoom: 1.1;
-    height: 60px;
+    height: 100px;
   }
 }

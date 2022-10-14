@@ -5,10 +5,10 @@ import "../../pages/App/App.css";
 
 export default function PageHeader({ loggedUser, handleLogout }) {
   return (
-    <Grid textAlign="center">
+    <Grid centered>
           <div className="header-el">
 
-          <Grid.Row>
+          <Grid.Row style={{ height: 40 }}>
             <Header as="h3" floated="right">
               <Link to={`/${loggedUser?.username}`}>
                 <Image
@@ -42,13 +42,14 @@ export default function PageHeader({ loggedUser, handleLogout }) {
             </Grid.Row>
 
 
-            <Grid.Row centered>
+            <Grid.Row >
             <div className="centered nav-title">
               <a href="/" className="large-font-size centered title">
                 Haiku For You
               </a>
             </div>
             </Grid.Row>
+
           </div>
         
       
