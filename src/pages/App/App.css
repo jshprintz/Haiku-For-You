@@ -160,18 +160,12 @@ body {
   body {
     zoom: 0.8;
   }
-  .write-grid {
-    zoom: 0.8;
-  }
   .signup-grid {
     zoom: 0.9;
   }
-  .title {
-    zoom: .8;
-  }
   .FAQ-menu {
     max-width: 80%;
-    margin-left: 20px;
+    margin-left: 50px;
   }
   .profile-bio {
     max-width: 80%;
@@ -181,6 +175,6 @@ body {
   }
   .header-el {
     zoom: 1.1;
-    height: 100px;
+    height: 60px;
   }
 }
