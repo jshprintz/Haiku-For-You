@@ -8,6 +8,11 @@ const followersSchema = mongoose.Schema({
   userId: { type: mongoose.Schema.Types.ObjectId }
 })
 
+// const followingSchema = mongoose.Schema({
+// username: String,
+// userId: { type: mongoose.Schema.Types.ObjectId }
+//})
+
 const userSchema = new mongoose.Schema({
   username: {type: String, required: true, lowercase: true, unique: true},
   email: {type: String, required: true, lowercase: true, unique: true},
@@ -15,6 +20,7 @@ const userSchema = new mongoose.Schema({
   bio: String,
   photoUrl: String,  // string from aws!
   followers: [followersSchema]
+  // following: [followingSchema]
 }, {
   timestamps: true
 });
