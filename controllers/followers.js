@@ -15,7 +15,7 @@ async function create(req, res) {
     // const loggedInUser = await User.findById(req.user._id);
     // loggedInUser.followers.push({ username: user.username, userId: user._id});
     // await loggedInUser.save();
-    //
+    
     res.status(201).json({ data: "follower added" });
   } catch (err) {
     res.status(400).json({ error: err });
