@@ -12,10 +12,11 @@ async function create(req, res) {
     // that the logged in user wanted to follow, hence, followers list on the post user
     user.followers.push({ username: req.user.username, userId: req.user._id });
     await user.save();
+    
     // const loggedInUser = await User.findById(req.user._id);
     // loggedInUser.followers.push({ username: user.username, userId: user._id});
     // await loggedInUser.save();
-    
+
     res.status(201).json({ data: "follower added" });
   } catch (err) {
     res.status(400).json({ error: err });
@@ -30,7 +31,12 @@ async function deleteFollower(req, res) {
     });
     user.followers.remove(req.params.id);
     await user.save();
-    res.json({ data: "follwer removed" });
+
+    // const loggedInUser = await User.findById(req.user._id);
+    // loggedInUser.following.remove(user._id)
+    // await  loggedInUser.save();
+
+    res.json({ data: "follower removed" });
   } catch (err) {
     res.status(400).json({ error: err });
   }

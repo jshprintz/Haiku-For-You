@@ -103,6 +103,12 @@ export default function Feed({ loggedUser, handleLogout }) {
 
   async function getFollowing() {
     try {
+
+      // This all needs to be refactored. Instead of searching for following by looking
+      // through every users followers, I need to store the following separately, and 
+      // get the posts of those user IDs.
+
+      // Gets all the users
       const response = await userService.index();
 
       // Check every users followers to see if it contains logged in user
@@ -127,6 +133,8 @@ export default function Feed({ loggedUser, handleLogout }) {
       // Refactor using .filter
       // const result = everyonesPosts.filter(filterPosts => filterPosts.followers.findIndex(function (follower){
       //   return follower.username === loggedUser?.username;}))
+
+      // Refactor for  following
 
       for (let i = 0; i < everyonesPosts.length; i++) {
         const checkPost = everyonesPosts[i].user.followers.findIndex(function (
