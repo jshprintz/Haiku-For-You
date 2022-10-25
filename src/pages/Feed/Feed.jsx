@@ -133,7 +133,6 @@ export default function Feed({ loggedUser, handleLogout }) {
       // Refactor using .filter
       // const result = everyonesPosts.filter(filterPosts => filterPosts.followers.findIndex(function (follower){
       //   return follower.username === loggedUser?.username;}))
-
       // Refactor for  following
 
       for (let i = 0; i < everyonesPosts.length; i++) {
